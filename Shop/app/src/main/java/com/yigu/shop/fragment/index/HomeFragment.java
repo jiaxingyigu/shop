@@ -1,0 +1,85 @@
+package com.yigu.shop.fragment.index;
+
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.OrientationHelper;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.yigu.shop.R;
+import com.yigu.shop.adapter.index.HomeAdapter;
+import com.yigu.shop.base.BaseFrag;
+import com.yigu.shop.commom.result.IndexData;
+import com.yigu.shop.commom.result.MapiResourceResult;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class HomeFragment extends BaseFrag {
+    @Bind(R.id.recyclerView)
+    RecyclerView recyclerView;
+    HomeAdapter mAdapter;
+    List<IndexData> mList = new ArrayList<>();
+
+    private final static String SCROLL = "SCROLL";
+    private final static String MENU = "SCROLL";
+    private final static String HOST = "SCROLL";
+    private final static String BSET_SHOP = "SCROLL";
+
+    public HomeFragment() {
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        ButterKnife.bind(this, view);
+        initView();
+        load();
+        return view;
+    }
+
+    private void initView() {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager.setOrientation(OrientationHelper.VERTICAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        mAdapter = new HomeAdapter(getActivity(),mList);
+        recyclerView.setAdapter(mAdapter);
+    }
+
+    public void load() {
+        mList.clear();
+        mList.add(new IndexData(0,SCROLL,new ArrayList<MapiResourceResult>()));
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @OnClick({R.id.search_iv, R.id.purcase_iv, R.id.person_iv})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.search_iv:
+                break;
+            case R.id.purcase_iv:
+                break;
+            case R.id.person_iv:
+                break;
+        }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
+    }
+
+}
