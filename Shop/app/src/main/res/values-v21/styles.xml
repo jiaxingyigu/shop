@@ -1,0 +1,8 @@
+<resources>
+
+    <style name="AppTheme" parent="BaseAppTheme">
+        <!--状态栏底色-->
+        <item name="android:colorPrimaryDark">@android:color/black</item>
+    </style>
+
+</resources>
