@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import com.yigu.shop.R;
 import com.yigu.shop.commom.result.IndexData;
 import com.yigu.shop.commom.result.MapiResourceResult;
-import com.yigu.shop.view.IndexHomeLayout;
+import com.yigu.shop.view.HomeSliderLayout;
 
 import java.util.List;
 
@@ -22,9 +22,8 @@ import butterknife.ButterKnife;
 public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final static int SLIDER_IMAGE = 0;
-    private final static int MENU = 1;
-    private final static int HOST = 2;
-    private final static int BSET_SHOP = 3;
+    private final static int HOST = 1;
+    private final static int BSET_SHOP = 2;
 
     LayoutInflater inflater;
 
@@ -44,9 +43,9 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
             case SLIDER_IMAGE:
-                return new SliderViewHolder(inflater.inflate(R.layout.lay_index_home, parent, false));
+                return new SliderViewHolder(inflater.inflate(R.layout.lay_home_slider, parent, false));
             default:
-                return new SliderViewHolder(inflater.inflate(R.layout.lay_index_home, parent, false));
+                return new SliderViewHolder(inflater.inflate(R.layout.lay_home_slider, parent, false));
         }
     }
 
@@ -54,7 +53,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         List<MapiResourceResult> resultList = (List<MapiResourceResult>) mList.get(position).getData();
         if (holder instanceof SliderViewHolder) {
-            ((SliderViewHolder)holder).indexHomeLayout.load(resultList);
+            ((SliderViewHolder)holder).homeSliderLayout.load(resultList);
         }
     }
 
@@ -63,8 +62,6 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         switch (mList.get(position).getType()) {
             case "SCROLL":
                 return SLIDER_IMAGE;
-            case "MENU":
-                return MENU;
             case "HOST":
                 return HOST;
             case "BSET_SHOP":
@@ -75,8 +72,8 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     class SliderViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.indexHomeLayout)
-        IndexHomeLayout indexHomeLayout;
+        @Bind(R.id.homeSliderLayout)
+        HomeSliderLayout homeSliderLayout;
         public SliderViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);

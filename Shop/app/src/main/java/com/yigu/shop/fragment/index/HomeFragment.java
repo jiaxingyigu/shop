@@ -1,6 +1,7 @@
 package com.yigu.shop.fragment.index;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +16,8 @@ import com.yigu.shop.adapter.index.HomeAdapter;
 import com.yigu.shop.base.BaseFrag;
 import com.yigu.shop.commom.result.IndexData;
 import com.yigu.shop.commom.result.MapiResourceResult;
+import com.yigu.shop.commom.util.DPUtil;
+import com.yigu.shop.widget.DividerListItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +36,6 @@ public class HomeFragment extends BaseFrag {
     List<IndexData> mList = new ArrayList<>();
 
     private final static String SCROLL = "SCROLL";
-    private final static String MENU = "SCROLL";
     private final static String HOST = "SCROLL";
     private final static String BSET_SHOP = "SCROLL";
 
@@ -53,6 +55,7 @@ public class HomeFragment extends BaseFrag {
     private void initView() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(OrientationHelper.VERTICAL);
+        recyclerView.addItemDecoration(new DividerListItemDecoration(getActivity(),OrientationHelper.HORIZONTAL, DPUtil.dip2px(10),getResources().getColor(R.color.divider_line)));
         recyclerView.setLayoutManager(linearLayoutManager);
         mAdapter = new HomeAdapter(getActivity(),mList);
         recyclerView.setAdapter(mAdapter);
