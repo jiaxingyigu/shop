@@ -23,7 +23,8 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final static int SLIDER_IMAGE = 0;
     private final static int HOST = 1;
-    private final static int BSET_SHOP = 2;
+    private final static int TOOL = 2;
+    private final static int BSET_SHOP = 3;
 
     LayoutInflater inflater;
 
@@ -64,6 +65,8 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 return SLIDER_IMAGE;
             case "HOST":
                 return HOST;
+            case "TOOL":
+                return TOOL;
             case "BSET_SHOP":
                 return BSET_SHOP;
             default:

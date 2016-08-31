@@ -36,8 +36,9 @@ public class HomeFragment extends BaseFrag {
     List<IndexData> mList = new ArrayList<>();
 
     private final static String SCROLL = "SCROLL";
-    private final static String HOST = "SCROLL";
-    private final static String BSET_SHOP = "SCROLL";
+    private final static String HOST = "HOST";
+    private final static String TOOL = "TOOL";
+    private final static String BSET_SHOP = "BSET_SHOP";
 
     public HomeFragment() {
     }
