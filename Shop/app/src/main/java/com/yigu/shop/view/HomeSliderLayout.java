@@ -1,7 +1,6 @@
 package com.yigu.shop.view;
 
 import android.content.Context;
-import android.net.Uri;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -26,7 +25,7 @@ import butterknife.ButterKnife;
 /**
  * Created by brain on 2016/8/30.
  */
-public class IndexHomeLayout extends RelativeLayout {
+public class HomeSliderLayout extends RelativeLayout {
     @Bind(R.id.index_viewpager)
     ViewPager indexViewpager;
     @Bind(R.id.guide_dot)
@@ -34,19 +33,19 @@ public class IndexHomeLayout extends RelativeLayout {
     private Context mContext;
     private View view;
     List<View> sliderViewList;
-    public IndexHomeLayout(Context context) {
+    public HomeSliderLayout(Context context) {
         super(context);
         mContext = context;
         initView();
     }
 
-    public IndexHomeLayout(Context context, AttributeSet attrs) {
+    public HomeSliderLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
         initView();
     }
 
-    public IndexHomeLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public HomeSliderLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
         initView();
@@ -55,7 +54,7 @@ public class IndexHomeLayout extends RelativeLayout {
     private void initView() {
         if (isInEditMode())
             return;
-        view = LayoutInflater.from(mContext).inflate(R.layout.layout_index_home, this);
+        view = LayoutInflater.from(mContext).inflate(R.layout.layout_home_slider, this);
         ButterKnife.bind(this, view);
     }
 
@@ -87,17 +86,17 @@ public class IndexHomeLayout extends RelativeLayout {
         indexViewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
                 for (int i = 0; i < sliderViewList.size(); i++) {
                     if (position == i)
                         guideDot.getChildAt(i).setSelected(true);
                     else
                         guideDot.getChildAt(i).setSelected(false);
                 }
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-
             }
 
             @Override

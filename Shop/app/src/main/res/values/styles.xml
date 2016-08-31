@@ -30,4 +30,17 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
+    <style name="textViewStyle">
+        <item name="android:textColor">@color/shop_black</item>
+        <item name="android:textSize">@dimen/text_normal</item>
+    </style>
+
+    <style name="editViewStyle">
+        <item name="android:textColor">@color/shop_black</item>
+        <item name="android:background">@null</item>
+        <item name="android:textSize">@dimen/text_small</item>
+        <item name="android:textColorHint">@color/shop_black</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
 </resources>

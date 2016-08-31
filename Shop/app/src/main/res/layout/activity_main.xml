@@ -4,14 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.yigu.shop.activity.MainActivity"
-    android:background="@android:color/black"
     >
 
     <RelativeLayout
         android:id="@+id/lay_bottom"
         android:layout_width="match_parent"
         android:layout_height="75dp"
-        android:background="@mipmap/home_bg"
+        android:background="@color/background_all"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
         >
