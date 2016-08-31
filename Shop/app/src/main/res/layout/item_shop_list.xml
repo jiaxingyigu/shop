@@ -3,6 +3,115 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#484848"
     android:padding="@dimen/margin_10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        
+        <com.facebook.drawee.view.DraweeView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/face"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_centerVertical="true"
+            android:text="车家欢中关村店"
+            android:textColor="#eeeeee"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="40dp"
+            android:layout_centerVertical="true"
+            android:text="进入好店"
+            android:textColor="#ffffff"
+            android:textSize="12sp"
+            android:background="#fcb24e"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <com.facebook.drawee.view.DraweeView
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:padding="2dp"
+                android:background="#ffffff"
+                android:src="@drawable/product"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="指南车S3高压车机"
+                android:textColor="#eeeeee"
+                android:textSize="13sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <com.facebook.drawee.view.DraweeView
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:padding="2dp"
+                android:background="#ffffff"
+                android:src="@drawable/product"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="指南车S3高压车机"
+                android:textColor="#eeeeee"
+                android:textSize="13sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <com.facebook.drawee.view.DraweeView
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:padding="2dp"
+                android:background="#ffffff"
+                android:src="@drawable/product"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="指南车S3高压车机"
+                android:textColor="#eeeeee"
+                android:textSize="13sp"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </LinearLayout>
