@@ -7,6 +7,7 @@ import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 
 import com.yigu.shop.R;
+import com.yigu.shop.adapter.shops.ShopAdapter;
 import com.yigu.shop.base.BaseActivity;
 import com.yigu.shop.commom.util.DPUtil;
 import com.yigu.shop.widget.BestSwipeRefreshLayout;
@@ -22,6 +23,8 @@ public class ShopListActivity extends BaseActivity {
     @Bind(R.id.BSRLShop)
     BestSwipeRefreshLayout BSRLShop;
 
+    ShopAdapter mAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,5 +39,7 @@ public class ShopListActivity extends BaseActivity {
         rvShop.setHasFixedSize(true);
         rvShop.addItemDecoration(new DividerListItemDecoration(this,OrientationHelper.HORIZONTAL, DPUtil.dip2px(10), Color.parseColor("#ffffff")));
         rvShop.setLayoutManager(manager);
+        mAdapter = new ShopAdapter(this);
+        rvShop.setAdapter(mAdapter);
     }
 }
