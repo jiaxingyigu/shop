@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#484848"
-    android:padding="@dimen/margin_10dp">
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/margin_10dp"
+    android:paddingLeft="@dimen/margin_10dp"
+    android:paddingRight="@dimen/margin_10dp"
+    >
 
     <RelativeLayout
+        android:id="@+id/shop_rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        
-        <com.facebook.drawee.view.DraweeView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/face"/>
 
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/head"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            fresco:fadeDuration="2000"
+            fresco:placeholderImage="@mipmap/ic_launcher"
+            fresco:placeholderImageScaleType="fitCenter"
+            />
+        
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -25,93 +33,30 @@
             android:textSize="16sp"/>
 
         <TextView
+            android:id="@+id/shop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
             android:layout_alignParentRight="true"
             android:layout_marginLeft="40dp"
             android:layout_centerVertical="true"
             android:text="进入好店"
             android:textColor="#ffffff"
             android:textSize="12sp"
-            android:background="#fcb24e"/>
+            android:background="@drawable/selector_pressed_round_color_yellow"
+            />
 
     </RelativeLayout>
-    <RelativeLayout
+
+    <LinearLayout
+        android:id="@+id/best_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical">
-
-            <com.facebook.drawee.view.DraweeView
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:padding="2dp"
-                android:background="#ffffff"
-                android:src="@drawable/product"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="指南车S3高压车机"
-                android:textColor="#eeeeee"
-                android:textSize="13sp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical">
-
-            <com.facebook.drawee.view.DraweeView
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:padding="2dp"
-                android:background="#ffffff"
-                android:src="@drawable/product"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="指南车S3高压车机"
-                android:textColor="#eeeeee"
-                android:textSize="13sp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical">
-
-            <com.facebook.drawee.view.DraweeView
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:padding="2dp"
-                android:background="#ffffff"
-                android:src="@drawable/product"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="指南车S3高压车机"
-                android:textColor="#eeeeee"
-                android:textSize="13sp"/>
-
-        </LinearLayout>
-
-    </RelativeLayout>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/shop_rl"
+        />
 
 </LinearLayout>

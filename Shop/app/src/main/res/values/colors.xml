@@ -9,4 +9,7 @@
     <color name="divider_line">#191919</color>
     <color name="dark_gray">#696969</color>
     <color name="light_gray">#bcbcbc</color>
+
+    <drawable name="background_all">#464646</drawable>
+    <drawable name="dark_black">#333333</drawable>
 </resources>

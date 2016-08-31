@@ -9,7 +9,11 @@ import android.view.ViewGroup;
 import com.yigu.shop.R;
 import com.yigu.shop.commom.result.IndexData;
 import com.yigu.shop.commom.result.MapiResourceResult;
+import com.yigu.shop.commom.result.MapiShopResult;
+import com.yigu.shop.view.HomeBestLayout;
+import com.yigu.shop.view.HomeHostLayout;
 import com.yigu.shop.view.HomeSliderLayout;
+import com.yigu.shop.view.HomeToolLayout;
 
 import java.util.List;
 
@@ -45,6 +49,12 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         switch (viewType) {
             case SLIDER_IMAGE:
                 return new SliderViewHolder(inflater.inflate(R.layout.lay_home_slider, parent, false));
+            case HOST:
+                return new HostViewHolder(inflater.inflate(R.layout.lay_home_host, parent, false));
+            case TOOL:
+                return new ToolViewHolder(inflater.inflate(R.layout.lay_home_tool, parent, false));
+            case BSET_SHOP:
+                return new BestViewHolder(inflater.inflate(R.layout.lay_home_best, parent, false));
             default:
                 return new SliderViewHolder(inflater.inflate(R.layout.lay_home_slider, parent, false));
         }
@@ -52,9 +62,12 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        List<MapiResourceResult> resultList = (List<MapiResourceResult>) mList.get(position).getData();
         if (holder instanceof SliderViewHolder) {
-            ((SliderViewHolder)holder).homeSliderLayout.load(resultList);
+            ((SliderViewHolder)holder).homeSliderLayout.load((List<MapiResourceResult>) mList.get(position).getData());
+        }else if(holder instanceof HostViewHolder){
+            ((HostViewHolder)holder).homeHostLayout.load((List<MapiResourceResult>) mList.get(position).getData());
+        }else if(holder instanceof BestViewHolder){
+            ((BestViewHolder)holder).homeBestLayout.load((List<MapiShopResult>) mList.get(position).getData());
         }
     }
 
@@ -82,4 +95,33 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             ButterKnife.bind(this, itemView);
         }
     }
+
+    class HostViewHolder extends RecyclerView.ViewHolder {
+        @Bind(R.id.homeHostLayout)
+        HomeHostLayout homeHostLayout;
+        public HostViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
+    }
+
+    class ToolViewHolder extends RecyclerView.ViewHolder {
+        @Bind(R.id.homeToolLayout)
+        HomeToolLayout homeToolLayout;
+        public ToolViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
+    }
+
+    class BestViewHolder extends RecyclerView.ViewHolder {
+        @Bind(R.id.homeBestLayout)
+        HomeBestLayout homeBestLayout;
+        public BestViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
+    }
+
+
 }

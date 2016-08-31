@@ -16,10 +16,12 @@ import com.yigu.shop.adapter.index.HomeAdapter;
 import com.yigu.shop.base.BaseFrag;
 import com.yigu.shop.commom.result.IndexData;
 import com.yigu.shop.commom.result.MapiResourceResult;
+import com.yigu.shop.commom.result.MapiShopResult;
 import com.yigu.shop.commom.util.DPUtil;
 import com.yigu.shop.widget.DividerListItemDecoration;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.Bind;
@@ -65,6 +67,10 @@ public class HomeFragment extends BaseFrag {
     public void load() {
         mList.clear();
         mList.add(new IndexData(0,SCROLL,new ArrayList<MapiResourceResult>()));
+        mList.add(new IndexData(2,TOOL,new ArrayList<MapiResourceResult>()));
+        mList.add(new IndexData(1,HOST,new ArrayList<MapiResourceResult>()));
+        mList.add(new IndexData(3,BSET_SHOP,new ArrayList<MapiShopResult>()));
+        Collections.sort(mList);
         mAdapter.notifyDataSetChanged();
     }
 

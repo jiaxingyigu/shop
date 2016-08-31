@@ -8,7 +8,7 @@
         <!--  <item name="colorPrimary">@color/colorPrimary</item>-->
         <item name="colorAccent">@android:color/black</item>
         <!--可以统一背景色-->
-        <item name="android:windowBackground">@android:color/black</item>
+        <item name="android:windowBackground">@color/background_all</item>
         <item name="android:textColor">@android:color/black</item>
         <item name="android:textSize">@dimen/text_normal</item>
     </style>

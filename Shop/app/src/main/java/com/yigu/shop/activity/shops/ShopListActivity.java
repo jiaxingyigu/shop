@@ -9,9 +9,13 @@ import android.support.v7.widget.RecyclerView;
 import com.yigu.shop.R;
 import com.yigu.shop.adapter.shops.ShopAdapter;
 import com.yigu.shop.base.BaseActivity;
+import com.yigu.shop.commom.result.MapiShopResult;
 import com.yigu.shop.commom.util.DPUtil;
 import com.yigu.shop.widget.BestSwipeRefreshLayout;
 import com.yigu.shop.widget.DividerListItemDecoration;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -24,7 +28,7 @@ public class ShopListActivity extends BaseActivity {
     BestSwipeRefreshLayout BSRLShop;
 
     ShopAdapter mAdapter;
-
+    List<MapiShopResult> mList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +43,7 @@ public class ShopListActivity extends BaseActivity {
         rvShop.setHasFixedSize(true);
         rvShop.addItemDecoration(new DividerListItemDecoration(this,OrientationHelper.HORIZONTAL, DPUtil.dip2px(10), Color.parseColor("#ffffff")));
         rvShop.setLayoutManager(manager);
-        mAdapter = new ShopAdapter(this);
+        mAdapter = new ShopAdapter(this,mList);
         rvShop.setAdapter(mAdapter);
     }
 }
