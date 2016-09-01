@@ -11,6 +11,7 @@ import com.yigu.shop.R;
 import com.yigu.shop.base.BaseActivity;
 import com.yigu.shop.base.BaseFrag;
 import com.yigu.shop.fragment.index.HomeFragment;
+import com.yigu.shop.fragment.index.SortFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -44,7 +45,7 @@ public class MainActivity extends BaseActivity {
     private void initView() {
         fragments = new BaseFrag[5];
         fragments[0] = new HomeFragment();
-        fragments[1] = new HomeFragment();
+        fragments[1] = new SortFragment();
         fragments[2] = new HomeFragment();
         fragments[3] = new HomeFragment();
         fragments[4] = new HomeFragment();
