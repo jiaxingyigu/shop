@@ -2,6 +2,7 @@ package com.yigu.shop.activity.shops;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
@@ -26,9 +27,13 @@ public class ShopListActivity extends BaseActivity {
     RecyclerView rvShop;
     @Bind(R.id.BSRLShop)
     BestSwipeRefreshLayout BSRLShop;
+    @Bind(R.id.tabShop)
+    TabLayout tabShop;
 
     ShopAdapter mAdapter;
     List<MapiShopResult> mList = new ArrayList<>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +46,14 @@ public class ShopListActivity extends BaseActivity {
         LinearLayoutManager manager = new LinearLayoutManager(this);
         manager.setOrientation(OrientationHelper.VERTICAL);
         rvShop.setHasFixedSize(true);
-        rvShop.addItemDecoration(new DividerListItemDecoration(this,OrientationHelper.HORIZONTAL, DPUtil.dip2px(10), Color.parseColor("#ffffff")));
+        rvShop.addItemDecoration(new DividerListItemDecoration(this, OrientationHelper.HORIZONTAL, DPUtil.dip2px(10), Color.parseColor("#ffffff")));
         rvShop.setLayoutManager(manager);
-        mAdapter = new ShopAdapter(this,mList);
+        mAdapter = new ShopAdapter(this, mList);
         rvShop.setAdapter(mAdapter);
+        tabShop.setTabMode(TabLayout.MODE_SCROLLABLE);
+        tabShop.addTab(tabShop.newTab().setText("全部"));
+        tabShop.addTab(tabShop.newTab().setText("设备"));
+        tabShop.addTab(tabShop.newTab().setText("工具"));
+        tabShop.addTab(tabShop.newTab().setText("修补耗材"));
     }
 }
