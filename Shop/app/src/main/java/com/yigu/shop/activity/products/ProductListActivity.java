@@ -39,7 +39,7 @@ public class ProductListActivity extends BaseActivity {
         LinearLayoutManager manager = new LinearLayoutManager(this);
         manager.setOrientation(OrientationHelper.VERTICAL);
         recyclerView.setHasFixedSize(true);
-        recyclerView.addItemDecoration(new DividerListItemDecoration(this,OrientationHelper.HORIZONTAL, DPUtil.dip2px(10), Color.parseColor("#ffffff")));
+        recyclerView.addItemDecoration(new DividerListItemDecoration(this,OrientationHelper.HORIZONTAL, DPUtil.dip2px(1), Color.parseColor("#696969")));
         recyclerView.setLayoutManager(manager);
         mAdapter = new ProductAdapter(this);
         recyclerView.setAdapter(mAdapter);

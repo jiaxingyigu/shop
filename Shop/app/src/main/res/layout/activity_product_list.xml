@@ -1,9 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.yigu.shop.activity.products.ProductListActivity">
+
+    <RelativeLayout
+        android:id="@+id/lay_header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/text_height_45dp"
+        android:background="@mipmap/head_bg"
+        >
+
+        <RelativeLayout
+            style="@style/search_layout_style"
+            android:orientation="horizontal"
+            android:background="@drawable/shape_rect_soild_color_black_round_10"
+            android:gravity="center_vertical"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            >
+
+            <ImageView
+                android:id="@+id/search_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/search"
+                android:layout_marginLeft="@dimen/margin_2"
+                android:layout_centerVertical="true"
+                />
+
+            <EditText
+                android:id="@+id/search_et"
+                style="@style/editViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/margin_1"
+                android:hint="搜索您要的产品"
+                android:layout_toRightOf="@+id/search_iv"
+                android:ellipsize="end"
+                />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/purcase_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/purcase"
+            android:paddingLeft="@dimen/margin_10dp"
+            android:paddingRight="@dimen/margin_10dp"
+            android:layout_marginBottom="3dp"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#343434">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="综合"
+                android:textColor="@color/dark_yellow"
+                android:textSize="14sp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="新品上架"
+                android:textColor="@color/shop_black"
+                android:textSize="14sp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="人气"
+                android:textColor="@color/shop_black"
+                android:textSize="14sp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="价格"
+                android:textColor="@color/shop_black"
+                android:textSize="14sp"
+                android:id="@+id/textView" />
+            
+            <ImageView
+                android:layout_width="7dp"
+                android:layout_height="12dp"
+                android:layout_marginLeft="2dp"
+                android:layout_centerVertical="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/icon_price_h"
+                android:layout_toRightOf="@+id/textView" />
+        </RelativeLayout>
+    </LinearLayout>
 
     <com.yigu.shop.widget.BestSwipeRefreshLayout
         android:id="@+id/swipRefreshLayout"
@@ -17,4 +144,4 @@
 
     </com.yigu.shop.widget.BestSwipeRefreshLayout>
 
-</RelativeLayout>
+</LinearLayout>
