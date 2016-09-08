@@ -12,4 +12,6 @@
 
     <drawable name="background_all">#464646</drawable>
     <drawable name="dark_black">#333333</drawable>
+    <drawable name="dark_yellow">#d98d2b</drawable>
+    <drawable name="light_yellow">#fe7108</drawable>
 </resources>

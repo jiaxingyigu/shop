@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.yigu.shop.activity.purcase.PurcaseActivity">
+
+    <include
+        layout="@layout/lay_header"
+        />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:layout_below="@+id/lay_header"
+        android:layout_above="@+id/deel_ll"
+        />
+
+
+    <LinearLayout
+        android:id="@+id/deel_ll"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/text_height_50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/dark_black"
+        >
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="2.2"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/all"
+                style="@style/textViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableLeft="@mipmap/circle_white"
+                android:text="全选"
+                android:gravity="center"
+                android:drawablePadding="@dimen/margin_1"
+                android:layout_centerVertical="true"
+                android:paddingLeft="@dimen/margin_2"
+                />
+
+            <LinearLayout
+                android:id="@+id/count_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/margin_5"
+                android:gravity="center_vertical"
+                android:layout_toRightOf="@+id/all"
+                >
+
+                <TextView
+                    style="@style/textViewStyle_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="合计："
+                    />
+
+                <TextView
+                    android:id="@+id/account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_big_x"
+                    android:textColor="@color/light_yellow"
+                    android:textStyle="bold"
+                    android:text="￥200"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <TextView
+            style="@style/textViewStyle_big_x"
+            android:id="@+id/statement"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="结算（1）"
+            android:background="@drawable/selector_pressed_color_yellow"
+            android:gravity="center"
+            android:ellipsize="end"
+            android:maxLines="1"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>

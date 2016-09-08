@@ -35,6 +35,16 @@
         <item name="android:textSize">@dimen/text_normal</item>
     </style>
 
+    <style name="textViewStyle_small">
+        <item name="android:textColor">@color/shop_black</item>
+        <item name="android:textSize">@dimen/text_small</item>
+    </style>
+
+    <style name="textViewStyle_big_x">
+        <item name="android:textColor">@color/shop_black</item>
+        <item name="android:textSize">@dimen/text_big_x</item>
+    </style>
+
     <style name="editViewStyle">
         <item name="android:textColor">@color/shop_black</item>
         <item name="android:background">@null</item>
