@@ -5,11 +5,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.yigu.shop.R;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
@@ -34,12 +32,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.ww.setText("3455555555");
+
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.ww)
-        TextView ww;
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);

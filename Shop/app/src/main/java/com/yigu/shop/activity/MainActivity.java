@@ -12,6 +12,7 @@ import com.yigu.shop.base.BaseActivity;
 import com.yigu.shop.base.BaseFrag;
 import com.yigu.shop.fragment.index.HomeFragment;
 import com.yigu.shop.fragment.index.SortFragment;
+import com.yigu.shop.fragment.shops.ShopListFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -47,7 +48,7 @@ public class MainActivity extends BaseActivity {
         fragments[0] = new HomeFragment();
         fragments[1] = new SortFragment();
         fragments[2] = new HomeFragment();
-        fragments[3] = new HomeFragment();
+        fragments[3] = new ShopListFragment();
         fragments[4] = new HomeFragment();
         views = new CheckBox[5];
         views[0] = radioHome;
