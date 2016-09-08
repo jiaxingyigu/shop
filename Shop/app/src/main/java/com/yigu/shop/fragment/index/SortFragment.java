@@ -1,5 +1,6 @@
 package com.yigu.shop.fragment.index;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,8 +12,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.yigu.shop.R;
+import com.yigu.shop.activity.products.ProductListActivity;
 import com.yigu.shop.adapter.ItemAdapter;
-import com.yigu.shop.adapter.index.HomeAdapter;
 import com.yigu.shop.adapter.index.SortMenuAdapter;
 import com.yigu.shop.base.BaseFrag;
 import com.yigu.shop.commom.result.MapiItemResult;
@@ -21,7 +22,6 @@ import com.yigu.shop.commom.util.DPUtil;
 import com.yigu.shop.commom.widget.MainToast;
 import com.yigu.shop.shopinterface.RecyOnItemClickListener;
 import com.yigu.shop.widget.DividerGridItemDecoration;
-import com.yigu.shop.widget.DividerListItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,6 +79,15 @@ public class SortFragment extends BaseFrag {
             public void onItemClick(View view, int position) {
                 notifyItemData(position);
                 MainToast.showShortToast(menuList.get(position).getTitle());
+            }
+        });
+
+        itemAdapter.setOnItemClickListener(new RecyOnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                notifyItemData(position);
+                Intent intent = new Intent(getActivity(), ProductListActivity.class);
+                startActivity(intent);
             }
         });
     }

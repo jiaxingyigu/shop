@@ -1,6 +1,7 @@
 package com.yigu.shop.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
@@ -10,8 +11,8 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.yigu.shop.R;
+import com.yigu.shop.activity.shops.ShopListActivity;
 import com.yigu.shop.adapter.shops.ShopAdapter;
-import com.yigu.shop.commom.result.MapiResourceResult;
 import com.yigu.shop.commom.result.MapiShopResult;
 import com.yigu.shop.commom.util.DPUtil;
 import com.yigu.shop.widget.DividerListItemDecoration;
@@ -71,5 +72,8 @@ public class HomeBestLayout extends RelativeLayout {
 
     @OnClick(R.id.more)
     public void onClick() {
+        Intent intent = new Intent();
+        intent.setClass(mContext, ShopListActivity.class);
+        mContext.startActivity(intent);
     }
 }

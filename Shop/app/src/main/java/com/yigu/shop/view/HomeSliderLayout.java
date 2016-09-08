@@ -62,7 +62,7 @@ public class HomeSliderLayout extends RelativeLayout {
         sliderViewList = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
             SimpleDraweeView view = new SimpleDraweeView(mContext);
-            view.setImageResource(R.mipmap.ic_launcher);
+            view.setImageResource(R.drawable.carousel_default);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

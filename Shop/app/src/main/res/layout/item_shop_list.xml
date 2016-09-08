@@ -19,7 +19,7 @@
             android:layout_width="36dp"
             android:layout_height="36dp"
             fresco:fadeDuration="2000"
-            fresco:placeholderImage="@mipmap/ic_launcher"
+            fresco:placeholderImage="@drawable/face_default"
             fresco:placeholderImageScaleType="fitCenter"
             />
         

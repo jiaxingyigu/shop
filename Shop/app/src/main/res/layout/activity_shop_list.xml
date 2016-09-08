@@ -6,6 +6,52 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.yigu.shop.activity.shops.ShopListActivity"
     android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/lay_header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/text_height_45dp"
+        android:background="@mipmap/head_bg"
+        >
+
+        <ImageView
+            android:id="@+id/search_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@mipmap/search"
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="@dimen/margin_10dp"
+            android:paddingRight="@dimen/margin_10dp"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/logo"
+            />
+
+
+        <ImageView
+            android:id="@+id/purcase_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/purcase"
+            android:paddingLeft="@dimen/margin_10dp"
+            android:paddingRight="@dimen/margin_10dp"
+            />
+
+        <ImageView
+            android:id="@+id/person_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@mipmap/person"
+            android:paddingLeft="@dimen/margin_10dp"
+            android:paddingRight="@dimen/margin_10dp"
+            android:layout_toLeftOf="@+id/purcase_iv"
+            />
+    </RelativeLayout>
     
     <android.support.design.widget.TabLayout
         android:id="@+id/tabShop"
@@ -19,6 +65,7 @@
 
     </android.support.design.widget.TabLayout>
 
+
     <com.yigu.shop.widget.BestSwipeRefreshLayout
         android:id="@+id/BSRLShop"
         android:layout_width="match_parent"
@@ -27,7 +74,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rvShop"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
     </com.yigu.shop.widget.BestSwipeRefreshLayout>
 
