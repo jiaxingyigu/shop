@@ -69,6 +69,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1">
             <TextView
+                android:id="@+id/tv_multiple"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -83,6 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1">
             <TextView
+                android:id="@+id/tv_new"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -97,6 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1">
             <TextView
+                android:id="@+id/tv_hot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -111,6 +114,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1">
             <TextView
+                android:id="@+id/tv_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -119,16 +123,17 @@
                 android:text="价格"
                 android:textColor="@color/shop_black"
                 android:textSize="14sp"
-                android:id="@+id/textView" />
+                 />
             
             <ImageView
+                android:id="@+id/iv_price"
                 android:layout_width="7dp"
                 android:layout_height="12dp"
                 android:layout_marginLeft="2dp"
                 android:layout_centerVertical="true"
                 android:scaleType="fitXY"
                 android:src="@drawable/icon_price_h"
-                android:layout_toRightOf="@+id/textView" />
+                android:layout_toRightOf="@+id/tv_price" />
         </RelativeLayout>
     </LinearLayout>
 
