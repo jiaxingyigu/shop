@@ -28,7 +28,6 @@ public class ProductListActivity extends BaseActivity {
     RecyclerView recyclerView;
     @Bind(R.id.swipRefreshLayout)
     BestSwipeRefreshLayout swipeLayout;
-    ProductAdapter mAdapter;
     @Bind(R.id.search_et)
     EditText searchEt;
     @Bind(R.id.purcase_iv)
@@ -46,6 +45,7 @@ public class ProductListActivity extends BaseActivity {
     @Bind(R.id.iv_price)
     ImageView ivPrice;
 
+    ProductAdapter mAdapter;
     private TextView tvSelect;
     private int imageIndex = 0;
     private int[] imageIds = {R.drawable.icon_price_h, R.drawable.icon_price_l};

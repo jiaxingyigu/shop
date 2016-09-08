@@ -20,11 +20,11 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity"
-            android:screenOrientation="portrait"
+        <activity
+            android:name=".activity.MainActivity"
             android:launchMode="singleTask"
-            android:windowSoftInputMode="adjustPan"
-            >
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,7 +32,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.products.ProductListActivity" />
-        <activity android:name=".activity.shops.ShopListActivity"></activity>
+        <activity android:name=".activity.shops.ShopListActivity" />
+        <activity android:name=".activity.collect.CollectProductActivity"></activity>
     </application>
 
 </manifest>
