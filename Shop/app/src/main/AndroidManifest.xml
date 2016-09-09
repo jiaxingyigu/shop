@@ -33,8 +33,11 @@
         </activity>
         <activity android:name=".activity.products.ProductListActivity" />
         <activity android:name=".activity.shops.ShopListActivity" />
-        <activity android:name=".activity.collect.CollectProductActivity"></activity>
-        <activity android:name=".activity.purcase.PurcaseActivity"></activity>
+        <activity android:name=".activity.collect.CollectProductActivity" />
+        <activity android:name=".activity.collect.CollectShopActivity" />
+        <activity android:name=".activity.person.PersonActivity" />
+        <activity android:name=".activity.purcase.PurcaseActivity" />
+        <activity android:name=".activity.collect.RecordActivity"></activity>
     </application>
 
 </manifest>

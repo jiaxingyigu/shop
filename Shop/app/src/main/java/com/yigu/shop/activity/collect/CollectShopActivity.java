@@ -7,10 +7,9 @@ import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import com.yigu.shop.R;
-import com.yigu.shop.adapter.product.ProductAdapter;
+import com.yigu.shop.adapter.collect.CollectShopAdapter;
 import com.yigu.shop.base.BaseActivity;
 import com.yigu.shop.commom.util.DPUtil;
 import com.yigu.shop.widget.BestSwipeRefreshLayout;
@@ -20,23 +19,21 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class CollectProductActivity extends BaseActivity {
+public class CollectShopActivity extends BaseActivity {
 
-    @Bind(R.id.lay_header)
-    RelativeLayout layHeader;
+    @Bind(R.id.iv_back)
+    ImageView ivBack;
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
     @Bind(R.id.swipRefreshLayout)
     BestSwipeRefreshLayout swipRefreshLayout;
-    @Bind(R.id.iv_back)
-    ImageView ivBack;
 
-    ProductAdapter mAdapter;
+    CollectShopAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_collect_product);
+        setContentView(R.layout.activity_collect_shop);
         ButterKnife.bind(this);
         initView();
         initListener();
@@ -48,9 +45,8 @@ public class CollectProductActivity extends BaseActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.addItemDecoration(new DividerListItemDecoration(this, OrientationHelper.HORIZONTAL, DPUtil.dip2px(1), Color.parseColor("#696969")));
         recyclerView.setLayoutManager(manager);
-        mAdapter = new ProductAdapter(this);
+        mAdapter = new CollectShopAdapter(this);
         recyclerView.setAdapter(mAdapter);
-
     }
 
     private void initListener() {

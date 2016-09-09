@@ -1,7 +1,7 @@
 package com.yigu.shop.fragment.index;
 
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,8 +10,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.yigu.shop.R;
+import com.yigu.shop.activity.person.PersonActivity;
 import com.yigu.shop.adapter.index.HomeAdapter;
 import com.yigu.shop.base.BaseFrag;
 import com.yigu.shop.commom.result.IndexData;
@@ -35,6 +37,10 @@ import butterknife.OnClick;
 public class HomeFragment extends BaseFrag {
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
+    @Bind(R.id.person_iv)
+    ImageView person_iv;
+
+
     HomeAdapter mAdapter;
     List<IndexData> mList = new ArrayList<>();
 
@@ -84,6 +90,8 @@ public class HomeFragment extends BaseFrag {
                 ControllerUtil.go2Purcase();
                 break;
             case R.id.person_iv:
+                Intent i = new Intent(getActivity(), PersonActivity.class);
+                getActivity().startActivity(i);
                 break;
         }
     }
