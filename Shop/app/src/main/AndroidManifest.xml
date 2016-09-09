@@ -34,6 +34,7 @@
         <activity android:name=".activity.products.ProductListActivity" />
         <activity android:name=".activity.shops.ShopListActivity" />
         <activity android:name=".activity.collect.CollectProductActivity"></activity>
+        <activity android:name=".activity.purcase.PurcaseActivity"></activity>
     </application>
 
 </manifest>
