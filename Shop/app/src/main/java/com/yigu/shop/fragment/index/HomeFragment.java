@@ -20,6 +20,7 @@ import com.yigu.shop.commom.result.IndexData;
 import com.yigu.shop.commom.result.MapiResourceResult;
 import com.yigu.shop.commom.result.MapiShopResult;
 import com.yigu.shop.commom.util.DPUtil;
+import com.yigu.shop.util.ControllerUtil;
 import com.yigu.shop.widget.DividerListItemDecoration;
 
 import java.util.ArrayList;
@@ -86,6 +87,7 @@ public class HomeFragment extends BaseFrag {
             case R.id.search_iv:
                 break;
             case R.id.purcase_iv:
+                ControllerUtil.go2Purcase();
                 break;
             case R.id.person_iv:
                 Intent i = new Intent(getActivity(), PersonActivity.class);

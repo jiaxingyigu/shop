@@ -3,6 +3,7 @@ package com.yigu.shop.util;
 import android.content.Intent;
 
 import com.yigu.shop.activity.products.ProductListActivity;
+import com.yigu.shop.activity.purcase.PurcaseActivity;
 import com.yigu.shop.commom.application.AppContext;
 
 /**
@@ -11,13 +12,12 @@ import com.yigu.shop.commom.application.AppContext;
 public class ControllerUtil {
 
     /**
-     * 由主页进入日常巡查
+     * 由主页进入购物车
      */
-    public static void go2ProductList() {
-        Intent intent = new Intent(AppContext.getInstance(), ProductListActivity.class);
+    public static void go2Purcase() {
+        Intent intent = new Intent(AppContext.getInstance(), PurcaseActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         AppContext.getInstance().startActivity(intent);
     }
-
 
 }
