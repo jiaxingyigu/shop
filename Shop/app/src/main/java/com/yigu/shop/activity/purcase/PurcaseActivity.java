@@ -15,11 +15,14 @@ import com.yigu.shop.commom.result.IndexData;
 import com.yigu.shop.commom.result.MapiCartResult;
 import com.yigu.shop.commom.result.MapiItemResult;
 import com.yigu.shop.commom.util.DPUtil;
+import com.yigu.shop.shopinterface.AdapterSelListener;
 import com.yigu.shop.widget.BestSwipeRefreshLayout;
 import com.yigu.shop.widget.DividerListItemDecoration;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -45,8 +48,9 @@ public class PurcaseActivity extends AppCompatActivity {
     PurcaseAdapter mAdapter;
     private Integer pageIndex = 0;
     private Integer pageSize = 10;
-    private Integer ISNEXT = 1;
-
+    private Integer ISNEXT = 0;
+    private boolean  isall = false;
+    int count = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +88,33 @@ public class PurcaseActivity extends AppCompatActivity {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
+            }
+        });
+        mAdapter.setOnAdapterSelListener(new AdapterSelListener() {
+            @Override
+            public void isAll() {
+                count = 0;
+                boolean isAll = true;
+                for(MapiCartResult result : mAdapter.getmList()){
+                   if(!result.isSel()){
+                       isAll = false;
+                   }
+                    for(MapiItemResult item: result.getItems()){
+                        if(!item.isSel()){
+                            isAll = false;
+                        }else{
+                            count++;
+                        }
+                    }
+                }
+                isall = isAll;
+                if(isall)
+                    all.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.circle_yellow_sel,0,0,0);
+                else
+                    all.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.circle_white,0,0,0);
+
+                statement.setText(String.format("结算（%d）",count));
+
             }
         });
     }
@@ -136,8 +167,32 @@ public class PurcaseActivity extends AppCompatActivity {
                 }
                 break;
             case R.id.all:
+                count = 0;
+                isall = !isall;
+                if(isall)
+                    all.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.circle_yellow_sel,0,0,0);
+                else
+                    all.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.circle_white,0,0,0);
+                for(MapiCartResult item : mAdapter.getmList()){
+                    item.setSel(isall);
+                    for(MapiItemResult result : item.getItems()){
+                        result.setSel(isall);
+                        count++;
+                    }
+                }
+                mAdapter.notifyDataSetChanged();
+                if(isall){
+                    statement.setText(String.format("结算（%d）",count));
+                }else{
+                    count = 0;
+                    statement.setText(String.format("结算（%d）",count));
+                }
                 break;
             case R.id.statement:
+                // TODO: 2016/9/9  价格统计 
+                if(count>0){
+
+                }
                 break;
         }
     }
