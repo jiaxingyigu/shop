@@ -5,6 +5,15 @@ package com.yigu.shop.commom.result;
  */
 public class MapiItemResult extends MapiBaseResult{
     private boolean isLast = false;
+    private boolean isSel;
+
+    public boolean isSel() {
+        return isSel;
+    }
+
+    public void setSel(boolean sel) {
+        isSel = sel;
+    }
 
     public boolean isLast() {
         return isLast;

@@ -11,13 +11,15 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yigu.shop.R;
+import com.yigu.shop.commom.result.IndexData;
 import com.yigu.shop.commom.result.MapiCartResult;
 import com.yigu.shop.commom.result.MapiItemResult;
+import com.yigu.shop.commom.util.DebugLog;
+import com.yigu.shop.shopinterface.AdapterSelListener;
 import com.yigu.shop.view.PurcaseSheetLayout;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -28,13 +30,21 @@ import butterknife.ButterKnife;
 public class PurcaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private LayoutInflater inflater;
-    private List<MapiCartResult> mList;
     private Context mContext;
-    private Map<Integer, Object> CART_ROW_TYPE = new HashMap<Integer, Object>();
+    List<MapiCartResult> mList = new ArrayList<>();
+    List<IndexData> list = new ArrayList<>();
+    AdapterSelListener listener;
 
-    public PurcaseAdapter(Context context, List<MapiCartResult> list) {
+    public List<MapiCartResult> getmList() {
+        return mList;
+    }
+
+    public void setOnAdapterSelListener(AdapterSelListener listener){
+        this.listener = listener;
+    }
+    public PurcaseAdapter(Context context,List<MapiCartResult> list) {
         inflater = LayoutInflater.from(context);
-        mList = list;
+        this.mList = list;
         mContext = context;
     }
 
@@ -42,26 +52,27 @@ public class PurcaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public int getItemCount() {
         int count = 0;
         for (MapiCartResult ware : mList) {
-            CART_ROW_TYPE.put(count++, ware);
+            list.add(new IndexData(count++,"head",ware));
             for (int i=0;i<ware.getItems().size();i++) {
                 if(i == ware.getItems().size()-1){
                     ware.getItems().get(i).setLast(true);
                 }else
                     ware.getItems().get(i).setLast(false);
-                CART_ROW_TYPE.put(count++, ware.getItems().get(i));
+                list.add(new IndexData(count++,"item", ware.getItems().get(i)));
 
             }
-            CART_ROW_TYPE.put(count++, new Object());
+            list.add(new IndexData(count++,"divider", new Object()));
         }
         return count;
+
     }
 
     @Override
     public int getItemViewType(int position) {
-        Object obj = CART_ROW_TYPE.get(position);
-        if (obj instanceof MapiItemResult) {
+        String type = list.get(position).getType();
+        if (type.equals("item")) {
             return 2;
-        } else if (obj instanceof MapiCartResult) {
+        } else if (type.equals("head")) {
             return 1;
         }
         return 3;
@@ -84,9 +95,9 @@ public class PurcaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof HeadViewHolder) {
-            ((HeadViewHolder) holder).load((MapiCartResult) CART_ROW_TYPE.get(position),position);
+            setHead((HeadViewHolder) holder,position);
         } else if (holder instanceof ItemViewHolder) {
-            ((ItemViewHolder) holder).load((MapiItemResult) CART_ROW_TYPE.get(position),position);
+            setItem((ItemViewHolder) holder,position);
         }
     }
 
@@ -102,21 +113,11 @@ public class PurcaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
-
-        public void load(MapiCartResult result,int position){
-            shopRl.setTag(position);
-            shopRl.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                }
-            });
-        }
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.root_sel)
-        ImageView rootSel;
+        @Bind(R.id.item_sel)
+        ImageView itemSel;
         @Bind(R.id.image)
         SimpleDraweeView image;
         @Bind(R.id.content)
@@ -132,14 +133,6 @@ public class PurcaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
-
-        public void load(MapiItemResult result,int position){
-            if(result.isLast())
-                divider.setVisibility(View.GONE);
-            else
-                divider.setVisibility(View.VISIBLE);
-        }
-
     }
 
     class DividerViewHolder extends RecyclerView.ViewHolder {
@@ -148,5 +141,88 @@ public class PurcaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ButterKnife.bind(this, itemView);
         }
     }
+
+    private void setHead(HeadViewHolder holder,int position){
+        DebugLog.i("HeadViewHolder=load");
+        holder.shopRl.setTag(position);
+        holder.shopRl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+
+        MapiCartResult ware = (MapiCartResult) list.get(position).getData();
+        boolean isAll = true;
+        for (MapiItemResult item : ware.getItems()) {
+            if (!item.isSel()) {
+                isAll = false;
+                break;
+            }
+        }
+        ware.setSel(isAll);
+        if(null!=listener){
+            listener.isAll();
+        }
+        if(ware.isSel()){
+            holder.rootSel.setImageResource(R.mipmap.circle_yellow_sel);
+        }else{
+            holder.rootSel.setImageResource(R.mipmap.circle_white);
+        }
+        holder.rootSel.setTag(position);
+        holder.rootSel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = (int) view.getTag();
+                MapiCartResult ware = (MapiCartResult) list.get(position).getData();
+//                    if (!ware.isSel()) {
+//                        holder.rootSel.setImageResource(R.mipmap.circle_yellow_sel);
+//                    } else {
+//                        holder.rootSel.setImageResource(R.mipmap.circle_white);
+//                    }
+                ware.setSel(!ware.isSel());
+                if(null!=listener){
+                    listener.isAll();
+                }
+                for (MapiItemResult item : ware.getItems()) {
+                    item.setSel(ware.isSel());
+                }
+                notifyDataSetChanged();
+            }
+        });
+    }
+
+    private  void setItem(ItemViewHolder holder,int position){
+        DebugLog.i("ItemViewHolder=load");
+        MapiItemResult result = (MapiItemResult) list.get(position).getData();
+        if(result.isSel())
+            holder.itemSel.setImageResource(R.mipmap.circle_yellow_sel);
+        else
+            holder.itemSel.setImageResource(R.mipmap.circle_white);
+        if(result.isLast())
+            holder.divider.setVisibility(View.GONE);
+        else
+            holder.divider.setVisibility(View.VISIBLE);
+        holder.itemSel.setTag(position);
+        holder.itemSel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = (int) view.getTag();
+
+                MapiItemResult item = (MapiItemResult) list.get(position).getData();
+//                    if (!item.isSel()) {
+//                        holder.itemSel.setImageResource(R.mipmap.circle_white);
+//                    } else {
+//                        holder.itemSel.setImageResource(R.mipmap.circle_yellow_sel);
+//                    }
+                item.setSel(!item.isSel());
+                if(null!=listener){
+                    listener.isAll();
+                }
+                notifyDataSetChanged();
+            }
+        });
+
+    }
+
 
 }

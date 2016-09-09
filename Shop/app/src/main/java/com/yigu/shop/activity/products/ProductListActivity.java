@@ -51,7 +51,7 @@ public class ProductListActivity extends BaseActivity {
     private int[] imageIds = {R.drawable.icon_price_h, R.drawable.icon_price_l};
     private Integer pageIndex = 0;
     private Integer pageSize = 6;
-    private Integer ISNEXT = 1;
+    private Integer ISNEXT = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
