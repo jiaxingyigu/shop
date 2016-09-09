@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import com.yigu.shop.R;
 import com.yigu.shop.activity.collect.CollectProductActivity;
 import com.yigu.shop.activity.collect.CollectShopActivity;
+import com.yigu.shop.activity.collect.RecordActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -40,7 +41,7 @@ public class PersonActivity extends AppCompatActivity {
 
     }
 
-    @OnClick({R.id.iv_back, R.id.rl_celProduct, R.id.rl_celShop})
+    @OnClick({R.id.iv_back, R.id.rl_celProduct, R.id.rl_celShop, R.id.rl_record})
     public void onClick(View v) {
         Intent i = new Intent();
         switch (v.getId()) {
@@ -53,6 +54,10 @@ public class PersonActivity extends AppCompatActivity {
                 break;
             case R.id.rl_celShop:
                 i.setClass(PersonActivity.this, CollectShopActivity.class);
+                startActivity(i);
+                break;
+            case R.id.rl_record:
+                i.setClass(PersonActivity.this, RecordActivity.class);
                 startActivity(i);
                 break;
         }
