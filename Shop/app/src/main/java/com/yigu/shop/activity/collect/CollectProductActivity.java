@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.yigu.shop.R;
@@ -16,6 +18,7 @@ import com.yigu.shop.widget.DividerListItemDecoration;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class CollectProductActivity extends BaseActivity {
 
@@ -25,6 +28,8 @@ public class CollectProductActivity extends BaseActivity {
     RecyclerView recyclerView;
     @Bind(R.id.swipRefreshLayout)
     BestSwipeRefreshLayout swipRefreshLayout;
+    @Bind(R.id.iv_back)
+    ImageView ivBack;
 
     ProductAdapter mAdapter;
 
@@ -50,5 +55,14 @@ public class CollectProductActivity extends BaseActivity {
 
     private void initListener() {
 
+    }
+
+    @OnClick(R.id.iv_back)
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.iv_back:
+                finish();
+                break;
+        }
     }
 }

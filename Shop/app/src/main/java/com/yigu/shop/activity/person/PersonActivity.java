@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 
 import com.yigu.shop.R;
 import com.yigu.shop.activity.collect.CollectProductActivity;
+import com.yigu.shop.activity.collect.CollectShopActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -20,6 +21,7 @@ public class PersonActivity extends AppCompatActivity {
     ImageView ivBack;
     @Bind(R.id.rl_celProduct)
     RelativeLayout rlCelProduct;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,7 @@ public class PersonActivity extends AppCompatActivity {
 
     }
 
-    @OnClick({R.id.iv_back, R.id.rl_celProduct})
+    @OnClick({R.id.iv_back, R.id.rl_celProduct, R.id.rl_celShop})
     public void onClick(View v) {
         Intent i = new Intent();
         switch (v.getId()) {
@@ -47,6 +49,10 @@ public class PersonActivity extends AppCompatActivity {
                 break;
             case R.id.rl_celProduct:
                 i.setClass(PersonActivity.this, CollectProductActivity.class);
+                startActivity(i);
+                break;
+            case R.id.rl_celShop:
+                i.setClass(PersonActivity.this, CollectShopActivity.class);
                 startActivity(i);
                 break;
         }
