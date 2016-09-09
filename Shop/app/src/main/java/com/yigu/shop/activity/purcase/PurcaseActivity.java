@@ -189,6 +189,7 @@ public class PurcaseActivity extends AppCompatActivity {
                 }
                 break;
             case R.id.statement:
+                // TODO: 2016/9/9  价格统计 
                 if(count>0){
 
                 }
