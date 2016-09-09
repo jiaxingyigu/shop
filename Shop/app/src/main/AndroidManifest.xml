@@ -33,14 +33,10 @@
         </activity>
         <activity android:name=".activity.products.ProductListActivity" />
         <activity android:name=".activity.shops.ShopListActivity" />
-<<<<<<< HEAD
         <activity android:name=".activity.collect.CollectProductActivity" />
         <activity android:name=".activity.collect.CollectShopActivity"></activity>
         <activity android:name=".activity.person.PersonActivity"></activity>
-=======
-        <activity android:name=".activity.collect.CollectProductActivity"></activity>
         <activity android:name=".activity.purcase.PurcaseActivity"></activity>
->>>>>>> 3ac95118f1ff87fb52fc8efeaca45b36af998843
     </application>
 
 </manifest>
