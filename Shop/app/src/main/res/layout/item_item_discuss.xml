@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/margin_10dp"
+    >
+
+    <RelativeLayout
+        android:id="@+id/head_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/head"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            fresco:fadeDuration="2000"
+            fresco:placeholderImage="@drawable/product_default"
+            fresco:placeholderImageScaleType="fitXY"
+            fresco:roundAsCircle="true"
+            />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sasf"
+            android:textColor="@color/light_gray"
+            android:textSize="@dimen/text_small"
+            android:ellipsize="end"
+            android:lines="1"
+            android:layout_toRightOf="@+id/head"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_1"
+            />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:text="烦烦烦烦烦烦烦烦烦烦烦阿三地方烦烦烦烦烦烦烦烦烦烦烦烦烦烦烦阿三地方烦烦烦烦烦烦烦烦烦烦烦烦烦烦烦"
+        android:textSize="@dimen/text_normal"
+        android:textColor="@color/shop_black"
+        android:layout_marginTop="@dimen/margin_10dp"
+        android:gravity="center_vertical"
+        android:lineSpacingMultiplier="1.2"
+        android:layout_below="@+id/head_rl"
+        />
+
+    <LinearLayout
+        android:id="@+id/item_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/content"
+        />
+
+    <RelativeLayout
+        android:id="@+id/item_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/item_layout"
+        android:layout_marginTop="@dimen/margin_10dp"
+        >
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="购买日期：2016-09-09"
+            android:textColor="@color/light_gray"
+            android:textSize="@dimen/text_small"
+            />
+
+        <TextView
+            android:id="@+id/info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="格林豪华款-蓝色"
+            android:textColor="@color/light_gray"
+            android:textSize="@dimen/text_small"
+            android:layout_alignParentRight="true"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/item_detail"
+        android:layout_marginTop="@dimen/margin_2"
+        >
+
+        <TextView
+            style="@style/textViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[店主回复]"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="谢谢亲的喜欢,下次再来买哦！！"
+            android:textSize="@dimen/text_small"
+            android:textColor="@color/light_gray"
+            android:layout_marginLeft="@dimen/margin_1"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>

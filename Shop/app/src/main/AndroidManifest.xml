@@ -37,7 +37,8 @@
         <activity android:name=".activity.collect.CollectShopActivity" />
         <activity android:name=".activity.person.PersonActivity" />
         <activity android:name=".activity.purcase.PurcaseActivity" />
-        <activity android:name=".activity.collect.RecordActivity"></activity>
+        <activity android:name=".activity.collect.RecordActivity" />
+        <activity android:name=".activity.ProductDetailActivity"></activity>
     </application>
 
 </manifest>

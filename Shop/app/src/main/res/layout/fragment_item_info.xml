@@ -1,0 +1,275 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.yigu.shop.fragment.product.ItemInfoFragment"
+    android:scrollbars="none"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <RelativeLayout
+            android:id="@+id/slider_rl"
+            android:layout_width="match_parent"
+            android:layout_height="375dp">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v4.view.ViewPager>
+
+            <LinearLayout
+                android:id="@+id/guide_dot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/margin_1"
+                >
+
+            </LinearLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/margin_10dp"
+            android:layout_marginRight="@dimen/margin_10dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/margin_2"
+                >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:layout_height="match_parent"
+                    android:text="撒发射点发射点阿三发射点撒发射点发射点阿三发射点撒发射点发射点阿三发射点撒发射点发射点阿三发射点撒发射点发射点阿三发射点"
+                    android:textSize="@dimen/text_big"
+                    android:textColor="@color/shop_black"
+                    android:lines="2"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:paddingRight="@dimen/margin_1"
+                    />
+
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/shop_black"
+                    />
+
+                <TextView
+                    style="@style/textViewStyle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="分享"
+                    android:drawableTop="@mipmap/share"
+                    android:gravity="center"
+                    />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10dp"
+                >
+
+                <TextView
+                    android:id="@+id/newPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_big_x"
+                    android:textColor="@color/light_yellow"
+                    android:textStyle="bold"
+                    android:text="￥200"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:layout_centerVertical="true"
+                    />
+
+                <TextView
+                    android:id="@+id/oldPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_normal"
+                    android:textColor="@color/light_gray"
+                    android:text="原价：200"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:layout_toRightOf="@+id/newPrice"
+                    android:layout_marginLeft="@dimen/margin_3"
+                    android:layout_centerVertical="true"
+                    />
+
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/margin_2"
+                android:layout_marginTop="@dimen/margin_10dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="运费：￥200"
+                    android:textColor="@color/light_gray"
+                    android:textSize="12sp"
+                    android:layout_alignParentLeft="true"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    />
+
+                <TextView
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="月销1200笔"
+                    android:textColor="@color/light_gray"
+                    android:textSize="12sp"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/light_gray"
+                    android:textSize="12sp"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:text="浙江杭州"
+                    android:layout_alignParentRight="true"
+                    />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_10dp"
+            android:background="@color/divider_line"
+            />
+
+        <RelativeLayout
+            android:id="@+id/info_rl"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/text_height_40dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/margin_10dp"
+            android:paddingRight="@dimen/margin_10dp"
+            >
+
+            <TextView
+                android:id="@+id/info_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/light_gray"
+                android:textSize="@dimen/text_small"
+                android:text="已选："
+                />
+
+            <ImageView
+                android:id="@+id/info_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/right"
+                android:layout_alignParentRight="true"
+                />
+
+            <TextView
+                android:id="@+id/info_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/shop_black"
+                android:textSize="@dimen/text_normal"
+                android:text="阿斯顿发生发射点阿斯顿发射点发生阿凡达发生的哇让双方"
+                android:layout_toRightOf="@+id/info_title"
+                android:layout_marginLeft="@dimen/margin_10dp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:layout_toLeftOf="@+id/info_right"
+                android:layout_marginRight="@dimen/margin_1"
+                />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_10dp"
+            android:background="@color/divider_line"
+            />
+
+        <RelativeLayout
+            android:id="@+id/addr_rl"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/text_height_40dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/margin_10dp"
+            android:paddingRight="@dimen/margin_10dp"
+            >
+
+            <TextView
+                android:id="@+id/addr_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/light_gray"
+                android:textSize="@dimen/text_small"
+                android:text="送货至："
+                />
+
+            <ImageView
+                android:id="@+id/addr_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/right"
+                android:layout_alignParentRight="true"
+                />
+
+            <TextView
+                android:id="@+id/addr_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/shop_black"
+                android:textSize="@dimen/text_normal"
+                android:text="阿斯顿发生发射点阿斯顿发射点发生阿凡达发生的哇让双方"
+                android:layout_toRightOf="@+id/addr_title"
+                android:layout_marginLeft="@dimen/margin_10dp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:layout_toLeftOf="@+id/addr_right"
+                android:layout_marginRight="@dimen/margin_1"
+                />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_10dp"
+            android:background="@color/divider_line"
+            />
+
+        <com.yigu.shop.view.ItemShopLayout
+            android:id="@+id/itemShopLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
+</ScrollView>

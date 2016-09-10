@@ -14,6 +14,7 @@ import com.yigu.shop.activity.products.ProductListActivity;
 import com.yigu.shop.commom.result.MapiResourceResult;
 import com.yigu.shop.commom.util.DPUtil;
 import com.yigu.shop.commom.widget.MainToast;
+import com.yigu.shop.util.ControllerUtil;
 
 import java.util.List;
 
@@ -68,7 +69,7 @@ public class HomeHostLayout extends RelativeLayout {
             view.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    MainToast.showShortToast("第" + v.getTag() + "张");
+                    ControllerUtil.go2ProductDetail();
                 }
             });
         }

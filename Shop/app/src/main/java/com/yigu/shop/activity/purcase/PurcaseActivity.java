@@ -154,6 +154,7 @@ public class PurcaseActivity extends AppCompatActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back:
+                finish();
                 break;
             case R.id.tv_right:
                 if ("编辑".equals(tvRight.getText().toString())) {
@@ -189,7 +190,7 @@ public class PurcaseActivity extends AppCompatActivity {
                 }
                 break;
             case R.id.statement:
-                // TODO: 2016/9/9  价格统计 
+                // TODO: 2016/9/9  价格统计
                 if(count>0){
 
                 }
