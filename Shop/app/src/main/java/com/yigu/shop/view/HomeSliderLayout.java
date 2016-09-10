@@ -1,6 +1,7 @@
 package com.yigu.shop.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -8,9 +9,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yigu.shop.R;
+import com.yigu.shop.activity.collect.RecordActivity;
 import com.yigu.shop.adapter.ShopPagerAdapter;
 import com.yigu.shop.commom.result.MapiResourceResult;
 import com.yigu.shop.commom.util.DPUtil;
@@ -21,6 +24,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by brain on 2016/8/30.
@@ -30,9 +34,13 @@ public class HomeSliderLayout extends RelativeLayout {
     ViewPager indexViewpager;
     @Bind(R.id.guide_dot)
     LinearLayout guideDot;
+    @Bind(R.id.tv_record)
+    TextView tvRecord;
+
     private Context mContext;
     private View view;
     List<View> sliderViewList;
+
     public HomeSliderLayout(Context context) {
         super(context);
         mContext = context;
@@ -58,12 +66,12 @@ public class HomeSliderLayout extends RelativeLayout {
         ButterKnife.bind(this, view);
     }
 
-    public void load(List<MapiResourceResult> list){
+    public void load(List<MapiResourceResult> list) {
         sliderViewList = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
             SimpleDraweeView view = new SimpleDraweeView(mContext);
             view.setImageResource(R.drawable.carousel_default);
-            view.setOnClickListener(new View.OnClickListener() {
+            view.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     MainToast.showShortToast("点击");
@@ -106,4 +114,14 @@ public class HomeSliderLayout extends RelativeLayout {
         });
     }
 
+    @OnClick(R.id.tv_record)
+    public void onClick(View v) {
+        Intent i = new Intent();
+        switch (v.getId()) {
+            case R.id.tv_record:
+                i.setClass(mContext, RecordActivity.class);
+                mContext.startActivity(i);
+                break;
+        }
+    }
 }
