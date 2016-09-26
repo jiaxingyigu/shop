@@ -5,14 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingTop="@dimen/margin_10dp"
-    android:paddingLeft="@dimen/margin_10dp"
-    android:paddingRight="@dimen/margin_10dp"
+    android:background="@android:color/white"
     >
 
     <RelativeLayout
         android:id="@+id/shop_rl"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/margin_10dp"
+        android:paddingRight="@dimen/margin_10dp"
+        >
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/head"
@@ -24,13 +26,13 @@
             />
         
         <TextView
+            style="@style/textViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="45dp"
             android:layout_centerVertical="true"
             android:text="车家欢中关村店"
-            android:textColor="#eeeeee"
-            android:textSize="16sp"/>
+            />
 
         <TextView
             android:id="@+id/shop"
@@ -43,10 +45,10 @@
             android:layout_alignParentRight="true"
             android:layout_marginLeft="40dp"
             android:layout_centerVertical="true"
-            android:text="进入好店"
-            android:textColor="#ffffff"
+            android:text="收藏店铺"
+            android:textColor="@drawable/selector_collection_text"
             android:textSize="12sp"
-            android:background="@drawable/selector_pressed_round_color_yellow"
+            android:background="@drawable/selector_press_round_color_red"
             />
 
     </RelativeLayout>
@@ -57,6 +59,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@+id/shop_rl"
+        android:paddingLeft="7dp"
+        android:paddingRight="7dp"
         />
 
 </LinearLayout>

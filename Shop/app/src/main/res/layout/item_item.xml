@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="226dp"
+    android:background="@android:color/white"
+    android:id="@+id/item_root"
+    >
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        fresco:fadeDuration="2000"
+        fresco:placeholderImage="@drawable/carousel_default"
+        fresco:placeholderImageScaleType="fitXY"
+        />
+
+    <TextView
+        style="@style/textViewStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="奔驰2016年新款车型201ASD1"
+        android:layout_marginTop="@dimen/margin_10dp"
+        android:layout_marginLeft="@dimen/margin_10dp"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/margin_10dp"
+        android:layout_marginRight="@dimen/margin_1"
+        android:layout_gravity="right"
+        android:gravity="center_vertical"
+        >
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/head"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            fresco:fadeDuration="2000"
+            fresco:placeholderImage="@drawable/product_default"
+            fresco:placeholderImageScaleType="fitXY"
+            fresco:roundAsCircle="true"
+            android:gravity="center_vertical"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="奔驰2016年新款车型201ASD1"
+            android:textColor="@color/light_gray"
+            android:textSize="@dimen/text_small_x"
+            android:layout_marginLeft="@dimen/margin_10dp"
+            android:gravity="center_vertical"
+            />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

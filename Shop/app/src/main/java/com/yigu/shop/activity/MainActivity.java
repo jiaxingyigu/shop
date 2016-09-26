@@ -5,14 +5,20 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.yigu.shop.R;
 import com.yigu.shop.base.BaseActivity;
 import com.yigu.shop.base.BaseFrag;
 import com.yigu.shop.fragment.index.FindFragment;
+import com.yigu.shop.fragment.index.FindShopFragment;
 import com.yigu.shop.fragment.index.HomeFragment;
+import com.yigu.shop.fragment.index.IndextFragment;
 import com.yigu.shop.fragment.index.SortFragment;
+import com.yigu.shop.fragment.index.SortTwoFragment;
 import com.yigu.shop.fragment.shops.ShopListFragment;
 
 import butterknife.Bind;
@@ -21,18 +27,23 @@ import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
 
+    @Bind(R.id.back)
+    ImageView back;
+    @Bind(R.id.iv_right)
+    ImageView ivRight;
+    @Bind(R.id.iv_right_two)
+    ImageView ivRightTwo;
     @Bind(R.id.radio_home)
-    CheckBox radioHome;
-    @Bind(R.id.radio_sort)
-    CheckBox radioSort;
-    @Bind(R.id.radio_street)
-    CheckBox radioStreet;
+    RadioButton radioHome;
     @Bind(R.id.radio_find)
-    CheckBox radioFind;
-    @Bind(R.id.radio_shop)
-    CheckBox radioShop;
+    RadioButton radioFind;
+    @Bind(R.id.radio_community)
+    RadioButton radioCommunity;
+    @Bind(R.id.radio_sort)
+    RadioButton radioSort;
+    @Bind(R.id.radio_person)
+    RadioButton radioPerson;
     private BaseFrag[] fragments;
-    private CheckBox[] views;
     private int index = 0;
     private long exitTime = 0;
 
@@ -45,18 +56,16 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initView() {
+        back.setImageResource(R.mipmap.logo);
+        ivRight.setImageResource(R.mipmap.search);
+        ivRightTwo.setVisibility(View.VISIBLE);
+        ivRightTwo.setImageResource(R.mipmap.purcase);
         fragments = new BaseFrag[5];
-        fragments[0] = new HomeFragment();
-        fragments[1] = new SortFragment();
-        fragments[2] = new HomeFragment();
-        fragments[3] = new ShopListFragment();
-        fragments[4] = new FindFragment();
-        views = new CheckBox[5];
-        views[0] = radioHome;
-        views[1] = radioSort;
-        views[2] = radioShop;
-        views[3] = radioStreet;
-        views[4] = radioFind;
+        fragments[0] = new IndextFragment();
+        fragments[1] = new FindShopFragment();
+        fragments[2] = new IndextFragment();
+        fragments[3] = new SortTwoFragment();
+        fragments[4] = new IndextFragment();
 
         selectTab();
     }
@@ -71,11 +80,6 @@ public class MainActivity extends BaseActivity {
         transaction.show(fragments[index]);
         transaction.commitAllowingStateLoss();
     }
-
-    private void updateStatus(int index, boolean isChecked) {
-        views[index].setChecked(isChecked);
-    }
-
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -92,40 +96,31 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.radio_home, R.id.radio_sort, R.id.radio_shop, R.id.radio_street, R.id.radio_find})
+    @OnClick({R.id.radio_home,R.id.radio_find, R.id.radio_community, R.id.radio_sort, R.id.radio_person})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.radio_home:
-                updateStatus(index, false);
                 index = 0;
-                updateStatus(index, true);
-                selectTab();
-                fragments[index].load();
-                break;
-            case R.id.radio_sort:
-                updateStatus(index, false);
-                index = 1;
-                updateStatus(index, true);
-                selectTab();
-                fragments[index].load();
-                break;
-            case R.id.radio_shop:
-                updateStatus(index, false);
-                index = 2;
-                selectTab();
-                fragments[index].load();
-                break;
-            case R.id.radio_street:
-                updateStatus(index, false);
-                index = 3;
-                updateStatus(index, true);
                 selectTab();
                 fragments[index].load();
                 break;
             case R.id.radio_find:
-                updateStatus(index, false);
+                index = 1;
+                selectTab();
+                fragments[index].load();
+                break;
+            case R.id.radio_community:
+                index = 2;
+                selectTab();
+                fragments[index].load();
+                break;
+            case R.id.radio_sort:
+                index = 3;
+                selectTab();
+                fragments[index].load();
+                break;
+            case R.id.radio_person:
                 index = 4;
-                updateStatus(index, true);
                 selectTab();
                 fragments[index].load();
                 break;

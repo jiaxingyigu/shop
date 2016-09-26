@@ -1,57 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="85dp"
+    android:layout_height="113dp"
     android:gravity="center_vertical"
-
+    android:layout_marginLeft="@dimen/margin_10dp"
+    android:layout_marginRight="@dimen/margin_10dp"
     >
 
-    <RelativeLayout
-        android:id="@+id/device"
+    <ImageView
+        android:id="@+id/host"
         android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:background="@drawable/selector_pressed_color_background"
-        >
-
-        <TextView
-            style="@style/textViewStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="设  备"
-            android:drawableLeft="@mipmap/device"
-            android:gravity="center"
-            android:drawablePadding="@dimen/margin_4"
-            />
-
-    </RelativeLayout>
-
-    <View
-        android:layout_width="2dp"
-        android:layout_height="69dp"
-        android:background="@mipmap/divider"
+        android:src="@mipmap/host"
         />
 
-    <RelativeLayout
-        android:id="@+id/tool"
+    <ImageView
+        android:id="@+id/news"
         android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:background="@drawable/selector_pressed_color_background"
-        >
-        <TextView
-            style="@style/textViewStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="工  具"
-            android:drawableLeft="@mipmap/tool"
-            android:gravity="center"
-            android:drawablePadding="@dimen/margin_4"
-            />
-    </RelativeLayout>
+        android:src="@mipmap/news"
+        android:layout_marginLeft="@dimen/margin_10dp"
+        />
 
+    <ImageView
+        android:id="@+id/fine"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@mipmap/fine"
+        android:layout_marginLeft="@dimen/margin_10dp"
+        />
 
 
 </LinearLayout>

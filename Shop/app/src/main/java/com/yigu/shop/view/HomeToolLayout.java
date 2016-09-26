@@ -50,12 +50,14 @@ public class HomeToolLayout extends RelativeLayout {
 
     }
 
-    @OnClick({R.id.device, R.id.tool})
+    @OnClick({R.id.host, R.id.news, R.id.fine})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.device:
+            case R.id.host:
                 break;
-            case R.id.tool:
+            case R.id.news:
+                break;
+            case R.id.fine:
                 break;
         }
     }

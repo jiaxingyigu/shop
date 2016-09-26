@@ -37,17 +37,13 @@ import butterknife.OnClick;
 public class HomeFragment extends BaseFrag {
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
-    @Bind(R.id.person_iv)
-    ImageView person_iv;
-
 
     HomeAdapter mAdapter;
     List<IndexData> mList = new ArrayList<>();
 
     private final static String SCROLL = "SCROLL";
-    private final static String HOST = "HOST";
     private final static String TOOL = "TOOL";
-    private final static String BSET_SHOP = "BSET_SHOP";
+    private final static String ITEM = "ITEM";
 
     public HomeFragment() {
     }
@@ -74,26 +70,10 @@ public class HomeFragment extends BaseFrag {
     public void load() {
         mList.clear();
         mList.add(new IndexData(0,SCROLL,new ArrayList<MapiResourceResult>()));
-        mList.add(new IndexData(2,TOOL,new ArrayList<MapiResourceResult>()));
-        mList.add(new IndexData(1,HOST,new ArrayList<MapiResourceResult>()));
-        mList.add(new IndexData(3,BSET_SHOP,new ArrayList<MapiShopResult>()));
+        mList.add(new IndexData(1,TOOL,new ArrayList<MapiResourceResult>()));
+        mList.add(new IndexData(2,ITEM,new ArrayList<MapiShopResult>()));
         Collections.sort(mList);
         mAdapter.notifyDataSetChanged();
-    }
-
-    @OnClick({R.id.search_iv, R.id.purcase_iv, R.id.person_iv})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.search_iv:
-                break;
-            case R.id.purcase_iv:
-                ControllerUtil.go2Purcase();
-                break;
-            case R.id.person_iv:
-                Intent i = new Intent(getActivity(), PersonActivity.class);
-                getActivity().startActivity(i);
-                break;
-        }
     }
 
     @Override

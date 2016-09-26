@@ -43,7 +43,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.bestLayout.removeAllViews();
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
-        layoutParams.setMargins(DPUtil.dip2px(5), 0, DPUtil.dip2px(5), DPUtil.dip2px(5));
+        layoutParams.setMargins(0, 0, 0, 0);
         for (int i = 0; i < 3; i++) {
             View view = LayoutInflater.from(mContext).inflate(R.layout.item_product, null);
             view.setTag(i);
@@ -57,6 +57,13 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ViewHolder> {
         }
         holder.shop.setTag(position);
         holder.shop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainToast.showShortToast("收藏");
+            }
+        });
+        holder.shopRl.setTag(position);
+        holder.shopRl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 MainToast.showShortToast("第" + view.getTag() + "家店");

@@ -3,161 +3,91 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.yigu.shop.activity.MainActivity"
-    >
+    tools:context="com.yigu.shop.activity.MainActivity">
 
-    <RelativeLayout
-        android:id="@+id/lay_bottom"
+    <include layout="@layout/lay_header"
+        />
+
+
+
+
+    <RadioGroup
+        android:id="@+id/bottom_layout"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:background="@color/background_all"
+        android:layout_height="@dimen/text_height_50dp"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="@android:color/white"
+        android:paddingTop="6dp"
         >
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:orientation="horizontal"
-            android:layout_alignParentBottom="true"
-            android:layout_centerInParent="true"
-            android:background="@mipmap/main_bottom"
-            android:gravity="center_vertical"
-            >
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:gravity="center_horizontal"
-                >
-
-                <CheckBox
-                    android:id="@+id/radio_home"
-                    android:layout_width="52dp"
-                    android:layout_height="41dp"
-                    android:button="@null"
-                    android:checked="true"
-                    android:drawableTop="@drawable/selector_home_cb_image_home"
-                    android:gravity="center"
-                    android:text="首页"
-                    android:textSize="10sp"
-                    android:textColor="@drawable/selector_home_cb_text"
-                    android:layout_marginTop="21dp"
-                    android:paddingTop="3dp"
-                    android:background="@drawable/selector_home_cb_bg"
-                    />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:gravity="center_horizontal"
-                >
-
-                <CheckBox
-                    android:id="@+id/radio_sort"
-                    android:layout_width="52dp"
-                    android:layout_height="41dp"
-                    android:button="@null"
-                    android:drawableTop="@drawable/selector_home_cb_image_sort"
-                    android:gravity="center"
-                    android:text="分类"
-                    android:textSize="10sp"
-                    android:textColor="@drawable/selector_home_cb_text"
-                    android:layout_marginTop="21dp"
-                    android:paddingTop="3dp"
-                    android:background="@drawable/selector_home_cb_bg"
-                    />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                >
-
-                <CheckBox
-                    android:id="@+id/radio_shop"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:button="@null"
-                    android:background="@mipmap/main_shop"
-                    android:gravity="center"
-                    android:textSize="10sp"
-                    android:textColor="@android:color/white"
-                    android:layout_marginLeft="2.5dp"
-                    android:layout_marginTop="1dp"
-                    />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:gravity="center_horizontal"
-                >
-
-                <CheckBox
-                    android:id="@+id/radio_street"
-                    android:layout_width="52dp"
-                    android:layout_height="41dp"
-                    android:button="@null"
-                    android:drawableTop="@drawable/selector_home_cb_image_street"
-                    android:gravity="center"
-                    android:text="店铺街"
-                    android:textSize="10sp"
-                    android:textColor="@drawable/selector_home_cb_text"
-                    android:layout_marginTop="21dp"
-                    android:paddingTop="3dp"
-                    android:background="@drawable/selector_home_cb_bg"
-                    />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:gravity="center_horizontal"
-                >
-
-                <CheckBox
-                    android:id="@+id/radio_find"
-                    android:layout_width="52dp"
-                    android:layout_height="41dp"
-                    android:button="@null"
-                    android:drawableTop="@drawable/selector_home_cb_image_find"
-                    android:gravity="center"
-                    android:text="发现"
-                    android:textSize="10sp"
-                    android:textColor="@drawable/selector_home_cb_text"
-                    android:layout_marginTop="21dp"
-                    android:paddingTop="3dp"
-                    android:background="@drawable/selector_home_cb_bg"
-                    />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </RelativeLayout>
-
-
+        <RadioButton
+            android:id="@+id/radio_home"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="true"
+            android:drawableTop="@drawable/selector_home_cb_image_home"
+            android:gravity="center"
+            android:text="首页"
+            android:textSize="@dimen/text_small_x"
+            android:textColor="@drawable/selector_home_cb_text" />
+        <RadioButton
+            android:id="@+id/radio_find"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/selector_home_cb_image_find"
+            android:gravity="center"
+            android:text="发现"
+            android:textSize="@dimen/text_small_x"
+            android:textColor="@drawable/selector_home_cb_text" />
+        <RadioButton
+            android:id="@+id/radio_community"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/selector_home_cb_image_community"
+            android:gravity="center"
+            android:text="社区"
+            android:textSize="@dimen/text_small_x"
+            android:textColor="@drawable/selector_home_cb_text" />
+        <RadioButton
+            android:id="@+id/radio_sort"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/selector_home_cb_image_sort"
+            android:gravity="center"
+            android:text="分类"
+            android:textSize="@dimen/text_small_x"
+            android:textColor="@drawable/selector_home_cb_text" />
+        <RadioButton
+            android:id="@+id/radio_person"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/selector_home_cb_image_person"
+            android:gravity="center"
+            android:text="小店"
+            android:textSize="@dimen/text_small_x"
+            android:textColor="@drawable/selector_home_cb_text" />
+    </RadioGroup>
 
     <FrameLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/lay_bottom">
+        android:layout_above="@+id/bottom_layout"
+        android:layout_below="@+id/lay_header">
 
     </FrameLayout>
-
-
 
 </RelativeLayout>

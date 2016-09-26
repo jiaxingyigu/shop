@@ -34,8 +34,6 @@ public class HomeSliderLayout extends RelativeLayout {
     ViewPager indexViewpager;
     @Bind(R.id.guide_dot)
     LinearLayout guideDot;
-    @Bind(R.id.tv_record)
-    TextView tvRecord;
 
     private Context mContext;
     private View view;
@@ -71,6 +69,7 @@ public class HomeSliderLayout extends RelativeLayout {
         for (int i = 0; i < 4; i++) {
             SimpleDraweeView view = new SimpleDraweeView(mContext);
             view.setImageResource(R.drawable.carousel_default);
+            view.setScaleType(ImageView.ScaleType.FIT_XY);
             view.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -84,8 +83,8 @@ public class HomeSliderLayout extends RelativeLayout {
         guideDot.removeAllViews();
         for (int i = 0; i < sliderViewList.size(); i++) {
             ImageView imageView = new ImageView(mContext);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(DPUtil.dip2px(7), DPUtil.dip2px(7));
-            params.setMargins(DPUtil.dip2px(4), 0, DPUtil.dip2px(4), DPUtil.dip2px(6));
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(DPUtil.dip2px(8), DPUtil.dip2px(8));
+            params.setMargins(DPUtil.dip2px(6), 0, DPUtil.dip2px(6), DPUtil.dip2px(6));
             imageView.setLayoutParams(params);
             imageView.setBackgroundResource(R.drawable.selector_item_dot);
             guideDot.addView(imageView);
@@ -114,14 +113,4 @@ public class HomeSliderLayout extends RelativeLayout {
         });
     }
 
-    @OnClick(R.id.tv_record)
-    public void onClick(View v) {
-        Intent i = new Intent();
-        switch (v.getId()) {
-            case R.id.tv_record:
-                i.setClass(mContext, RecordActivity.class);
-                mContext.startActivity(i);
-                break;
-        }
-    }
 }
