@@ -3,6 +3,7 @@ package com.yigu.shop.fragment.sort;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,11 +11,20 @@ import android.view.ViewGroup;
 
 import com.yigu.shop.R;
 import com.yigu.shop.adapter.sort.SortAdapter;
+import com.yigu.shop.adapter.sort.SortBrandAdapter;
 import com.yigu.shop.base.BaseFrag;
+import com.yigu.shop.commom.api.ItemApi;
+import com.yigu.shop.commom.result.MapiSortResult;
 import com.yigu.shop.commom.util.DPUtil;
+import com.yigu.shop.commom.util.RequestExceptionCallback;
+import com.yigu.shop.commom.util.RequestPageCallback;
 import com.yigu.shop.commom.widget.MainToast;
 import com.yigu.shop.shopinterface.RecyOnItemClickListener;
+import com.yigu.shop.widget.BestSwipeRefreshLayout;
 import com.yigu.shop.widget.DividerGridItemDecoration;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -25,8 +35,15 @@ import butterknife.ButterKnife;
 public class SortBrandFragment extends BaseFrag{
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
+    @Bind(R.id.swipRefreshLayout)
+    BestSwipeRefreshLayout swipRefreshLayout;
 
-    SortAdapter mAdapter;
+    SortBrandAdapter mAdapter;
+    List<MapiSortResult> mList;
+
+    private Integer pageIndex = 1;
+    private Integer pageSize = 8;
+    private Integer counts;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,10 +57,11 @@ public class SortBrandFragment extends BaseFrag{
     }
 
     private void initView() {
-        recyclerView.addItemDecoration(new DividerGridItemDecoration(getActivity(), DPUtil.dip2px(18), Color.parseColor("#ffffff")));//分割线
+        mList = new ArrayList<>();
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(gridLayoutManager);
-        mAdapter = new SortAdapter(getActivity());
+//        recyclerView.addItemDecoration(new DividerGridItemDecoration(getActivity(), DPUtil.dip2px(15), Color.parseColor("#ffffff")));//分割线
+        mAdapter = new SortBrandAdapter(getActivity(),mList);
         recyclerView.setAdapter(mAdapter);
     }
 
@@ -54,6 +72,71 @@ public class SortBrandFragment extends BaseFrag{
                 MainToast.showShortToast("第"+position+"张");
             }
         });
+        swipRefreshLayout.setBestRefreshListener(new BestSwipeRefreshLayout.BestRefreshListener() {
+            @Override
+            public void onBestRefresh() {
+                refreshData();
+            }
+        });
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                LinearLayoutManager manager = (LinearLayoutManager) recyclerView.getLayoutManager();
+
+                if ((newState == RecyclerView.SCROLL_STATE_IDLE) && manager.findLastVisibleItemPosition() > 0 && (manager.findLastVisibleItemPosition() == (manager.getItemCount() - 1))) {
+                    loadNext();
+                }
+
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
+    }
+
+    @Override
+    public void load() {
+        ItemApi.getBrands(getActivity(), pageIndex + "", pageSize + "", new RequestPageCallback< List<MapiSortResult>>() {
+            @Override
+            public void success(Integer count, List<MapiSortResult> success) {
+                swipRefreshLayout.setRefreshing(false);
+                hideLoading();
+                counts = count;
+                if(success.isEmpty())
+                    return;
+                mList.addAll(success);
+                mAdapter.notifyDataSetChanged();
+            }
+        }, new RequestExceptionCallback() {
+            @Override
+            public void error(Integer code, String message) {
+                swipRefreshLayout.setRefreshing(false);
+                hideLoading();
+                MainToast.showShortToast(message);
+            }
+        });
+    }
+
+    private void loadNext() {
+        if (counts == null || counts==mList.size()) {
+            MainToast.showShortToast("没有更多数据了");
+            return;
+        }
+        showLoading();
+        pageIndex++;
+        load();
+    }
+
+    public void refreshData() {
+        if (null != mList) {
+            mList.clear();
+            pageIndex = 0;
+            mAdapter.notifyDataSetChanged();
+            load();
+        }
     }
 
     @Override

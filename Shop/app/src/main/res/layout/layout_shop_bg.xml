@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="155dp"
+    android:background="@mipmap/shop_bg"
+    >
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/head"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="23dp"
+        fresco:fadeDuration="2000"
+        fresco:placeholderImage="@drawable/product_default"
+        fresco:placeholderImageScaleType="fitXY"
+        fresco:roundAsCircle="true"
+        fresco:roundingBorderColor="@android:color/white"
+        fresco:roundingBorderWidth="1dp"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="洗刷刷车行云东店"
+        android:layout_marginTop="@dimen/margin_10dp"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_normal"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/head"
+        />
+
+    <TextView
+        android:id="@+id/shop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="收藏店铺"
+        android:textColor="@drawable/selector_collection_text_color_white"
+        android:textSize="12sp"
+        android:background="@drawable/selector_press_round_color_white"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/name"
+        android:layout_marginTop="12dp"
+        />
+
+
+</RelativeLayout>

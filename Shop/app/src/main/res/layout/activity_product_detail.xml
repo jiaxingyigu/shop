@@ -6,48 +6,69 @@
     android:layout_height="match_parent"
     tools:context="com.yigu.shop.activity.ProductDetailActivity">
 
+
     <RelativeLayout
-        android:id="@+id/lay_header"
-        android:layout_width="match_parent"
+        android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="@dimen/text_height_45dp"
-        android:background="@mipmap/head_bg"
+        android:id="@+id/lay_header"
+        android:background="@android:color/white"
         >
 
         <ImageView
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@mipmap/icon_back"
-            android:layout_alignParentLeft="true"
-            android:paddingLeft="@dimen/margin_10dp"
-            android:paddingRight="@dimen/margin_10dp"
+            android:paddingLeft="@dimen/margin_2"
+            android:paddingRight="@dimen/margin_2"
+            android:layout_centerVertical="true"
             />
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tabShop"
-            android:layout_width="220dp"
-            android:layout_height="32dp"
-            app:tabTextColor="#ffffff"
-            app:tabSelectedTextColor="#fcb04e"
-            app:tabIndicatorColor="#fcb04e"
+            android:layout_width="170dp"
+            android:layout_height="match_parent"
+            app:tabIndicatorColor="@color/shop_red"
+            app:tabSelectedTextColor="@color/shop_red"
+            app:tabTextColor="@color/shop_black"
             android:layout_centerInParent="true"
             >
         </android.support.design.widget.TabLayout>
 
-
-        <ImageView
-            android:id="@+id/purcase_iv"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:src="@mipmap/purcase"
-            android:paddingLeft="@dimen/margin_10dp"
-            android:paddingRight="@dimen/margin_10dp"
-            />
+            >
 
+            <ImageView
+                android:id="@+id/iv_right"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/margin_2"
+                android:paddingRight="@dimen/margin_2"
+                />
+
+            <ImageView
+                android:id="@+id/iv_right_two"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/margin_2"
+                android:paddingRight="@dimen/margin_2"
+                android:visibility="gone"
+                />
+
+        </LinearLayout>
     </RelativeLayout>
 
-
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/divider_line"
+        android:layout_below="@+id/lay_header"
+        />
 
     <LinearLayout
         android:id="@+id/lay_bottom"
@@ -55,7 +76,6 @@
         android:layout_height="@dimen/text_height_50dp"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
-        android:background="@color/dark_black"
         >
 
         <LinearLayout
@@ -63,6 +83,7 @@
             android:layout_weight="1.2"
             android:layout_height="match_parent"
             android:orientation="horizontal"
+            android:background="@color/background_all"
             >
 
             <LinearLayout
@@ -74,12 +95,14 @@
                 >
 
                 <TextView
-                    style="@style/textViewStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="店铺"
-                    android:drawableTop="@mipmap/store"
+                    android:drawableTop="@drawable/selector_pressed_drawable_store"
                     android:gravity="center"
+                    android:paddingTop="4dp"
+                    android:textSize="10sp"
+                    android:textColor="@drawable/selector_purcase_text"
                     android:drawablePadding="2dp"
                     />
 
@@ -92,12 +115,14 @@
                 android:gravity="center"
                 >
                 <TextView
-                    style="@style/textViewStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="收藏"
-                    android:drawableTop="@mipmap/collection"
+                    android:drawableTop="@drawable/selector_pressed_drawable_collection"
                     android:gravity="center"
+                    android:paddingTop="4dp"
+                    android:textColor="@drawable/selector_purcase_text"
+                    android:textSize="10sp"
                     android:drawablePadding="2dp"
                     />
             </LinearLayout>
@@ -114,7 +139,7 @@
             android:text="加入购物车"
             android:textColor="#ffffff"
             android:textSize="16sp"
-            android:background="@color/shop_yellow"
+            android:background="@drawable/selector_pressed_color_dark_yellow"
             android:gravity="center"
             />
 
@@ -126,7 +151,7 @@
             android:text="立即购买"
             android:textColor="#ffffff"
             android:textSize="16sp"
-            android:background="@color/light_yellow"
+            android:background="@drawable/selector_pressed_color_red"
             android:gravity="center"
             />
 
@@ -137,7 +162,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/lay_bottom"
-        android:layout_below="@+id/lay_header"
+        android:layout_below="@+id/view_line"
         >
 
     </FrameLayout>

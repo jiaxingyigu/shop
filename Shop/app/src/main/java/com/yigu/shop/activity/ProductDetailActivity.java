@@ -3,15 +3,14 @@ package com.yigu.shop.activity;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import com.yigu.shop.R;
+import com.yigu.shop.base.BaseActivity;
 import com.yigu.shop.base.BaseFrag;
 import com.yigu.shop.commom.widget.MainToast;
-import com.yigu.shop.fragment.index.HomeFragment;
-import com.yigu.shop.fragment.index.SortFragment;
 import com.yigu.shop.fragment.product.ItemDiscussFragment;
 import com.yigu.shop.fragment.product.ItemInfoFragment;
 
@@ -19,13 +18,21 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ProductDetailActivity extends AppCompatActivity {
+public class ProductDetailActivity extends BaseActivity {
     @Bind(R.id.tabShop)
     TabLayout tabShop;
     @Bind(R.id.content)
     FrameLayout content;
+    @Bind(R.id.back)
+    ImageView back;
+    @Bind(R.id.iv_right)
+    ImageView ivRight;
+    @Bind(R.id.iv_right_two)
+    ImageView ivRightTwo;
     private BaseFrag[] fragments;
     private int index = 0;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +42,10 @@ public class ProductDetailActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        back.setImageResource(R.mipmap.back);
+        ivRight.setImageResource(R.mipmap.search);
+        ivRightTwo.setVisibility(View.VISIBLE);
+        ivRightTwo.setImageResource(R.mipmap.purcase);
         tabShop.setTabMode(TabLayout.MODE_FIXED);
         tabShop.addTab(tabShop.newTab().setText("商品"));
         tabShop.addTab(tabShop.newTab().setText("详情"));
@@ -43,7 +54,7 @@ public class ProductDetailActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
 
-                switch (tab.getPosition()){
+                switch (tab.getPosition()) {
                     case 0:
                         index = 0;
                         selectTab();
@@ -90,13 +101,17 @@ public class ProductDetailActivity extends AppCompatActivity {
         transaction.commitAllowingStateLoss();
     }
 
-    @OnClick({R.id.back, R.id.purcase_iv,R.id.shop, R.id.collect, R.id.add, R.id.buy})
+    @OnClick({R.id.back, R.id.iv_right, R.id.iv_right_two, R.id.shop, R.id.collect, R.id.add, R.id.buy})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back:
                 finish();
                 break;
-            case R.id.purcase_iv:
+            case R.id.iv_right:
+
+                break;
+            case R.id.iv_right_two:
+
                 break;
             case R.id.shop:
                 break;

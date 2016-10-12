@@ -4,22 +4,18 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.yigu.shop.R;
 import com.yigu.shop.base.BaseActivity;
 import com.yigu.shop.base.BaseFrag;
-import com.yigu.shop.fragment.index.FindFragment;
 import com.yigu.shop.fragment.index.FindShopFragment;
-import com.yigu.shop.fragment.index.HomeFragment;
 import com.yigu.shop.fragment.index.IndextFragment;
-import com.yigu.shop.fragment.index.SortFragment;
+import com.yigu.shop.fragment.index.MyShopFragment;
 import com.yigu.shop.fragment.index.SortTwoFragment;
-import com.yigu.shop.fragment.shops.ShopListFragment;
+import com.yigu.shop.util.ControllerUtil;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -65,7 +61,7 @@ public class MainActivity extends BaseActivity {
         fragments[1] = new FindShopFragment();
         fragments[2] = new IndextFragment();
         fragments[3] = new SortTwoFragment();
-        fragments[4] = new IndextFragment();
+        fragments[4] = new MyShopFragment();
 
         selectTab();
     }
@@ -96,7 +92,7 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.radio_home,R.id.radio_find, R.id.radio_community, R.id.radio_sort, R.id.radio_person})
+    @OnClick({R.id.radio_home,R.id.radio_find, R.id.radio_community, R.id.radio_sort, R.id.radio_person,R.id.iv_right_two})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.radio_home:
@@ -123,6 +119,9 @@ public class MainActivity extends BaseActivity {
                 index = 4;
                 selectTab();
                 fragments[index].load();
+                break;
+            case R.id.iv_right_two:
+                ControllerUtil.go2Purcase();
                 break;
         }
     }

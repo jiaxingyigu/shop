@@ -16,6 +16,7 @@ import com.yigu.shop.commom.result.MapiItemResult;
 import com.yigu.shop.commom.util.DPUtil;
 import com.yigu.shop.commom.widget.MainToast;
 import com.yigu.shop.shopinterface.RecyOnItemClickListener;
+import com.yigu.shop.util.ControllerUtil;
 import com.yigu.shop.widget.DividerListItemDecoration;
 
 import java.util.ArrayList;
@@ -72,7 +73,7 @@ public class HomeItemLayout extends RelativeLayout {
         mAdapter.setOnItemClickListener(new RecyOnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                MainToast.showShortToast(position+"");
+                ControllerUtil.go2ProductDetail();
             }
         });
     }

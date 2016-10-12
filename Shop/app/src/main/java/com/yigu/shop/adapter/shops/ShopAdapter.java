@@ -12,9 +12,12 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yigu.shop.R;
+import com.yigu.shop.commom.result.MapiItemResult;
 import com.yigu.shop.commom.result.MapiShopResult;
 import com.yigu.shop.commom.util.DPUtil;
 import com.yigu.shop.commom.widget.MainToast;
+import com.yigu.shop.shopinterface.RecyOnItemClickListener;
+import com.yigu.shop.util.ControllerUtil;
 
 import java.util.List;
 
@@ -44,17 +47,21 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ViewHolder> {
         holder.bestLayout.removeAllViews();
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
         layoutParams.setMargins(0, 0, 0, 0);
-        for (int i = 0; i < 3; i++) {
-            View view = LayoutInflater.from(mContext).inflate(R.layout.item_product, null);
-            view.setTag(i);
-            holder.bestLayout.addView(view, layoutParams);
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    MainToast.showShortToast("第" + v.getTag() + "张");
-                }
-            });
+        List<MapiItemResult> items = mList.get(position).getGoods();
+        if(null!=items&&!items.isEmpty()){
+            for (int i = 0; i < items.size(); i++) {
+                View view = LayoutInflater.from(mContext).inflate(R.layout.item_product, null);
+                view.setTag(i);
+                holder.bestLayout.addView(view, layoutParams);
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        MainToast.showShortToast("第" + v.getTag() + "张");
+                    }
+                });
+            }
         }
+
         holder.shop.setTag(position);
         holder.shop.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,14 +73,14 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ViewHolder> {
         holder.shopRl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainToast.showShortToast("第" + view.getTag() + "家店");
+                ControllerUtil.go2ShopDetail();
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return 3;
+        return null==mList?0:mList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

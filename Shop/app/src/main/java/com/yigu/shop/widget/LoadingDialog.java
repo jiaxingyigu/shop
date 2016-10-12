@@ -10,7 +10,7 @@ import com.yigu.shop.R;
 /**
  * Created by brain on 2016/6/16.
  */
-public class LoadingDialog extends Dialog{
+public class LoadingDialog extends Dialog {
     private Activity activity;
 //    private ImageView loadingIv;
     public LoadingDialog(Context context) {

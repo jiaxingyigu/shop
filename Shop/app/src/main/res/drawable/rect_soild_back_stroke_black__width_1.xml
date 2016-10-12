@@ -4,6 +4,6 @@
         android:width="0.5dp"
         android:color="@color/shop_black" />
     <solid
-        android:color="@color/background_all"
+        android:color="@android:color/white"
         />
 </shape>

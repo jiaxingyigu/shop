@@ -10,10 +10,13 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AccelerateInterpolator;
 
 import com.yigu.shop.R;
 import com.yigu.shop.adapter.TabFragmentAdapter;
 import com.yigu.shop.base.BaseFrag;
+import com.yigu.shop.widget.ViewPagerScroller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,13 +34,16 @@ public class IndextFragment extends BaseFrag {
     @Bind(R.id.viewpager)
     ViewPager viewpager;
     private HomeFragment homeFragment;
-    private HomeFragment homeFragment2;
-    private HomeFragment homeFragment3;
-    private HomeFragment homeFragment4;
-    private HomeFragment homeFragment5;
+    private IndexDeviceFragment indexDeviceFragment;
+    private IndexToolFragment indexToolFragment;
+    private IndexMaterialFragment indexMaterialFragment;
+    private IndexSubFragment indexSubFragment;
     private List<Fragment> list = new ArrayList<>();
     private List<String> list_title = new ArrayList<>();
     TabFragmentAdapter mAdapter;
+
+    private int scrollTime = 280;
+
     public IndextFragment() {
     }
 
@@ -54,21 +60,21 @@ public class IndextFragment extends BaseFrag {
 
     private void initView() {
         homeFragment = new HomeFragment();
-        homeFragment2 = new HomeFragment();
-        homeFragment3 = new HomeFragment();
-        homeFragment4 = new HomeFragment();
-        homeFragment5 = new HomeFragment();
+        indexDeviceFragment = new IndexDeviceFragment();
+        indexToolFragment = new IndexToolFragment();
+        indexMaterialFragment = new IndexMaterialFragment();
+        indexSubFragment = new IndexSubFragment();
         list.add(homeFragment);
-        list.add(homeFragment2);
-        list.add(homeFragment3);
-        list.add(homeFragment4);
-        list.add(homeFragment5);
+        list.add(indexDeviceFragment);
+        list.add(indexToolFragment);
+        list.add(indexMaterialFragment);
+        list.add(indexSubFragment);
 
         list_title.add("推荐");
         list_title.add("设备");
         list_title.add("工具");
         list_title.add("耗材");
-        list_title.add("组建");
+        list_title.add("组件");
         tablayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         tablayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tablayout.addTab(tablayout.newTab().setText(list_title.get(0)));
@@ -78,6 +84,10 @@ public class IndextFragment extends BaseFrag {
         tablayout.addTab(tablayout.newTab().setText(list_title.get(4)));
         mAdapter = new TabFragmentAdapter(getChildFragmentManager(), list, list_title);
         viewpager.setAdapter(mAdapter);
+        ViewPagerScroller viewPagerScroller = new ViewPagerScroller(getContext(),new AccelerateDecelerateInterpolator());
+        //调整速率
+        viewPagerScroller.setScrollDuration(scrollTime);
+        viewPagerScroller.initViewPagerScroll(viewpager);           //初始化ViewPager时,反射修改滑动速度
         tablayout.setupWithViewPager(viewpager);
     }
 

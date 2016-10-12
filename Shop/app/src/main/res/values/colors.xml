@@ -16,6 +16,10 @@
 
     <drawable name="background_all">#eeeeee</drawable>
     <drawable name="dark_black">#333333</drawable>
+    <drawable name="shop_yellow">#fcb04e</drawable>
     <drawable name="dark_yellow">#d98d2b</drawable>
     <drawable name="light_yellow">#fe7108</drawable>
+    <drawable name="shop_red">#e60013</drawable>
+    <drawable name="dark_red">#b83636</drawable>
+    <drawable name="white">#ffffff</drawable>
 </resources>

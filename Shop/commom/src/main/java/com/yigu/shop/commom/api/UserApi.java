@@ -31,7 +31,7 @@ public class UserApi extends BasicApi{
         },new MapiUtil.MapiFailResponse(){
 
             @Override
-            public void fail(String code, String failMessage) {
+            public void fail(Integer code, String failMessage) {
                 exceptionCallback.error(code,failMessage);
             }
         });

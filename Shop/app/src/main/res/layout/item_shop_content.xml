@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    >
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/image"
+        android:layout_width="165dp"
+        android:layout_height="165dp"
+        fresco:fadeDuration="2000"
+        fresco:placeholderImage="@drawable/product_default"
+        fresco:placeholderImageScaleType="fitXY"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center_horizontal"
+        />
+
+    <LinearLayout
+        android:layout_width="165dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="12dp"
+        android:layout_gravity="center_horizontal"
+        >
+
+        <TextView
+            style="@style/textViewStyle_small"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:text="记忆腰靠枕3件套"
+            android:ellipsize="end"
+            android:maxLines="1"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="5600"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:gravity="right"
+            android:textSize="12sp"
+            android:textColor="@color/shop_red"
+            android:textStyle="bold"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

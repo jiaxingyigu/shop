@@ -50,7 +50,8 @@ public class PurcaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemCount() {
-        int count = 0;
+        int count = 1;
+        list.add(new IndexData(count++,"divider", new Object()));
         for (MapiCartResult ware : mList) {
             list.add(new IndexData(count++,"head",ware));
             for (int i=0;i<ware.getItems().size();i++) {
@@ -164,7 +165,7 @@ public class PurcaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             listener.isAll();
         }
         if(ware.isSel()){
-            holder.rootSel.setImageResource(R.mipmap.circle_yellow_sel);
+            holder.rootSel.setImageResource(R.mipmap.circle_red_sel);
         }else{
             holder.rootSel.setImageResource(R.mipmap.circle_white);
         }
@@ -195,7 +196,7 @@ public class PurcaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         DebugLog.i("ItemViewHolder=load");
         MapiItemResult result = (MapiItemResult) list.get(position).getData();
         if(result.isSel())
-            holder.itemSel.setImageResource(R.mipmap.circle_yellow_sel);
+            holder.itemSel.setImageResource(R.mipmap.circle_red_sel);
         else
             holder.itemSel.setImageResource(R.mipmap.circle_white);
         if(result.isLast())

@@ -3,12 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.yigu.shop.activity.purcase.PurcaseActivity">
+    tools:context="com.yigu.shop.activity.purcase.PurcaseActivity"
+    android:background="#e5e5e5"
+    >
 
     <include
         layout="@layout/lay_header"
         />
 
+    <View
+        android:id="@+id/head_view"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/divider_line"
+        android:layout_below="@+id/lay_header"
+        />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -16,7 +25,7 @@
         android:layout_height="match_parent"
         android:overScrollMode="never"
         android:scrollbars="none"
-        android:layout_below="@+id/lay_header"
+        android:layout_below="@+id/head_view"
         android:layout_above="@+id/deel_ll"
         />
 
@@ -26,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/text_height_50dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/dark_black"
+        android:background="@color/background_all"
         >
 
         <RelativeLayout
@@ -69,8 +78,8 @@
                     android:id="@+id/account"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_big_x"
-                    android:textColor="@color/light_yellow"
+                    android:textSize="@dimen/text_big_xx"
+                    android:textColor="@color/shop_red"
                     android:textStyle="bold"
                     android:text="￥200"
                     android:ellipsize="end"
@@ -83,16 +92,17 @@
         </RelativeLayout>
 
         <TextView
-            style="@style/textViewStyle_big_x"
             android:id="@+id/statement"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="结算（1）"
-            android:background="@drawable/selector_pressed_color_yellow"
+            android:background="@drawable/selector_pressed_color_red"
             android:gravity="center"
             android:ellipsize="end"
             android:maxLines="1"
+            android:textSize="@dimen/text_big_x"
+            android:textColor="@android:color/white"
             />
 
     </LinearLayout>

@@ -10,7 +10,6 @@
 
 
 
-
     <RadioGroup
         android:id="@+id/bottom_layout"
         android:layout_width="match_parent"
@@ -76,16 +75,24 @@
             android:button="@null"
             android:drawableTop="@drawable/selector_home_cb_image_person"
             android:gravity="center"
-            android:text="小店"
+            android:text="我的"
             android:textSize="@dimen/text_small_x"
             android:textColor="@drawable/selector_home_cb_text" />
     </RadioGroup>
+
+    <View
+        android:id="@+id/divider_view"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/divider_line"
+        android:layout_above="@+id/bottom_layout"
+        />
 
     <FrameLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottom_layout"
+        android:layout_above="@+id/divider_view"
         android:layout_below="@+id/lay_header">
 
     </FrameLayout>

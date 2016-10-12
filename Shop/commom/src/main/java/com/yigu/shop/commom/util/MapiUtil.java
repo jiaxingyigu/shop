@@ -114,11 +114,11 @@ public class MapiUtil {
                     public void onResponse(String s) {
                         DebugLog.i("mapi response" + s);
                         JSONObject jsonObject = JSONObject.parseObject(s);
-                        if (jsonObject.getString("result").equals("01")) {
+                        if (null!=jsonObject.getInteger("status")&&jsonObject.getInteger("status")==1) {
                             response.success(jsonObject);
                         }
-                        String code = jsonObject.getString("result");
-                        if (code.equals("9998")) {
+                        Integer code = jsonObject.getInteger("status");
+                        if (null!=code&&code==9998) {
                             //打开登录UI
                             if (act == null) {
                                 return;
@@ -128,8 +128,8 @@ public class MapiUtil {
                             act.sendBroadcast(intent);
                             return;
                         }
-                        if (fail != null && !code.equals("01")) {
-                            fail.fail(code, jsonObject.getString("message"));//参数不满足条件
+                        if (fail != null && code!=1) {
+                            fail.fail(code, jsonObject.getString("msg"));//参数不满足条件
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -138,9 +138,9 @@ public class MapiUtil {
                 DebugLog.e("volleyError=" + volleyError);
                 if (volleyError != null) {
                     if (volleyError instanceof TimeoutError || volleyError instanceof NoConnectionError) {
-                        fail.fail("9999", "oops！网络异常请重新连接");
+                        fail.fail(9999, "oops！网络异常请重新连接");
                     } else {
-                        fail.fail("9999", volleyError.getMessage());
+                        fail.fail(9999, volleyError.getMessage());
                     }
                 }
             }
@@ -243,27 +243,27 @@ public class MapiUtil {
                     @Override
                     public void onFailure(HttpException arg0, String arg1) {
                         if (arg0.getCause() instanceof TimeoutError || arg0.getCause() instanceof NoConnectionError) {
-                            fail.fail("9999", "oops！网络异常请重新连接");
+                            fail.fail(9999, "oops！网络异常请重新连接");
                         } else {
-                            fail.fail("9999", arg0.getMessage());
+                            fail.fail(9999, arg0.getMessage());
                         }
                     }
                     @Override
                     public void onSuccess(ResponseInfo<String> arg0) {
                         DebugLog.i("mapi response"+arg0.result);
                         JSONObject jsonObject = JSONObject.parseObject(arg0.result);
-                        if (jsonObject.getString("result").equals("01")) {
+                        if (null!=jsonObject.getInteger("status")&&jsonObject.getInteger("status")==1) {
                             response.success(jsonObject);
                         }
-                        String code = jsonObject.getString("result");
+                        Integer code = jsonObject.getInteger("status");
 //                if (code == 9998) {//打开登录UI
 //                    Intent intent = new Intent();
 //                    intent.setAction("com.ypn.mobile.login");
 //                    activity.sendBroadcast(intent);
 //                    return;
 ////                }
-                        if (fail != null && !code.equals("0")) {
-                            fail.fail(code, jsonObject.getString("message"));
+                        if (fail != null && code!=1) {
+                            fail.fail(code, jsonObject.getString("msg"));
                         }
                     }
                 });
@@ -299,7 +299,7 @@ public class MapiUtil {
 
     public interface MapiFailResponse {
 
-        void fail(String code, String failMessage);
+        void fail(Integer code, String failMessage);
 
     }
 }

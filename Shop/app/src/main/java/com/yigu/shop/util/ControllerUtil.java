@@ -5,6 +5,7 @@ import android.content.Intent;
 import com.yigu.shop.activity.ProductDetailActivity;
 import com.yigu.shop.activity.products.ProductListActivity;
 import com.yigu.shop.activity.purcase.PurcaseActivity;
+import com.yigu.shop.activity.shops.ShopDetailActivity;
 import com.yigu.shop.commom.application.AppContext;
 
 /**
@@ -26,6 +27,15 @@ public class ControllerUtil {
      */
     public static void go2ProductDetail() {
         Intent intent = new Intent(AppContext.getInstance(), ProductDetailActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        AppContext.getInstance().startActivity(intent);
+    }
+
+    /**
+     * 店铺详情
+     */
+    public static void go2ShopDetail(){
+        Intent intent = new Intent(AppContext.getInstance(), ShopDetailActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         AppContext.getInstance().startActivity(intent);
     }

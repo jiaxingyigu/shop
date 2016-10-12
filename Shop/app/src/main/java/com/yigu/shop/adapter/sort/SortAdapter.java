@@ -9,7 +9,10 @@ import android.widget.RelativeLayout;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yigu.shop.R;
+import com.yigu.shop.commom.result.MapiSortResult;
 import com.yigu.shop.shopinterface.RecyOnItemClickListener;
+
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -21,19 +24,22 @@ public class SortAdapter extends RecyclerView.Adapter<SortAdapter.ViewHolder> {
 
 
     private LayoutInflater inflater;
+    private List<MapiSortResult> mList;
     private RecyOnItemClickListener onItemClickListener;
 
     public void setOnItemClickListener(RecyOnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
+
     }
 
-    public SortAdapter(Context context) {
+    public SortAdapter(Context context,List<MapiSortResult> list) {
         inflater = LayoutInflater.from(context);
+        mList = list;
     }
 
     @Override
     public int getItemCount() {
-        return 4;
+        return null==mList?0:mList.size();
     }
 
     @Override
