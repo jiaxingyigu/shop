@@ -27,6 +27,7 @@
         >
 
         <TextView
+            android:id="@+id/goods_name"
             style="@style/textViewStyle_small"
             android:layout_width="0dp"
             android:layout_weight="2"
@@ -37,10 +38,11 @@
             />
 
         <TextView
+            android:id="@+id/shop_price"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="5600"
+            android:text="￥5600"
             android:ellipsize="end"
             android:maxLines="1"
             android:gravity="right"

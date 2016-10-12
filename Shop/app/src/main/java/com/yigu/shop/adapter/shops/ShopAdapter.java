@@ -73,7 +73,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ViewHolder> {
         holder.shopRl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ControllerUtil.go2ShopDetail();
+                ControllerUtil.go2ShopDetail(mList.get((Integer) view.getTag()));
             }
         });
     }

@@ -12,6 +12,15 @@ public class MapiItemResult extends MapiBaseResult{
     private String market_price;
     private String shop_price;
     private String goods_thumb;
+    private String goods_name;
+
+    public String getGoods_name() {
+        return goods_name;
+    }
+
+    public void setGoods_name(String goods_name) {
+        this.goods_name = goods_name;
+    }
 
     public boolean isSel() {
         return isSel;

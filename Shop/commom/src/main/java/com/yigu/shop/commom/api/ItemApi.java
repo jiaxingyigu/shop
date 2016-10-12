@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.yigu.shop.commom.result.MapiItemResult;
 import com.yigu.shop.commom.result.MapiShopResult;
 import com.yigu.shop.commom.result.MapiSortResult;
 import com.yigu.shop.commom.util.DebugLog;
@@ -92,6 +93,42 @@ public class ItemApi extends BasicApi{
             public void success(JSONObject json) {
                 DebugLog.i("json="+json);
                 List<MapiShopResult> result = JSONArray.parseArray(json.getJSONArray("data").toJSONString(),MapiShopResult.class);
+                String count = json.getString("count");
+                if(null!=count){
+                    callback.success(Integer.parseInt(count),result);
+                }
+
+            }
+        },new MapiUtil.MapiFailResponse(){
+            @Override
+            public void fail(Integer code, String failMessage) {
+                exceptionCallback.error(code,failMessage);
+            }
+        });
+    }
+
+    /**
+     * @param activity
+     * @param page
+     * @param size
+     * @param seller_id
+     *          店铺id
+     * @param type
+     *          默认all全部 new最新 hot最热 best精品
+     * @param callback
+     * @param exceptionCallback
+     */
+    public static void shopDetail(Activity activity, String page, String size,String seller_id, String type,final RequestPageCallback callback, final RequestExceptionCallback exceptionCallback){
+        Map<String,String> params = new HashMap<>();
+        params.put("page",page);
+        params.put("size",size);
+        params.put("seller_id",seller_id);
+        params.put("type",type);
+        MapiUtil.getInstance().call(activity,shopDetail,params,new MapiUtil.MapiSuccessResponse(){
+            @Override
+            public void success(JSONObject json) {
+                DebugLog.i("json="+json);
+                List<MapiItemResult> result = JSONArray.parseArray(json.getJSONArray("data").toJSONString(),MapiItemResult.class);
                 String count = json.getString("count");
                 if(null!=count){
                     callback.success(Integer.parseInt(count),result);

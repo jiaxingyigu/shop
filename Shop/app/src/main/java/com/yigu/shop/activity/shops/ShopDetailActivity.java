@@ -46,7 +46,7 @@ public class ShopDetailActivity extends BaseActivity {
     ShopDetailAdapter mAdapter;
     private final static String SHOP_BG = "SHOP_BG";
     private final static String CONTENT = "CONTENT";
-
+    MapiShopResult item;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +58,8 @@ public class ShopDetailActivity extends BaseActivity {
     }
 
     private void initView() {
-
+        if(null!=getIntent())
+            item = (MapiShopResult) getIntent().getSerializableExtra("item");
         back.setImageResource(R.mipmap.back);
         center.setText("店铺详情");
         ivRight.setImageResource(R.mipmap.search);
@@ -87,11 +88,14 @@ public class ShopDetailActivity extends BaseActivity {
     }
 
     private void load() {
-        mList.clear();
-        mList.add(new IndexData(0, SHOP_BG, new MapiShopResult()));
-        mList.add(new IndexData(1, CONTENT, new MapiShopResult()));
-        Collections.sort(mList);
-        mAdapter.notifyDataSetChanged();
+        if(null!=item){
+            mList.clear();
+            mList.add(new IndexData(0, SHOP_BG,item));
+            mList.add(new IndexData(1, CONTENT,item));
+            Collections.sort(mList);
+            mAdapter.notifyDataSetChanged();
+        }
+
     }
 
     private void initListener() {

@@ -31,19 +31,36 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.products.ProductListActivity" />
-        <activity android:name=".activity.shops.ShopListActivity" />
-        <activity android:name=".activity.collect.CollectProductActivity" />
-        <activity android:name=".activity.collect.CollectShopActivity" />
-        <activity android:name=".activity.person.PersonActivity" />
-        <activity android:name=".activity.purcase.PurcaseActivity" />
-        <activity android:name=".activity.collect.RecordActivity" />
-        <activity android:name=".activity.ProductDetailActivity" />
-        <activity android:name=".activity.shops.ShopDetailActivity"></activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
+        <activity android:name=".activity.products.ProductListActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.shops.ShopListActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.collect.CollectProductActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.collect.CollectShopActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.person.PersonActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.purcase.PurcaseActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.collect.RecordActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.ProductDetailActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.shops.ShopDetailActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.addr.ManageAddrActivity"
+            android:screenOrientation="portrait"
+            />
     </application>
 
 </manifest>
