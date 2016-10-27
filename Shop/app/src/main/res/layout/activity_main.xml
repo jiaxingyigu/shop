@@ -8,8 +8,6 @@
     <include layout="@layout/lay_header"
         />
 
-
-
     <RadioGroup
         android:id="@+id/bottom_layout"
         android:layout_width="match_parent"
@@ -55,7 +53,8 @@
             android:gravity="center"
             android:text="社区"
             android:textSize="@dimen/text_small_x"
-            android:textColor="@drawable/selector_home_cb_text" />
+            android:textColor="@drawable/selector_home_cb_text"
+            />
         <RadioButton
             android:id="@+id/radio_sort"
             android:layout_width="0dp"

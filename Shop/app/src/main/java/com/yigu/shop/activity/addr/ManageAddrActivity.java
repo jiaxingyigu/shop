@@ -13,6 +13,7 @@ import com.yigu.shop.adapter.ItemTwoAdapter;
 import com.yigu.shop.adapter.addr.ManageAddrAdapter;
 import com.yigu.shop.base.BaseActivity;
 import com.yigu.shop.commom.util.DPUtil;
+import com.yigu.shop.util.ControllerUtil;
 import com.yigu.shop.widget.DividerListItemDecoration;
 
 import butterknife.Bind;
@@ -53,6 +54,7 @@ public class ManageAddrActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.add:
+                ControllerUtil.go2AddAddr();
                 break;
         }
     }

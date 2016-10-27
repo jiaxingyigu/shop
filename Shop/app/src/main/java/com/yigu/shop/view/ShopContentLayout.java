@@ -25,6 +25,7 @@ import com.yigu.shop.commom.widget.MainToast;
 import com.yigu.shop.shopinterface.TabSelListener;
 import com.yigu.shop.widget.BestSwipeRefreshLayout;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -153,7 +154,16 @@ public class ShopContentLayout extends RelativeLayout {
 
             seller_id = item.getSeller_id();
 
-            tablayout.getTabAt(item.getType()).select();//
+           /* Class clz = tablayout.getClass();
+            try {
+                Method animateToTab = clz.getDeclaredMethod("animateToTab", new Class[]{int.class});
+                animateToTab.setAccessible(true);
+                animateToTab.invoke(tablayout, new Object[]{4});
+            } catch (Exception e) {
+                e.printStackTrace();
+            }*/
+            if(item.isSel())
+                tablayout.getTabAt(item.getType()).select();//
 
             switch (item.getType()){
                 case 0:

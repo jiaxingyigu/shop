@@ -64,6 +64,9 @@ public class MainActivity extends BaseActivity {
         fragments[4] = new MyShopFragment();
 
         selectTab();
+
+
+
     }
 
     private void selectTab() {
@@ -106,9 +109,7 @@ public class MainActivity extends BaseActivity {
                 fragments[index].load();
                 break;
             case R.id.radio_community:
-                index = 2;
-                selectTab();
-                fragments[index].load();
+                ControllerUtil.go2Community();
                 break;
             case R.id.radio_sort:
                 index = 3;

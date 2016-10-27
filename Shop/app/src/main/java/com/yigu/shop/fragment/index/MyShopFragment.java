@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.yigu.shop.R;
@@ -20,6 +21,8 @@ import butterknife.OnClick;
 public class MyShopFragment extends BaseFrag {
     @Bind(R.id.rl_addr)
     RelativeLayout rlAddr;
+    @Bind(R.id.ll_order)
+    LinearLayout llOrder;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,8 +48,15 @@ public class MyShopFragment extends BaseFrag {
         ButterKnife.unbind(this);
     }
 
-    @OnClick(R.id.rl_addr)
-    public void onClick() {
-        ControllerUtil.go2ManageAddr();
+    @OnClick({R.id.ll_order, R.id.rl_addr})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.ll_order:
+                ControllerUtil.go2MyOrder();
+                break;
+            case R.id.rl_addr:
+                ControllerUtil.go2ManageAddr();
+                break;
+        }
     }
 }

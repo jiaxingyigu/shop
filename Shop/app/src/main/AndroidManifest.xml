@@ -12,7 +12,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-
     <application
         android:name=".commom.application.AppContext"
         android:allowBackup="true"
@@ -31,34 +30,43 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.products.ProductListActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name=".activity.shops.ShopListActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name=".activity.collect.CollectProductActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name=".activity.collect.CollectShopActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name=".activity.person.PersonActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name=".activity.purcase.PurcaseActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name=".activity.collect.RecordActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name=".activity.ProductDetailActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name=".activity.shops.ShopDetailActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name=".activity.addr.ManageAddrActivity"
+        <activity
+            android:name=".activity.products.ProductListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.shops.ShopListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.collect.CollectProductActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.collect.CollectShopActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.person.PersonActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.purcase.PurcaseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.collect.RecordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ProductDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.shops.ShopDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.addr.ManageAddrActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.addr.AddAddrActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.MyOrderActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.CommunityActivity"
             android:screenOrientation="portrait"
             />
     </application>

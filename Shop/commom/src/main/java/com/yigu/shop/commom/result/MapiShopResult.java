@@ -11,6 +11,15 @@ public class MapiShopResult extends MapiBaseResult{
     private String shop_logo;
     private List<MapiItemResult> goods;
     private int type;
+    private boolean isSel = false;
+
+    public boolean isSel() {
+        return isSel;
+    }
+
+    public void setSel(boolean sel) {
+        isSel = sel;
+    }
 
     public int getType() {
         return type;

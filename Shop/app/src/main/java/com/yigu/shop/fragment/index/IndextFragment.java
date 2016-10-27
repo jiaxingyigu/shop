@@ -42,7 +42,7 @@ public class IndextFragment extends BaseFrag {
     private List<String> list_title = new ArrayList<>();
     TabFragmentAdapter mAdapter;
 
-    private int scrollTime = 280;
+    private int scrollTime = 270;
 
     public IndextFragment() {
     }

@@ -27,8 +27,8 @@
             android:id="@+id/tabShop"
             android:layout_width="170dp"
             android:layout_height="match_parent"
-            app:tabIndicatorColor="@color/shop_red"
-            app:tabSelectedTextColor="@color/shop_red"
+            app:tabIndicatorColor="@color/shop_orange"
+            app:tabSelectedTextColor="@color/shop_orange"
             app:tabTextColor="@color/shop_black"
             android:layout_centerInParent="true"
             >

@@ -53,6 +53,14 @@
         <item name="android:singleLine">true</item>
     </style>
 
+    <style name="editViewStyle_normal">
+        <item name="android:textColor">@color/shop_black</item>
+        <item name="android:background">@null</item>
+        <item name="android:textSize">@dimen/text_normal</item>
+        <item name="android:textColorHint">@color/shop_black</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
     <style name="search_layout_style">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">30dp</item>

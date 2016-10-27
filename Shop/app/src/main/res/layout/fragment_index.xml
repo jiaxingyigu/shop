@@ -11,8 +11,8 @@
         android:id="@+id/tablayout"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        app:tabIndicatorColor="@color/shop_red"
-        app:tabSelectedTextColor="@color/shop_red"
+        app:tabIndicatorColor="@color/shop_orange"
+        app:tabSelectedTextColor="@color/shop_orange"
         app:tabTextColor="@color/shop_black"
         app:tabIndicatorHeight="3dp"
         >
@@ -20,7 +20,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/shop_red"
+        android:background="@color/shop_orange"
         />
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"

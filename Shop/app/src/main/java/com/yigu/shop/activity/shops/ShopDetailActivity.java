@@ -47,6 +47,7 @@ public class ShopDetailActivity extends BaseActivity {
     private final static String SHOP_BG = "SHOP_BG";
     private final static String CONTENT = "CONTENT";
     MapiShopResult item;
+    private boolean isSel = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,7 +104,9 @@ public class ShopDetailActivity extends BaseActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 ((MapiShopResult) mList.get(1).getData()).setType(tab.getPosition());
+                ((MapiShopResult) mList.get(1).getData()).setSel(isSel);
                 mAdapter.notifyDataSetChanged();
+                isSel = true;
             }
 
             @Override
@@ -119,6 +122,7 @@ public class ShopDetailActivity extends BaseActivity {
         mAdapter.setTabSelListener(new TabSelListener() {
             @Override
             public void tabSel(int position) {
+                isSel = false;
                 tablayout.getTabAt(position).select();
             }
         });

@@ -2,8 +2,11 @@ package com.yigu.shop.util;
 
 import android.content.Intent;
 
+import com.yigu.shop.activity.CommunityActivity;
 import com.yigu.shop.activity.ProductDetailActivity;
+import com.yigu.shop.activity.addr.AddAddrActivity;
 import com.yigu.shop.activity.addr.ManageAddrActivity;
+import com.yigu.shop.activity.order.MyOrderActivity;
 import com.yigu.shop.activity.products.ProductListActivity;
 import com.yigu.shop.activity.purcase.PurcaseActivity;
 import com.yigu.shop.activity.shops.ShopDetailActivity;
@@ -48,6 +51,33 @@ public class ControllerUtil {
      */
     public static void go2ManageAddr() {
         Intent intent = new Intent(AppContext.getInstance(),ManageAddrActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        AppContext.getInstance().startActivity(intent);
+    }
+
+    /**
+     * 添加地址
+     */
+    public static void go2AddAddr() {
+        Intent intent = new Intent(AppContext.getInstance(),AddAddrActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        AppContext.getInstance().startActivity(intent);
+    }
+
+    /**
+     * 我的订单
+     */
+    public static void go2MyOrder() {
+        Intent intent = new Intent(AppContext.getInstance(),MyOrderActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        AppContext.getInstance().startActivity(intent);
+    }
+
+    /**
+     * 首页进入社区
+     */
+    public static void go2Community() {
+        Intent intent = new Intent(AppContext.getInstance(), CommunityActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         AppContext.getInstance().startActivity(intent);
     }
