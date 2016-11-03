@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
     <application
         android:name=".commom.application.AppContext"
         android:allowBackup="true"
@@ -23,12 +24,14 @@
             android:name=".activity.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".activity.products.ProductListActivity"
@@ -66,9 +69,23 @@
         <activity
             android:name=".activity.order.MyOrderActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.CommunityActivity"
+        <activity
+            android:name=".activity.CommunityActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden">
+
+
+
+        </activity>
+        <activity android:name=".activity.RegisterActivity"
             android:screenOrientation="portrait"
             />
+        <activity android:name=".activity.ForgetActivity"
+            android:screenOrientation="portrait"
+            ></activity>
     </application>
 
 </manifest>

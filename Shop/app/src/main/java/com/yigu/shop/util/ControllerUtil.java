@@ -3,7 +3,11 @@ package com.yigu.shop.util;
 import android.content.Intent;
 
 import com.yigu.shop.activity.CommunityActivity;
+import com.yigu.shop.activity.ForgetActivity;
+import com.yigu.shop.activity.LoginActivity;
+import com.yigu.shop.activity.MainActivity;
 import com.yigu.shop.activity.ProductDetailActivity;
+import com.yigu.shop.activity.RegisterActivity;
 import com.yigu.shop.activity.addr.AddAddrActivity;
 import com.yigu.shop.activity.addr.ManageAddrActivity;
 import com.yigu.shop.activity.order.MyOrderActivity;
@@ -78,6 +82,41 @@ public class ControllerUtil {
      */
     public static void go2Community() {
         Intent intent = new Intent(AppContext.getInstance(), CommunityActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        AppContext.getInstance().startActivity(intent);
+    }
+    /**
+    ** 注册
+    */
+    public static void go2Register() {
+        Intent intent = new Intent(AppContext.getInstance(), RegisterActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        AppContext.getInstance().startActivity(intent);
+    }
+
+    /**
+     ** 忘记密码
+     */
+    public static void go2Forget() {
+        Intent intent = new Intent(AppContext.getInstance(), ForgetActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        AppContext.getInstance().startActivity(intent);
+    }
+
+    /**
+     * 由登录页进入首页
+     */
+    public static void go2Main() {
+        Intent intent = new Intent(AppContext.getInstance(), MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        AppContext.getInstance().startActivity(intent);
+    }
+
+    /**
+     * 进入登录
+     */
+    public static void go2Login(){
+        Intent intent = new Intent(AppContext.getInstance(), LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         AppContext.getInstance().startActivity(intent);
     }

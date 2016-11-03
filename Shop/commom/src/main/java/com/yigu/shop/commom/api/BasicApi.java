@@ -5,7 +5,6 @@ package com.yigu.shop.commom.api;
  */
 public class BasicApi {
     public static String BASIC_URL = "http://115.159.118.182/shop/index.php/ShopApi";
-    public static String loginUrl = "http://115.159.118.182/MASU";
     /**分类-分类*/
     public static String getcat = "/Category/getcat";
     /**分类-品牌*/
@@ -14,4 +13,7 @@ public class BasicApi {
     public static String getshops = "/Shop/getshops";
     /***/
     public static String shopDetail  = "/Shop/shopDetail";
+    /**登录*/
+    public static String login = "/Login/login";
+
 }

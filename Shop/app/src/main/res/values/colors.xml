@@ -2,7 +2,7 @@
 <resources>
     <color name="shop_yellow">#fcb04e</color>
     <color name="shop_black">#333333</color>
-    <color name="dark_yellow">#d98d2b</color>
+    <color name="dark_yellow">#d7841a</color>
     <color name="light_yellow">#fe7108</color>
     <color name="dark_black">#333333</color>
     <color name="background_all">#eeeeee</color>
@@ -18,7 +18,7 @@
     <drawable name="background_all">#eeeeee</drawable>
     <drawable name="dark_black">#333333</drawable>
     <drawable name="shop_yellow">#fcb04e</drawable>
-    <drawable name="dark_yellow">#d98d2b</drawable>
+    <drawable name="dark_yellow">#d7841a</drawable>
     <drawable name="light_yellow">#fe7108</drawable>
     <drawable name="shop_red">#e60013</drawable>
     <drawable name="dark_red">#b83636</drawable>

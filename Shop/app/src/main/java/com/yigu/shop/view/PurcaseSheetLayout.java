@@ -50,6 +50,7 @@ public class PurcaseSheetLayout extends RelativeLayout {
             return;
         view = LayoutInflater.from(mContext).inflate(R.layout.layout_purcase_sheet, this);
         ButterKnife.bind(this, view);
+        count.setText(num+"");
     }
 
     public void load() {

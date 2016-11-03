@@ -17,11 +17,11 @@ import java.util.Map;
  */
 public class UserApi extends BasicApi{
 
-    public static void login(Activity activity, String name, String psd, final RequestCallback callback, final RequestExceptionCallback exceptionCallback){
+    public static void login(Activity activity, String username, String password, final RequestCallback callback, final RequestExceptionCallback exceptionCallback){
         Map<String,String> params = new HashMap<>();
-        params.put("USERNAME",name);
-        params.put("PASSWORD",psd);
-        MapiUtil.getInstance().call(activity,loginUrl,params,new MapiUtil.MapiSuccessResponse(){
+        params.put("username",username);
+        params.put("password",password);
+        MapiUtil.getInstance().call(activity,login,params,new MapiUtil.MapiSuccessResponse(){
             @Override
             public void success(JSONObject json) {
                 DebugLog.i("json="+json);

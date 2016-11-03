@@ -1,5 +1,6 @@
 package com.yigu.shop.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import com.yigu.shop.R;
 import com.yigu.shop.base.BaseActivity;
 import com.yigu.shop.base.BaseFrag;
+import com.yigu.shop.base.RequestCode;
 import com.yigu.shop.fragment.index.FindShopFragment;
 import com.yigu.shop.fragment.index.IndextFragment;
 import com.yigu.shop.fragment.index.MyShopFragment;
@@ -46,9 +48,15 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-        initView();
+        if (!userSP.checkLogin()) {
+            ControllerUtil.go2Login();
+            finish();
+        } else {
+            setContentView(R.layout.activity_main);
+            ButterKnife.bind(this);
+            initView();
+        }
+
     }
 
     private void initView() {
@@ -78,6 +86,16 @@ public class MainActivity extends BaseActivity {
         }
         transaction.show(fragments[index]);
         transaction.commitAllowingStateLoss();
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        int type = intent.getIntExtra("type",0);
+        if(type== RequestCode.login_exit){
+            ControllerUtil.go2Login();
+            finish();
+        }
     }
 
     @Override
