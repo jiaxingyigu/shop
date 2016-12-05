@@ -45,6 +45,8 @@ public class MainActivity extends BaseActivity {
     private int index = 0;
     private long exitTime = 0;
 
+    private RadioButton[] buttons;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +72,13 @@ public class MainActivity extends BaseActivity {
         fragments[2] = new IndextFragment();
         fragments[3] = new SortTwoFragment();
         fragments[4] = new MyShopFragment();
+
+        buttons = new RadioButton[5];
+        buttons[0] = radioHome;
+        buttons[1] = radioFind;
+        buttons[2] = radioCommunity;
+        buttons[3] = radioSort;
+        buttons[4] = radioPerson;
 
         selectTab();
 
@@ -119,7 +128,7 @@ public class MainActivity extends BaseActivity {
             case R.id.radio_home:
                 index = 0;
                 selectTab();
-                fragments[index].load();
+//                fragments[index].load();
                 break;
             case R.id.radio_find:
                 index = 1;
@@ -127,6 +136,7 @@ public class MainActivity extends BaseActivity {
                 fragments[index].load();
                 break;
             case R.id.radio_community:
+                buttons[index].setChecked(true);
                 ControllerUtil.go2Community();
                 break;
             case R.id.radio_sort:

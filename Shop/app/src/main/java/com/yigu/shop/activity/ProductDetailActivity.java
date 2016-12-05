@@ -3,6 +3,7 @@ package com.yigu.shop.activity;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -10,6 +11,11 @@ import android.widget.ImageView;
 import com.yigu.shop.R;
 import com.yigu.shop.base.BaseActivity;
 import com.yigu.shop.base.BaseFrag;
+import com.yigu.shop.commom.api.ItemApi;
+import com.yigu.shop.commom.result.MapiItemResult;
+import com.yigu.shop.commom.util.DebugLog;
+import com.yigu.shop.commom.util.RequestCallback;
+import com.yigu.shop.commom.util.RequestExceptionCallback;
 import com.yigu.shop.commom.widget.MainToast;
 import com.yigu.shop.fragment.product.ItemDiscussFragment;
 import com.yigu.shop.fragment.product.ItemInfoFragment;
@@ -32,13 +38,16 @@ public class ProductDetailActivity extends BaseActivity {
     private BaseFrag[] fragments;
     private int index = 0;
 
+    MapiItemResult itemResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
         ButterKnife.bind(this);
-        initView();
+        itemResult = (MapiItemResult) getIntent().getSerializableExtra("item");
+        if(null!=itemResult)
+            initView();
     }
 
     private void initView() {
@@ -72,7 +81,6 @@ public class ProductDetailActivity extends BaseActivity {
                         break;
                 }
 
-                MainToast.showShortToast(tab.getPosition() + "");
             }
 
             @Override
@@ -85,6 +93,7 @@ public class ProductDetailActivity extends BaseActivity {
         });
         fragments = new BaseFrag[3];
         fragments[0] = new ItemInfoFragment();
+        ((ItemInfoFragment)fragments[0]).setBasicInfo(itemResult);
         fragments[1] = new ItemInfoFragment();
         fragments[2] = new ItemDiscussFragment();
         selectTab();
@@ -118,10 +127,46 @@ public class ProductDetailActivity extends BaseActivity {
             case R.id.collect:
                 break;
             case R.id.add:
+                if(null!=itemResult){
+                    String user_id = userSP.getUserBean().getUser_id();
+                    String goods_id = itemResult.getGoods_id();
+                    String goods_sn = itemResult.getGoods_sn();
+                    String goods_name = itemResult.getGoods_name();
+                    String is_real = itemResult.getIs_real();
+                    String extension_code = itemResult.getExtension_code();
+                    String market_price = TextUtils.isEmpty(((ItemInfoFragment)fragments[0]).getMarket_price())?"0":((ItemInfoFragment)fragments[0]).getMarket_price();
+                    String goods_price = TextUtils.isEmpty(((ItemInfoFragment)fragments[0]).getGoods_price())?"0":((ItemInfoFragment)fragments[0]).getGoods_price();
+                    String goods_number =  TextUtils.isEmpty(((ItemInfoFragment)fragments[0]).getGoods_number())?"0":((ItemInfoFragment)fragments[0]).getGoods_number();
+
+                    if("0".equals(goods_number)){
+                        MainToast.showShortToast("请选择数量");
+                       return;
+                    }
+
+                    DebugLog.i("goods_number===>"+goods_number);
+
+                    String goods_attr = ((ItemInfoFragment)fragments[0]).getGoods_attr();
+                    String goods_attr_id = ((ItemInfoFragment)fragments[0]).getGoods_attr_id();
+
+                    ItemApi.addCart(this, user_id, goods_id, goods_sn, goods_name, market_price, goods_price, goods_number
+                            , goods_attr, is_real, extension_code, goods_attr_id, new RequestCallback() {
+                                @Override
+                                public void success(Object success) {
+                                    MainToast.showShortToast("添加成功");
+                                }
+                            }, new RequestExceptionCallback() {
+                                @Override
+                                public void error(Integer code, String message) {
+                                    MainToast.showShortToast(message);
+                                }
+                            });
+                }
+
                 break;
             case R.id.buy:
                 break;
         }
     }
+
 
 }

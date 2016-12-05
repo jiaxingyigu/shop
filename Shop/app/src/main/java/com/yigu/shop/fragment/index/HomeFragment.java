@@ -16,11 +16,18 @@ import com.yigu.shop.R;
 import com.yigu.shop.activity.person.PersonActivity;
 import com.yigu.shop.adapter.index.HomeAdapter;
 import com.yigu.shop.base.BaseFrag;
+import com.yigu.shop.commom.api.ItemApi;
 import com.yigu.shop.commom.result.IndexData;
+import com.yigu.shop.commom.result.MapiItemResult;
 import com.yigu.shop.commom.result.MapiResourceResult;
 import com.yigu.shop.commom.result.MapiShopResult;
 import com.yigu.shop.commom.util.DPUtil;
+import com.yigu.shop.commom.util.DebugLog;
+import com.yigu.shop.commom.util.RequestExceptionCallback;
+import com.yigu.shop.commom.util.RequestPageCallback;
+import com.yigu.shop.commom.widget.MainToast;
 import com.yigu.shop.util.ControllerUtil;
+import com.yigu.shop.widget.BestSwipeRefreshLayout;
 import com.yigu.shop.widget.DividerListItemDecoration;
 
 import java.util.ArrayList;
@@ -38,6 +45,7 @@ public class HomeFragment extends BaseFrag {
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
 
+
     HomeAdapter mAdapter;
     List<IndexData> mList = new ArrayList<>();
 
@@ -45,6 +53,8 @@ public class HomeFragment extends BaseFrag {
     private final static String TOOL = "TOOL";
     private final static String ITEM = "ITEM";
 
+    String cat_id = "";
+    List<MapiResourceResult> list = new ArrayList<>();;
     public HomeFragment() {
     }
 
@@ -59,6 +69,7 @@ public class HomeFragment extends BaseFrag {
     }
 
     private void initView() {
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(OrientationHelper.VERTICAL);
         recyclerView.addItemDecoration(new DividerListItemDecoration(getActivity(),OrientationHelper.HORIZONTAL, DPUtil.dip2px(10),getResources().getColor(R.color.divider_line)));
@@ -68,12 +79,22 @@ public class HomeFragment extends BaseFrag {
     }
 
     public void load() {
+        DebugLog.i("load===>"+cat_id);
         mList.clear();
-        mList.add(new IndexData(0,SCROLL,new ArrayList<MapiResourceResult>()));
+        if(null!=list)
+             mList.add(new IndexData(0,SCROLL,list));
         mList.add(new IndexData(1,TOOL,new ArrayList<MapiResourceResult>()));
-        mList.add(new IndexData(2,ITEM,new ArrayList<MapiShopResult>()));
+        mList.add(new IndexData(2,ITEM,cat_id));
         Collections.sort(mList);
         mAdapter.notifyDataSetChanged();
+
+
+    }
+
+    public void setCat_id(String cat_id,List<MapiResourceResult> list) {
+        DebugLog.i("cat_id===>"+cat_id);
+        this.cat_id = cat_id;
+        this.list = list;
     }
 
     @Override

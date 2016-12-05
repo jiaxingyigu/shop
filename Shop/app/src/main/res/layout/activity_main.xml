@@ -49,11 +49,11 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
-            android:drawableTop="@drawable/selector_home_cb_image_community"
+            android:drawableTop="@drawable/community"
             android:gravity="center"
             android:text="社区"
             android:textSize="@dimen/text_small_x"
-            android:textColor="@drawable/selector_home_cb_text"
+            android:textColor="@color/shop_black"
             />
         <RadioButton
             android:id="@+id/radio_sort"

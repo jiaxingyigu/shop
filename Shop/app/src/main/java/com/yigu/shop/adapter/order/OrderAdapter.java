@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -30,7 +31,7 @@ public class OrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     List<MapiCartResult> mList = new ArrayList<>();
     List<IndexData> list = new ArrayList<>();
     public OrderAdapter(Context context, List<MapiCartResult> list) {
-        this.inflater =  LayoutInflater.from(context);;
+        this.inflater =  LayoutInflater.from(context);
         this.mList = list;
     }
 
@@ -116,6 +117,8 @@ public class OrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     }
 
     class BottomViewHolder extends RecyclerView.ViewHolder{
+        @Bind(R.id.ll_deel)
+        LinearLayout ll_deel;
         public BottomViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
@@ -132,6 +135,7 @@ public class OrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private  void setBottom(BottomViewHolder holder,int position) {
         DebugLog.i("BottomViewHolder=load");
+        holder.ll_deel.setVisibility(View.GONE);
     }
 
 }

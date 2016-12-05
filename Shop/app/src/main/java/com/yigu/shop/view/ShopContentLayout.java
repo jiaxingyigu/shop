@@ -5,6 +5,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -152,7 +153,7 @@ public class ShopContentLayout extends RelativeLayout {
         if(null!=item){
 
 
-            seller_id = item.getSeller_id();
+            seller_id = TextUtils.isEmpty(item.getSeller_id())?"0":item.getSeller_id();
 
            /* Class clz = tablayout.getClass();
             try {

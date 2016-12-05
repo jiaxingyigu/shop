@@ -11,7 +11,7 @@
         android:layout_width="162dp"
         android:layout_height="162dp"
         fresco:fadeDuration="2000"
-        fresco:placeholderImage="@drawable/product_default"
+        fresco:placeholderImage="@drawable/face_default"
         fresco:placeholderImageScaleType="fitXY"
         android:layout_centerHorizontal="true"
         android:paddingTop="18dp"

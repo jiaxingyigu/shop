@@ -10,11 +10,15 @@ import com.yigu.shop.activity.ProductDetailActivity;
 import com.yigu.shop.activity.RegisterActivity;
 import com.yigu.shop.activity.addr.AddAddrActivity;
 import com.yigu.shop.activity.addr.ManageAddrActivity;
+import com.yigu.shop.activity.addr.SelAddrActivity;
+import com.yigu.shop.activity.community.ComSearchActivity;
 import com.yigu.shop.activity.order.MyOrderActivity;
+import com.yigu.shop.activity.order.OderDetailActivity;
 import com.yigu.shop.activity.products.ProductListActivity;
 import com.yigu.shop.activity.purcase.PurcaseActivity;
 import com.yigu.shop.activity.shops.ShopDetailActivity;
 import com.yigu.shop.commom.application.AppContext;
+import com.yigu.shop.commom.result.MapiItemResult;
 import com.yigu.shop.commom.result.MapiShopResult;
 
 /**
@@ -34,8 +38,9 @@ public class ControllerUtil {
     /**
      * 商品详情
      */
-    public static void go2ProductDetail() {
+    public static void go2ProductDetail(MapiItemResult itemResult) {
         Intent intent = new Intent(AppContext.getInstance(), ProductDetailActivity.class);
+        intent.putExtra("item",itemResult);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         AppContext.getInstance().startActivity(intent);
     }
@@ -117,6 +122,33 @@ public class ControllerUtil {
      */
     public static void go2Login(){
         Intent intent = new Intent(AppContext.getInstance(), LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        AppContext.getInstance().startActivity(intent);
+    }
+
+    /**
+     * 社区-搜索
+     */
+    public static void go2ComSearch() {
+        Intent intent = new Intent(AppContext.getInstance(), ComSearchActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        AppContext.getInstance().startActivity(intent);
+    }
+
+    /**
+     * 选择收货地址
+     */
+    public static void go2SelAddr() {
+        Intent intent = new Intent(AppContext.getInstance(), SelAddrActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        AppContext.getInstance().startActivity(intent);
+    }
+
+    /**
+     *
+     */
+    public static void go2OderDetail() {
+        Intent intent = new Intent(AppContext.getInstance(),OderDetailActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         AppContext.getInstance().startActivity(intent);
     }

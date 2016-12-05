@@ -12,10 +12,13 @@ import com.yigu.shop.R;
 import com.yigu.shop.base.BaseActivity;
 import com.yigu.shop.base.BaseFrag;
 import com.yigu.shop.fragment.community.ComIndexFragment;
+import com.yigu.shop.fragment.community.ComMunityFragment;
+import com.yigu.shop.fragment.community.MunityHostFragment;
 import com.yigu.shop.fragment.index.FindShopFragment;
 import com.yigu.shop.fragment.index.IndextFragment;
 import com.yigu.shop.fragment.index.MyShopFragment;
 import com.yigu.shop.fragment.index.SortTwoFragment;
+import com.yigu.shop.util.ControllerUtil;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -57,8 +60,9 @@ public class CommunityActivity extends BaseActivity {
         ivRight.setImageResource(R.mipmap.search);
         tvRightTwo.setText("签到");
         tvRightTwo.setVisibility(View.VISIBLE);
-        fragments = new BaseFrag[1];
+        fragments = new BaseFrag[2];
         fragments[0] = new ComIndexFragment();
+        fragments[1] = new ComMunityFragment();
         selectTab();
     }
 
@@ -74,7 +78,7 @@ public class CommunityActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.tv_right_two, R.id.radio_home,R.id.radio_community,R.id.radio_shop, R.id.radio_tell, R.id.radio_person})
+    @OnClick({R.id.tv_right_two, R.id.radio_home,R.id.radio_community,R.id.radio_shop, R.id.radio_tell, R.id.radio_person,R.id.iv_right})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_right_two:
@@ -85,7 +89,9 @@ public class CommunityActivity extends BaseActivity {
                 fragments[index].load();
                 break;
             case R.id.radio_community:
-
+                index = 1;
+                selectTab();
+                fragments[index].load();
                 break;
             case R.id.radio_shop:
                 finish();
@@ -93,6 +99,9 @@ public class CommunityActivity extends BaseActivity {
             case R.id.radio_tell:
                 break;
             case R.id.radio_person:
+                break;
+            case R.id.iv_right:
+                ControllerUtil.go2ComSearch();
                 break;
 
         }

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <include
+        layout="@layout/lay_header"
+        />
+
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:id="@+id/addr_root"
+        android:layout_below="@+id/lay_header"
+        >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginLeft="@dimen/margin_10dp"
+                    android:layout_marginRight="@dimen/margin_10dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/consignee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:textColor="@color/shop_black"
+                        android:text=""
+                        android:layout_marginLeft="12dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/tel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="13sp"
+                        android:textColor="@color/shop_black"
+                        android:layout_alignParentRight="true"
+                        />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="@dimen/margin_10dp"
+                    android:layout_marginRight="@dimen/margin_10dp"
+                    android:orientation="horizontal"
+                    android:paddingBottom="16dp"
+                    >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/manage_addr"
+                        />
+
+                    <TextView
+                        android:id="@+id/address"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="13sp"
+                        android:textColor="@color/shop_black"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="7dp"
+                        android:lineSpacingMultiplier="1.5"
+                        android:inputType="textMultiLine"
+                        android:layout_marginTop="2dp"
+                        />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/right_gray"
+                        android:layout_gravity="right|center_vertical"
+                        android:layout_marginLeft="@dimen/margin_1"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/addr_root"
+        android:layout_above="@+id/deel_ll"
+        android:paddingTop="@dimen/margin_10dp"
+        ></android.support.v7.widget.RecyclerView>
+
+    <LinearLayout
+        android:id="@+id/deel_ll"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/text_height_50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/background_all"
+        >
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="2.2"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/all"
+                style="@style/textViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableLeft="@mipmap/circle_white"
+                android:text="全选"
+                android:gravity="center"
+                android:drawablePadding="@dimen/margin_1"
+                android:layout_centerVertical="true"
+                android:paddingLeft="@dimen/margin_2"
+                android:visibility="invisible"
+                />
+
+            <LinearLayout
+                android:id="@+id/count_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/margin_5"
+                android:gravity="center_vertical"
+                android:layout_toRightOf="@+id/all"
+                >
+
+                <TextView
+                    style="@style/textViewStyle_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="合计："
+                    />
+
+                <TextView
+                    android:id="@+id/account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_big_xx"
+                    android:textColor="@color/shop_red"
+                    android:textStyle="bold"
+                    android:text="￥2000"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/upload"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="提交订单"
+            android:background="@drawable/selector_pressed_color_red"
+            android:gravity="center"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textSize="@dimen/text_big_x"
+            android:textColor="@android:color/white"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>

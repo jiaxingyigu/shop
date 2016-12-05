@@ -1,6 +1,7 @@
 package com.yigu.shop.view;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yigu.shop.R;
+import com.yigu.shop.commom.result.MapiShopResult;
+import com.yigu.shop.util.ControllerUtil;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -35,6 +38,8 @@ public class ItemShopLayout extends RelativeLayout {
     private Context mContext;
     private View view;
 
+    MapiShopResult shopResult = null;
+
     public ItemShopLayout(Context context) {
         super(context);
         mContext = context;
@@ -60,11 +65,15 @@ public class ItemShopLayout extends RelativeLayout {
         ButterKnife.bind(this, view);
     }
 
-    public void load() {
-
+    public void load(MapiShopResult shopResult) {
+        this.shopResult = shopResult;
+        allNum.setText(TextUtils.isEmpty(shopResult.getShop_goods_total())?"0":shopResult.getShop_goods_total());
+        newNum.setText(TextUtils.isEmpty(shopResult.getShop_goods_new())?"0":shopResult.getShop_goods_new());
     }
 
     @OnClick(R.id.shop)
     public void onClick() {
+        if(null!=shopResult)
+            ControllerUtil.go2ShopDetail(shopResult);
     }
 }

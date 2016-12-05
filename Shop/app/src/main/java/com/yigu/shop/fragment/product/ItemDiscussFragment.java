@@ -12,6 +12,7 @@ import com.yigu.shop.R;
 import com.yigu.shop.adapter.index.HomeAdapter;
 import com.yigu.shop.adapter.product.ItemDiscussAdapter;
 import com.yigu.shop.base.BaseFrag;
+import com.yigu.shop.commom.result.MapiItemResult;
 import com.yigu.shop.commom.result.MapiOrderResult;
 import com.yigu.shop.commom.util.DPUtil;
 import com.yigu.shop.widget.BestSwipeRefreshLayout;
@@ -55,6 +56,7 @@ public class ItemDiscussFragment extends BaseFrag {
         mAdapter = new ItemDiscussAdapter(getActivity());
         recyclerView.setAdapter(mAdapter);
     }
+
 
     private void initListener(){
         swipRefreshLayout.setBestRefreshListener(new BestSwipeRefreshLayout.BestRefreshListener() {

@@ -12,6 +12,24 @@ public class MapiShopResult extends MapiBaseResult{
     private List<MapiItemResult> goods;
     private int type;
     private boolean isSel = false;
+    private String shop_goods_total;
+    private String shop_goods_new;
+
+    public String getShop_goods_new() {
+        return shop_goods_new;
+    }
+
+    public void setShop_goods_new(String shop_goods_new) {
+        this.shop_goods_new = shop_goods_new;
+    }
+
+    public String getShop_goods_total() {
+        return shop_goods_total;
+    }
+
+    public void setShop_goods_total(String shop_goods_total) {
+        this.shop_goods_total = shop_goods_total;
+    }
 
     public boolean isSel() {
         return isSel;

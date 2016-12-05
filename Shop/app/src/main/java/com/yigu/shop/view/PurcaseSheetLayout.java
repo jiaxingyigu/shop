@@ -70,6 +70,13 @@ public class PurcaseSheetLayout extends RelativeLayout {
         count.setText(++num+"");
     }
 
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
 
     @OnClick({R.id.cut, R.id.count, R.id.add})
     public void onClick(View view) {

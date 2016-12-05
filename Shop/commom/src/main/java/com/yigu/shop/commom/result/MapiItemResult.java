@@ -13,6 +13,60 @@ public class MapiItemResult extends MapiBaseResult{
     private String shop_price;
     private String goods_thumb;
     private String goods_name;
+    private String goods_desc;
+    private String goods_img;
+    private String goods_brief;
+    private String seller_id;
+    private String is_real;
+    private String extension_code;
+
+    public String getExtension_code() {
+        return extension_code;
+    }
+
+    public void setExtension_code(String extension_code) {
+        this.extension_code = extension_code;
+    }
+
+    public String getIs_real() {
+        return is_real;
+    }
+
+    public void setIs_real(String is_real) {
+        this.is_real = is_real;
+    }
+
+    public String getSeller_id() {
+        return seller_id;
+    }
+
+    public void setSeller_id(String seller_id) {
+        this.seller_id = seller_id;
+    }
+
+    public String getGoods_brief() {
+        return goods_brief;
+    }
+
+    public void setGoods_brief(String goods_brief) {
+        this.goods_brief = goods_brief;
+    }
+
+    public String getGoods_img() {
+        return goods_img;
+    }
+
+    public void setGoods_img(String goods_img) {
+        this.goods_img = goods_img;
+    }
+
+    public String getGoods_desc() {
+        return goods_desc;
+    }
+
+    public void setGoods_desc(String goods_desc) {
+        this.goods_desc = goods_desc;
+    }
 
     public String getGoods_name() {
         return goods_name;

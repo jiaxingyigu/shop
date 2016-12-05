@@ -20,18 +20,20 @@
         >
 
         <TextView
+            android:id="@+id/consignee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="13sp"
             android:textColor="@color/shop_black"
-            android:text="收货人：王小鹏"
+            android:text=""
             android:layout_marginLeft="12dp"
             />
 
         <TextView
+            android:id="@+id/tel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="15024321682"
+            android:text=""
             android:textSize="13sp"
             android:textColor="@color/shop_black"
             android:layout_alignParentRight="true"
@@ -56,9 +58,10 @@
             />
 
         <TextView
+            android:id="@+id/address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="嘉兴市 南湖区 广益路 世界贸易中心A栋5楼102930室世界贸易中心A栋5楼102930室"
+            android:text=""
             android:textSize="13sp"
             android:textColor="@color/shop_black"
             android:layout_alignParentRight="true"
@@ -90,6 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
+                android:visibility="invisible"
                 >
 
                 <ImageView

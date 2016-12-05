@@ -49,11 +49,11 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
-            android:drawableTop="@drawable/selector_com_cb_image_shop"
+            android:drawableTop="@drawable/com_shop"
             android:gravity="center"
             android:text="商城"
             android:textSize="@dimen/text_small_x"
-            android:textColor="@drawable/selector_home_cb_text" />
+            android:textColor="@color/shop_black" />
         <RadioButton
             android:id="@+id/radio_tell"
             android:layout_width="0dp"

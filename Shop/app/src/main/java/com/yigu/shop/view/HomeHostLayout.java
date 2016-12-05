@@ -69,7 +69,7 @@ public class HomeHostLayout extends RelativeLayout {
             view.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ControllerUtil.go2ProductDetail();
+//                    ControllerUtil.go2ProductDetail();
                 }
             });
         }

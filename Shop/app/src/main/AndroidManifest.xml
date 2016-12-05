@@ -24,14 +24,12 @@
             android:name=".activity.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" >
-
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".activity.products.ProductListActivity"
@@ -75,17 +73,20 @@
         <activity
             android:name=".activity.LoginActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden">
-
-
-
-        </activity>
-        <activity android:name=".activity.RegisterActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activity.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ForgetActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.community.ComSearchActivity" />
+        <activity android:name=".activity.addr.SelAddrActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name=".activity.ForgetActivity"
+        <activity android:name=".activity.order.OderDetailActivity"
             android:screenOrientation="portrait"
-            ></activity>
+            />
     </application>
 
 </manifest>

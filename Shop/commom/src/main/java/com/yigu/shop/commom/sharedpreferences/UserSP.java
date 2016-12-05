@@ -15,6 +15,7 @@ public class UserSP extends AbstractSP {
     private final static String KEY_SP_USER_GUIDE = "user_guide";
     private final static String KEY_SP_Resources = "jgj.resources";
     private final static String KEY_SP_Alias = "user_Alias";
+    private final static String KEY_SP_Addr = "user_addr";
     public UserSP(Context context) {
         super(context);
     }
@@ -50,6 +51,15 @@ public class UserSP extends AbstractSP {
     public boolean getAlias(){
         boolean isAlias = sharedPreferences.getBoolean(KEY_SP_Alias,false);
         return isAlias;
+    }
+
+    public void setAddr(String json){
+        sharedPreferences.edit().putString(KEY_SP_Addr, json).commit();
+
+    }
+
+    public String getAddr(){
+        return sharedPreferences.getString(KEY_SP_Addr,"");
     }
 
     public boolean checkLogin() {

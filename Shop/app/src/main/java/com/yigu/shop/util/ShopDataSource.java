@@ -39,7 +39,7 @@ public class ShopDataSource {
         list.add(new MapiResourceResult(TYPE_qita,"其它案例"));
         list.add(new MapiResourceResult(TYPE_wanxue,"玩学不误"));
         list.add(new MapiResourceResult(TYPE_zhuanye,"专业测试"));
-        list.add(new MapiResourceResult(TYPE_dipan,"地盘培训"));
+        list.add(new MapiResourceResult(TYPE_dipan,"底盘培训"));
         list.add(new MapiResourceResult(TYPE_shebei,"设备培训"));
         return list;
     }

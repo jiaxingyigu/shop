@@ -17,6 +17,7 @@ import com.yigu.shop.commom.result.MapiCartResult;
 import com.yigu.shop.commom.result.MapiItemResult;
 import com.yigu.shop.commom.util.DPUtil;
 import com.yigu.shop.shopinterface.AdapterSelListener;
+import com.yigu.shop.util.ControllerUtil;
 import com.yigu.shop.widget.DividerListItemDecoration;
 
 import java.util.ArrayList;
@@ -192,10 +193,10 @@ public class PurcaseActivity extends AppCompatActivity {
                 }
                 break;
             case R.id.statement:
-                // TODO: 2016/9/9  价格统计
                 if (count > 0) {
 
                 }
+                ControllerUtil.go2OderDetail();
                 break;
         }
     }

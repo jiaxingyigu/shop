@@ -63,7 +63,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if (holder instanceof SliderViewHolder) {
             ((SliderViewHolder)holder).homeSliderLayout.load((List<MapiResourceResult>) mList.get(position).getData());
         }else if(holder instanceof ItemViewHolder){
-            ((ItemViewHolder)holder).homeItemLayout.load((List<MapiItemResult>) mList.get(position).getData());
+            ((ItemViewHolder)holder).homeItemLayout.load((String) mList.get(position).getData());
         }
     }
 

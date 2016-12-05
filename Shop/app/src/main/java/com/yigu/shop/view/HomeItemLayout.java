@@ -12,11 +12,18 @@ import android.widget.RelativeLayout;
 import com.yigu.shop.R;
 import com.yigu.shop.adapter.ItemTwoAdapter;
 import com.yigu.shop.adapter.index.HomeAdapter;
+import com.yigu.shop.base.BaseActivity;
+import com.yigu.shop.commom.api.ItemApi;
+import com.yigu.shop.commom.result.IndexData;
 import com.yigu.shop.commom.result.MapiItemResult;
 import com.yigu.shop.commom.util.DPUtil;
+import com.yigu.shop.commom.util.DebugLog;
+import com.yigu.shop.commom.util.RequestExceptionCallback;
+import com.yigu.shop.commom.util.RequestPageCallback;
 import com.yigu.shop.commom.widget.MainToast;
 import com.yigu.shop.shopinterface.RecyOnItemClickListener;
 import com.yigu.shop.util.ControllerUtil;
+import com.yigu.shop.widget.BestSwipeRefreshLayout;
 import com.yigu.shop.widget.DividerListItemDecoration;
 
 import java.util.ArrayList;
@@ -32,10 +39,18 @@ public class HomeItemLayout extends RelativeLayout {
 
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
+//    @Bind(R.id.swipRefreshLayout)
+//    BestSwipeRefreshLayout swipRefreshLayout;
+
     private Context mContext;
     private View view;
     ItemTwoAdapter mAdapter;
     List<MapiItemResult> mList = new ArrayList<>();
+
+    private Integer pageIndex = 1;
+    private Integer pageSize = 8;
+    private Integer counts;
+    private String cat_id = "";
     public HomeItemLayout(Context context) {
         super(context);
         mContext = context;
@@ -73,18 +88,88 @@ public class HomeItemLayout extends RelativeLayout {
         mAdapter.setOnItemClickListener(new RecyOnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                ControllerUtil.go2ProductDetail();
+                ControllerUtil.go2ProductDetail(mList.get(position));
             }
         });
+
+//        swipRefreshLayout.setBestRefreshListener(new BestSwipeRefreshLayout.BestRefreshListener() {
+//            @Override
+//            public void onBestRefresh() {
+//                refreshData();
+//            }
+//        });
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                LinearLayoutManager manager = (LinearLayoutManager) recyclerView.getLayoutManager();
+
+                if ((newState == RecyclerView.SCROLL_STATE_IDLE) && manager.findLastVisibleItemPosition() > 0 && (manager.findLastVisibleItemPosition() == (manager.getItemCount() - 1))) {
+                    loadNext();
+                }
+
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
+
     }
 
-    public void load(List<MapiItemResult> list){
+    public void load(String cat_id){
        /* if(!list.isEmpty()){
             mList.clear();
             mList.addAll(list);
             mAdapter.notifyDataSetChanged();
         }*/
-
+        this.cat_id = cat_id;
+        refreshData();
     }
+
+    private void initData(){
+//        ((BaseActivity)mContext).showLoading();
+        DebugLog.i("HomeItemLayout=>"+cat_id);
+        ItemApi.getGoods((BaseActivity)mContext,cat_id ,"", pageIndex + "", pageSize + "", new RequestPageCallback< List<MapiItemResult>>() {
+            @Override
+            public void success(Integer count,  List<MapiItemResult> success) {
+//                swipRefreshLayout.setRefreshing(false);
+//                ((BaseActivity)mContext).hideLoading();
+                counts = count;
+                if(success.isEmpty())
+                    return;
+                mList.addAll(success);
+                mAdapter.notifyDataSetChanged();
+            }
+        }, new RequestExceptionCallback() {
+            @Override
+            public void error(Integer code, String message) {
+//                swipRefreshLayout.setRefreshing(false);
+//                ((BaseActivity)mContext).hideLoading();
+                MainToast.showShortToast(message);
+            }
+        });
+    }
+
+    private void loadNext() {
+        if (counts == null || counts==mList.size()) {
+            MainToast.showShortToast("没有更多数据了");
+            return;
+        }
+        ((BaseActivity)mContext).showLoading();
+        pageIndex++;
+        initData();
+    }
+
+    public void refreshData() {
+        if (null != mList) {
+            mList.clear();
+            pageIndex = 0;
+            mAdapter.notifyDataSetChanged();
+            initData();
+        }
+    }
+
 
 }

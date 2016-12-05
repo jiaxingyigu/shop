@@ -2,6 +2,7 @@ package com.yigu.shop.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -11,7 +12,16 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.controller.BaseControllerListener;
+import com.facebook.drawee.drawable.ScalingUtils;
+import com.facebook.drawee.generic.GenericDraweeHierarchy;
+import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.common.ResizeOptions;
+import com.facebook.imagepipeline.image.ImageInfo;
+import com.facebook.imagepipeline.request.ImageRequest;
+import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.yigu.shop.R;
 import com.yigu.shop.activity.collect.RecordActivity;
 import com.yigu.shop.adapter.ShopPagerAdapter;
@@ -65,52 +75,66 @@ public class HomeSliderLayout extends RelativeLayout {
     }
 
     public void load(List<MapiResourceResult> list) {
-        sliderViewList = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
-            SimpleDraweeView view = new SimpleDraweeView(mContext);
-            view.setImageResource(R.drawable.carousel_default);
-            view.setScaleType(ImageView.ScaleType.FIT_XY);
-            view.setOnClickListener(new OnClickListener() {
+        if(null!=list&&list.size()>0){
+            sliderViewList = new ArrayList<>();
+            for (int i = 0; i < list.size(); i++) {
+                SimpleDraweeView view = (SimpleDraweeView) LayoutInflater.from(mContext).inflate(R.layout.layout_draweeview,null);
+                //创建将要下载的图片的URI
+                Uri imageUri = Uri.parse(list.get(i).getSrc());
+                ImageRequest request = ImageRequestBuilder.newBuilderWithSource(imageUri)
+                        .setResizeOptions(new ResizeOptions(DPUtil.dip2px(375), DPUtil.dip2px(180)))
+                        .build();
+                DraweeController controller = Fresco.newDraweeControllerBuilder()
+                        .setImageRequest(request)
+                        .setOldController(view.getController())
+                        .setControllerListener(new BaseControllerListener<ImageInfo>())
+                        .build();
+                view.setController(controller);
+
+
+
+                view.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                    }
+                });
+                sliderViewList.add(view);
+            }
+            ShopPagerAdapter sliderAdapter = new ShopPagerAdapter(sliderViewList);
+            indexViewpager.setAdapter(sliderAdapter);
+            guideDot.removeAllViews();
+            for (int i = 0; i < sliderViewList.size(); i++) {
+                ImageView imageView = new ImageView(mContext);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(DPUtil.dip2px(8), DPUtil.dip2px(8));
+                params.setMargins(DPUtil.dip2px(6), 0, DPUtil.dip2px(6), DPUtil.dip2px(6));
+                imageView.setLayoutParams(params);
+                imageView.setBackgroundResource(R.drawable.selector_item_dot);
+                guideDot.addView(imageView);
+            }
+            guideDot.getChildAt(0).setSelected(true);
+            indexViewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                 @Override
-                public void onClick(View v) {
-                    MainToast.showShortToast("点击");
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
                 }
+
+                @Override
+                public void onPageSelected(int position) {
+                    for (int i = 0; i < sliderViewList.size(); i++) {
+                        if (position == i)
+                            guideDot.getChildAt(i).setSelected(true);
+                        else
+                            guideDot.getChildAt(i).setSelected(false);
+                    }
+                }
+
+                @Override
+                public void onPageScrollStateChanged(int state) {
+                }
+
             });
-            sliderViewList.add(view);
         }
-        ShopPagerAdapter sliderAdapter = new ShopPagerAdapter(sliderViewList);
-        indexViewpager.setAdapter(sliderAdapter);
-        guideDot.removeAllViews();
-        for (int i = 0; i < sliderViewList.size(); i++) {
-            ImageView imageView = new ImageView(mContext);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(DPUtil.dip2px(8), DPUtil.dip2px(8));
-            params.setMargins(DPUtil.dip2px(6), 0, DPUtil.dip2px(6), DPUtil.dip2px(6));
-            imageView.setLayoutParams(params);
-            imageView.setBackgroundResource(R.drawable.selector_item_dot);
-            guideDot.addView(imageView);
-        }
-        guideDot.getChildAt(0).setSelected(true);
-        indexViewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                for (int i = 0; i < sliderViewList.size(); i++) {
-                    if (position == i)
-                        guideDot.getChildAt(i).setSelected(true);
-                    else
-                        guideDot.getChildAt(i).setSelected(false);
-                }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-            }
-
-        });
     }
 
 }

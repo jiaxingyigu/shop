@@ -35,7 +35,7 @@ public class IndexToolFragment extends BaseFrag{
     List<IndexData> mList = new ArrayList<>();
     private final static String TOOL = "TOOL";
     private final static String ITEM = "ITEM";
-
+    String cat_id = "";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -56,6 +56,11 @@ public class IndexToolFragment extends BaseFrag{
         recyclerView.setAdapter(mAdapter);
     }
 
+    public void setCat_id(String cat_id) {
+        this.cat_id = cat_id;
+
+    }
+
     private void initListener(){
 
     }
@@ -63,7 +68,7 @@ public class IndexToolFragment extends BaseFrag{
     public void load() {
         mList.clear();
         mList.add(new IndexData(0,TOOL,new ArrayList<MapiResourceResult>()));
-        mList.add(new IndexData(1,ITEM,new ArrayList<MapiShopResult>()));
+        mList.add(new IndexData(1,ITEM,cat_id));
         Collections.sort(mList);
         mAdapter.notifyDataSetChanged();
     }

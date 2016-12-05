@@ -23,4 +23,7 @@
     <drawable name="shop_red">#e60013</drawable>
     <drawable name="dark_red">#b83636</drawable>
     <drawable name="white">#ffffff</drawable>
+
+    <color name="province_line_border">#C7C7C7</color>
+
 </resources>

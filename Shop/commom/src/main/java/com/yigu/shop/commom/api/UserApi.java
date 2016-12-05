@@ -37,4 +37,60 @@ public class UserApi extends BasicApi{
         });
     }
 
+    /**
+     * 注册 获取短信验证码
+     * @param activity
+     * @param phone
+     * @param callback
+     * @param exceptionCallback
+     */
+    public static void getPhoneCode(Activity activity,String phone,final RequestCallback callback, final RequestExceptionCallback exceptionCallback){
+        Map<String,String> params = new HashMap<>();
+        params.put("phone",phone);
+        MapiUtil.getInstance().call(activity,getPhoneCode,params,new MapiUtil.MapiSuccessResponse(){
+            @Override
+            public void success(JSONObject json) {
+                DebugLog.i("json="+json);
+                callback.success(json);
+            }
+        },new MapiUtil.MapiFailResponse(){
+
+            @Override
+            public void fail(Integer code, String failMessage) {
+                exceptionCallback.error(code,failMessage);
+            }
+        });
+    }
+
+    /**
+     * 注册
+     * @param activity
+     * @param phone
+     * @param code
+     * @param password
+     * @param cpassword
+     * @param callback
+     * @param exceptionCallback
+     */
+    public static void register(Activity activity,String phone,String code,String password,String cpassword,final RequestCallback callback, final RequestExceptionCallback exceptionCallback){
+        Map<String,String> params = new HashMap<>();
+        params.put("phone",phone);
+        params.put("code",code);
+        params.put("password",password);
+        params.put("cpassword",cpassword);
+        MapiUtil.getInstance().call(activity,register,params,new MapiUtil.MapiSuccessResponse(){
+            @Override
+            public void success(JSONObject json) {
+                DebugLog.i("json="+json);
+                callback.success(json);
+            }
+        },new MapiUtil.MapiFailResponse(){
+
+            @Override
+            public void fail(Integer code, String failMessage) {
+                exceptionCallback.error(code,failMessage);
+            }
+        });
+    }
+
 }
