@@ -15,6 +15,100 @@ public class MapiResourceResult implements Serializable{
     private String src;
     private String img_id;
     private String img_url;
+    private String img_original;
+
+    private String goods_attr_id;
+    private String attr_value;
+    private String attr_id;
+    private String goods_id;
+    private String attr_price;
+
+    private boolean isSel;
+
+    private String thumb;
+
+    private String cat_id;
+    private String type;
+
+    public String getCat_id() {
+        return cat_id;
+    }
+
+    public void setCat_id(String cat_id) {
+        this.cat_id = cat_id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getThumb() {
+        return thumb;
+    }
+
+    public void setThumb(String thumb) {
+        this.thumb = thumb;
+    }
+
+    public boolean isSel() {
+        return isSel;
+    }
+
+    public void setSel(boolean sel) {
+        isSel = sel;
+    }
+
+    public String getAttr_id() {
+        return attr_id;
+    }
+
+    public void setAttr_id(String attr_id) {
+        this.attr_id = attr_id;
+    }
+
+    public String getAttr_price() {
+        return attr_price;
+    }
+
+    public void setAttr_price(String attr_price) {
+        this.attr_price = attr_price;
+    }
+
+    public String getAttr_value() {
+        return attr_value;
+    }
+
+    public void setAttr_value(String attr_value) {
+        this.attr_value = attr_value;
+    }
+
+    public String getGoods_attr_id() {
+        return goods_attr_id;
+    }
+
+    public void setGoods_attr_id(String goods_attr_id) {
+        this.goods_attr_id = goods_attr_id;
+    }
+
+    public String getGoods_id() {
+        return goods_id;
+    }
+
+    public void setGoods_id(String goods_id) {
+        this.goods_id = goods_id;
+    }
+
+    public String getImg_original() {
+        return img_original;
+    }
+
+    public void setImg_original(String img_original) {
+        this.img_original = img_original;
+    }
 
     public String getImg_id() {
         return img_id;

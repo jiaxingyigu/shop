@@ -86,6 +86,12 @@ public class RegisterActivity extends BaseActivity {
                     MainToast.showShortToast("请输入手机号");
                     return;
                 }
+
+                if(!StringUtil.isMobile(phoneString)){
+                    MainToast.showShortToast("手机号格式不正确！");
+                    return;
+                }
+
                 if(TextUtils.isEmpty(codeStr)){
                     MainToast.showShortToast("请输入验证码");
                     return;
@@ -104,7 +110,7 @@ public class RegisterActivity extends BaseActivity {
                     return;
                 }
 
-                UserApi.register(this, phoneString, codeStr, psdStr, psdTwoStr, new RequestCallback() {
+                UserApi.register(this, phoneString, codeStr, psdStr,mark, new RequestCallback() {
                     @Override
                     public void success(Object success) {
                         MainToast.showShortToast("注册成功");
@@ -188,6 +194,8 @@ public class RegisterActivity extends BaseActivity {
         SMSUtils.registerEventHandler(eventHandler);
     }
 
+    String mark = "";
+
     /**
      * 处理服务器返回的信息
      */
@@ -210,8 +218,8 @@ public class RegisterActivity extends BaseActivity {
                     DebugLog.e("event=" + event);
                     if (result == SMSUtils.RESULT_COMPLETE) {
                         if (event == SMSUtils.EVENT_GET_VERIFICATION_CODE) {
-                            MainToast.showShortToast((String) data);
-
+                            mark = (String) data;
+                            MainToast.showShortToast("验证码已经发送");
                         }
                     }else if(result == SMSUtils.RESULT_ERROR){
                         if (event == SMSUtils.EVENT_GET_VERIFICATION_CODE_ERROR) {

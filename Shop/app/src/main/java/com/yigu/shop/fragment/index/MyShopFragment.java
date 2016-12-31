@@ -27,6 +27,7 @@ public class MyShopFragment extends BaseFrag {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_my_shop, container, false);
         ButterKnife.bind(this, view);
         initView();
@@ -48,14 +49,32 @@ public class MyShopFragment extends BaseFrag {
         ButterKnife.unbind(this);
     }
 
-    @OnClick({R.id.ll_order, R.id.rl_addr})
+    @OnClick({R.id.ll_order, R.id.rl_addr,R.id.rl_setting})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ll_order:
-                ControllerUtil.go2MyOrder();
+                if (!userSP.checkLogin()) {
+                    ControllerUtil.go2Login();
+                } else {
+
+                    ControllerUtil.go2MyOrder();
+                }
                 break;
             case R.id.rl_addr:
-                ControllerUtil.go2ManageAddr();
+                if (!userSP.checkLogin()) {
+                    ControllerUtil.go2Login();
+                } else {
+
+                    ControllerUtil.go2ManageAddr();
+                }
+                break;
+            case R.id.rl_setting:
+                if (!userSP.checkLogin()) {
+                    ControllerUtil.go2Login();
+                } else {
+                    ControllerUtil.go2Setting();
+
+                }
                 break;
         }
     }

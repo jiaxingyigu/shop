@@ -54,6 +54,7 @@ public class HomeFragment extends BaseFrag {
     private final static String ITEM = "ITEM";
 
     String cat_id = "";
+    String typeStr = "";
     List<MapiResourceResult> list = new ArrayList<>();;
     public HomeFragment() {
     }
@@ -61,9 +62,11 @@ public class HomeFragment extends BaseFrag {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, view);
         initView();
+        initListener();
         load();
         return view;
     }
@@ -78,13 +81,26 @@ public class HomeFragment extends BaseFrag {
         recyclerView.setAdapter(mAdapter);
     }
 
+    private void initListener(){
+        mAdapter.setTypeListener(new HomeAdapter.TypeListener() {
+            @Override
+            public void getType(String type) {
+                typeStr = type;
+                load();
+            }
+        });
+    }
+
     public void load() {
         DebugLog.i("load===>"+cat_id);
         mList.clear();
         if(null!=list)
              mList.add(new IndexData(0,SCROLL,list));
         mList.add(new IndexData(1,TOOL,new ArrayList<MapiResourceResult>()));
-        mList.add(new IndexData(2,ITEM,cat_id));
+        MapiResourceResult resourceResult = new MapiResourceResult();
+        resourceResult.setType(typeStr);
+        resourceResult.setCat_id(cat_id);
+        mList.add(new IndexData(2,ITEM,resourceResult));
         Collections.sort(mList);
         mAdapter.notifyDataSetChanged();
 

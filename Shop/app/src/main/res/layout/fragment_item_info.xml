@@ -145,6 +145,7 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="@dimen/margin_2"
                     android:layout_marginTop="@dimen/margin_10dp"
+                    android:visibility="gone"
                     >
 
                     <TextView
@@ -312,11 +313,18 @@
     </LinearLayout>
 </ScrollView>
 
+    <View
+        android:id="@+id/bg_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#33000000"
+        android:visibility="gone"
+        />
+
     <com.yigu.shop.view.SelSizeLayout
         android:id="@+id/selSizeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#33000000"
         android:layout_alignParentBottom="true"
         android:visibility="gone"
         android:clickable="true"

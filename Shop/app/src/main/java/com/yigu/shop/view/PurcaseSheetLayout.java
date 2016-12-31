@@ -7,7 +7,15 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.yigu.shop.R;
+import com.yigu.shop.base.BaseActivity;
+import com.yigu.shop.commom.api.ItemApi;
+import com.yigu.shop.commom.util.RequestCallback;
+import com.yigu.shop.commom.util.RequestExceptionCallback;
+import com.yigu.shop.commom.widget.MainToast;
+
+import java.text.DecimalFormat;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -25,7 +33,10 @@ public class PurcaseSheetLayout extends RelativeLayout {
     TextView add;
     private Context mContext;
     private View view;
-    private int num = 0;
+    private int num = 1;
+
+    String rec_id;
+    BaseActivity activity;
 
     public PurcaseSheetLayout(Context context) {
         super(context);
@@ -58,16 +69,51 @@ public class PurcaseSheetLayout extends RelativeLayout {
     }
 
     private void cut() {
-        if(num-1<0){
-            num = 0;
+        if(num-1<1){
+            num = 1;
+            count.setText(num+"");
         }else{
-            num--;
+
+            ItemApi.setCartGoodsNum(activity, rec_id,  "-1", new RequestCallback<JSONObject>() {
+                @Override
+                public void success(JSONObject success) {
+                    count.setText(--num+"");
+
+                    double price = success.getDouble("data");
+                    DecimalFormat df = new DecimalFormat("#0.00");
+                    if(null!=numInterface)
+                        numInterface.modify(view,num,df.format(price));
+                }
+            }, new RequestExceptionCallback() {
+                @Override
+                public void error(Integer code, String message) {
+                    MainToast.showShortToast(message);
+                }
+            });
+
         }
-        count.setText(num+"");
+
     }
 
     private void add() {
-        count.setText(++num+"");
+
+        ItemApi.setCartGoodsNum(activity, rec_id,  "+1", new RequestCallback<JSONObject>() {
+            @Override
+            public void success(JSONObject success) {
+                count.setText(++num+"");
+                double price = success.getDouble("data");
+                DecimalFormat df = new DecimalFormat("#0.00");
+                if(null!=numInterface)
+                    numInterface.modify(view,num,df.format(price));
+            }
+        }, new RequestExceptionCallback() {
+            @Override
+            public void error(Integer code, String message) {
+                MainToast.showShortToast(message);
+            }
+        });
+
+
     }
 
     public int getNum() {
@@ -76,6 +122,15 @@ public class PurcaseSheetLayout extends RelativeLayout {
 
     public void setNum(int num) {
         this.num = num;
+        count.setText(num+"");
+    }
+
+    public void setRec_id(String rec_id) {
+        this.rec_id = rec_id;
+    }
+
+    public void setActivity(BaseActivity activity) {
+        this.activity = activity;
     }
 
     @OnClick({R.id.cut, R.id.count, R.id.add})
@@ -91,4 +146,15 @@ public class PurcaseSheetLayout extends RelativeLayout {
                 break;
         }
     }
+
+    NumInterface numInterface;
+
+    public interface NumInterface{
+        void modify(View view,int num,String price);
+    }
+
+    public void setNumListener(NumInterface numInterface){
+        this.numInterface = numInterface;
+    }
+
 }

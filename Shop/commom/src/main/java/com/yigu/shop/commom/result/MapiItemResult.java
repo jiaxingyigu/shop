@@ -19,6 +19,82 @@ public class MapiItemResult extends MapiBaseResult{
     private String seller_id;
     private String is_real;
     private String extension_code;
+    private String goods_attr;
+    private String goods_price;
+    private String goods_number;
+
+    private String rec_id;
+
+    private String shop_name;
+
+    private String allAcount;
+    private String allNum;
+
+    private MapiShopResult seller_info;
+
+    public MapiShopResult getSeller_info() {
+        return seller_info;
+    }
+
+    public void setSeller_info(MapiShopResult seller_info) {
+        this.seller_info = seller_info;
+    }
+
+    public String getAllNum() {
+        return allNum;
+    }
+
+    public void setAllNum(String allNum) {
+        this.allNum = allNum;
+    }
+
+    public String getAllAcount() {
+        return allAcount;
+    }
+
+    public void setAllAcount(String allAcount) {
+        this.allAcount = allAcount;
+    }
+
+    public String getShop_name() {
+        return shop_name;
+    }
+
+    public void setShop_name(String shop_name) {
+        this.shop_name = shop_name;
+    }
+
+    public String getRec_id() {
+        return rec_id;
+    }
+
+    public void setRec_id(String rec_id) {
+        this.rec_id = rec_id;
+    }
+
+    public String getGoods_number() {
+        return goods_number;
+    }
+
+    public void setGoods_number(String goods_number) {
+        this.goods_number = goods_number;
+    }
+
+    public String getGoods_price() {
+        return goods_price;
+    }
+
+    public void setGoods_price(String goods_price) {
+        this.goods_price = goods_price;
+    }
+
+    public String getGoods_attr() {
+        return goods_attr;
+    }
+
+    public void setGoods_attr(String goods_attr) {
+        this.goods_attr = goods_attr;
+    }
 
     public String getExtension_code() {
         return extension_code;
@@ -139,4 +215,43 @@ public class MapiItemResult extends MapiBaseResult{
     public void setShop_price(String shop_price) {
         this.shop_price = shop_price;
     }
+
+    //重写hashcode和equals使得根据id来判断是否是同一个bean
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + (rec_id == null ? 0 : rec_id.hashCode());
+        return result;
+    }
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof MapiItemResult)) {
+            return false;
+        }
+        MapiItemResult other = (MapiItemResult) obj;
+        if (rec_id == null) {
+            if (other.rec_id != null) {
+                return false;
+            }
+        } else if (!rec_id.equals(other.rec_id)) {
+            return false;
+        }
+        return true;
+    }
+
 }

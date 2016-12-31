@@ -13,6 +13,34 @@ public class MapiUserResult extends MapiBaseResult {
     private String user_money;
     private String mobile_phone;
 
+    private String collection_num;
+    private String token;
+    private String uid;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public String getCollection_num() {
+        return collection_num;
+    }
+
+    public void setCollection_num(String collection_num) {
+        this.collection_num = collection_num;
+    }
+
     public String getBirthday() {
         return birthday;
     }

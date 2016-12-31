@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="34dp"
+    android:gravity="center"
+    >
+
+
+    <LinearLayout
+        android:id="@+id/ll_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:background="@drawable/rect_stroke_gray__width_1_round_4"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/content"
+            style="@style/textViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_1"
+            android:layout_marginRight="@dimen/margin_1"
+            android:gravity="center"
+            android:maxLines="1"
+            android:ellipsize="end"
+
+            />
+
+    </LinearLayout>
+
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_1"/>
+
+</LinearLayout>

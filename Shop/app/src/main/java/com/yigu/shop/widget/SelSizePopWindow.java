@@ -87,11 +87,11 @@ public class SelSizePopWindow extends PopupWindow implements PopupWindow.OnDismi
 
     private void initView() {
 
-        LinearLayoutManager manager = new LinearLayoutManager(mContext);
-        manager.setOrientation(OrientationHelper.VERTICAL);
-        recyclerView.setLayoutManager(manager);
-        mAdapter = new SelSizeAdapter(mContext,list);
-        recyclerView.setAdapter(mAdapter);
+//        LinearLayoutManager manager = new LinearLayoutManager(mContext);
+//        manager.setOrientation(OrientationHelper.VERTICAL);
+//        recyclerView.setLayoutManager(manager);
+//        mAdapter = new SelSizeAdapter(mContext,list);
+//        recyclerView.setAdapter(mAdapter);
 
     }
 

@@ -47,6 +47,7 @@ public class SelAddrAdapter extends RecyclerView.Adapter<SelAddrAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        MapiAddrResult addrResult = mList.get(position);
         holder.itemRoot.setTag(position);
         holder.itemRoot.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,9 +56,10 @@ public class SelAddrAdapter extends RecyclerView.Adapter<SelAddrAdapter.ViewHold
                     onItemClickListener.onItemClick(view, (Integer) view.getTag());
             }
         });
-        holder.consignee.setText("收货人："+mList.get(position).getConsignee());
-        holder.tel.setText(mList.get(position).getTel());
-        holder.address.setText(mList.get(position).getAddress());
+        holder.consignee.setText("收货人："+addrResult.getConsignee());
+        holder.tel.setText(addrResult.getTel());
+        holder.address.setText(addrResult.getProvince()+addrResult.getCity()+addrResult.getDistrict()+addrResult.getAddress());
+
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

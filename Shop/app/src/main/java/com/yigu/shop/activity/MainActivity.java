@@ -50,14 +50,14 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (!userSP.checkLogin()) {
-            ControllerUtil.go2Login();
-            finish();
-        } else {
+//        if (!userSP.checkLogin()) {
+//            ControllerUtil.go2Login();
+//            finish();
+//        } else {
             setContentView(R.layout.activity_main);
             ButterKnife.bind(this);
             initView();
-        }
+//        }
 
     }
 
@@ -100,11 +100,11 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        int type = intent.getIntExtra("type",0);
-        if(type== RequestCode.login_exit){
-            ControllerUtil.go2Login();
-            finish();
-        }
+//        int type = intent.getIntExtra("type",0);
+//        if(type== RequestCode.login_exit){
+//            ControllerUtil.go2Login();
+//            finish();
+//        }
     }
 
     @Override
@@ -122,7 +122,8 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.radio_home,R.id.radio_find, R.id.radio_community, R.id.radio_sort, R.id.radio_person,R.id.iv_right_two})
+    @OnClick({R.id.radio_home,R.id.radio_find, R.id.radio_community, R.id.radio_sort, R.id.radio_person,R.id.iv_right_two
+    ,R.id.iv_right})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.radio_home:
@@ -150,7 +151,14 @@ public class MainActivity extends BaseActivity {
                 fragments[index].load();
                 break;
             case R.id.iv_right_two:
-                ControllerUtil.go2Purcase();
+                if (!userSP.checkLogin()) {
+                    ControllerUtil.go2Login();
+                } else {
+                     ControllerUtil.go2Purcase();
+                }
+                break;
+            case R.id.iv_right:
+                ControllerUtil.go2Search();
                 break;
         }
     }

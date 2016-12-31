@@ -16,6 +16,7 @@ import com.yigu.shop.base.BaseActivity;
 import com.yigu.shop.commom.api.ItemApi;
 import com.yigu.shop.commom.result.IndexData;
 import com.yigu.shop.commom.result.MapiItemResult;
+import com.yigu.shop.commom.result.MapiResourceResult;
 import com.yigu.shop.commom.util.DPUtil;
 import com.yigu.shop.commom.util.DebugLog;
 import com.yigu.shop.commom.util.RequestExceptionCallback;
@@ -48,9 +49,8 @@ public class HomeItemLayout extends RelativeLayout {
     List<MapiItemResult> mList = new ArrayList<>();
 
     private Integer pageIndex = 1;
-    private Integer pageSize = 8;
     private Integer counts;
-    private String cat_id = "";
+    MapiResourceResult mapiResourceResult;
     public HomeItemLayout(Context context) {
         super(context);
         mContext = context;
@@ -118,20 +118,20 @@ public class HomeItemLayout extends RelativeLayout {
 
     }
 
-    public void load(String cat_id){
+    public void load(MapiResourceResult mapiResourceResult){
        /* if(!list.isEmpty()){
             mList.clear();
             mList.addAll(list);
             mAdapter.notifyDataSetChanged();
         }*/
-        this.cat_id = cat_id;
+        this.mapiResourceResult = mapiResourceResult;
         refreshData();
     }
 
     private void initData(){
 //        ((BaseActivity)mContext).showLoading();
-        DebugLog.i("HomeItemLayout=>"+cat_id);
-        ItemApi.getGoods((BaseActivity)mContext,cat_id ,"", pageIndex + "", pageSize + "", new RequestPageCallback< List<MapiItemResult>>() {
+        DebugLog.i("HomeItemLayout=>"+mapiResourceResult.getCat_id());
+        ItemApi.getGoods((BaseActivity)mContext,mapiResourceResult.getCat_id() ,"","",mapiResourceResult.getType(), pageIndex + "", new RequestPageCallback< List<MapiItemResult>>() {
             @Override
             public void success(Integer count,  List<MapiItemResult> success) {
 //                swipRefreshLayout.setRefreshing(false);
@@ -153,7 +153,7 @@ public class HomeItemLayout extends RelativeLayout {
     }
 
     private void loadNext() {
-        if (counts == null || counts==mList.size()) {
+        if (counts == null || counts==pageIndex) {
             MainToast.showShortToast("没有更多数据了");
             return;
         }

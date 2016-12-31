@@ -2,6 +2,7 @@ package com.yigu.shop.commom.util;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.text.TextUtils;
 
 import com.alibaba.fastjson.JSONObject;
 import com.android.volley.AuthFailureError;
@@ -22,6 +23,7 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.yigu.shop.commom.api.BasicApi;
 import com.yigu.shop.commom.application.AppContext;
+import com.yigu.shop.commom.sharedpreferences.UserSP;
 
 
 import java.io.File;
@@ -34,11 +36,12 @@ public class MapiUtil {
     private volatile static MapiUtil mapiUtil;
     private  Map<String, String> head = null;
     private RequestQueue requestQueue;
-
+    protected volatile static UserSP userSP;
     public static  MapiUtil getInstance() {
         if (mapiUtil == null) {
             synchronized (MapiUtil.class) {
                 mapiUtil = new MapiUtil();
+                userSP = new UserSP(AppContext.getInstance());
             }
         }
         return mapiUtil;
@@ -109,15 +112,20 @@ public class MapiUtil {
         if (params != null)
 //            DebugLog.i("params=" + params.toString());
         DebugLog.i("url=" + BasicApi.BASIC_URL + url);
+        if(null!=userSP.getUserBean()){
+            params.put(Constants.Token, TextUtils.isEmpty(userSP.getUserBean().getToken())?"":userSP.getUserBean().getToken());
+            params.put(Constants.Uid, TextUtils.isEmpty(userSP.getUserBean().getUid())?"":userSP.getUserBean().getUid());
+        }
         StringRequest stringRequest = new StringRequest(Request.Method.POST, BasicApi.BASIC_URL + url,
                 new Response.Listener<String>() {
                     public void onResponse(String s) {
                         DebugLog.i("mapi response" + s);
                         JSONObject jsonObject = JSONObject.parseObject(s);
-                        if (null!=jsonObject.getInteger("status")&&jsonObject.getInteger("status")==1) {
+                        DebugLog.i("jsonObject==>"+(jsonObject==null));
+                        if (null!=jsonObject.getInteger("code")&&jsonObject.getInteger("code")==1) {
                             response.success(jsonObject);
                         }
-                        Integer code = jsonObject.getInteger("status");
+                        Integer code = jsonObject.getInteger("code");
                         if (null!=code&&code==9998) {
                             //打开登录UI
                             if (act == null) {

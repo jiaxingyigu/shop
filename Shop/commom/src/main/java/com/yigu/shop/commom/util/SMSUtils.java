@@ -2,6 +2,7 @@ package com.yigu.shop.commom.util;
 
 import android.app.Activity;
 
+import com.alibaba.fastjson.JSONObject;
 import com.yigu.shop.commom.api.UserApi;
 
 /**
@@ -36,11 +37,12 @@ public class SMSUtils {
     }
 
     public static void requestCode(Activity activity,String phone){
-        UserApi.getPhoneCode(activity, phone, new RequestCallback() {
+        UserApi.getPhoneCode(activity, phone, new RequestCallback<JSONObject>() {
             @Override
-            public void success(Object success) {
+            public void success(JSONObject success) {
+                String mark = success.getJSONObject("data").getString("mark");
                 eventHandler.afterEvent(EVENT_GET_VERIFICATION_CODE,
-                        RESULT_COMPLETE,"验证码已经发送");
+                        RESULT_COMPLETE,mark);
             }
         }, new RequestExceptionCallback() {
             @Override

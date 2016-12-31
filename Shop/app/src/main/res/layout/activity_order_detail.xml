@@ -12,6 +12,7 @@
         android:background="@android:color/white"
         android:id="@+id/addr_root"
         android:layout_below="@+id/lay_header"
+        android:clickable="true"
         >
 
             <LinearLayout
@@ -134,20 +135,20 @@
 
             <LinearLayout
                 android:id="@+id/count_ll"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/margin_5"
-                android:gravity="center_vertical"
+                android:gravity="center_vertical|right"
                 android:layout_toRightOf="@+id/all"
+                android:layout_marginRight="@dimen/margin_1"
                 >
 
                 <TextView
                     style="@style/textViewStyle_small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="合计："
+                    android:text="合计：￥"
                     />
 
                 <TextView
@@ -157,7 +158,7 @@
                     android:textSize="@dimen/text_big_xx"
                     android:textColor="@color/shop_red"
                     android:textStyle="bold"
-                    android:text="￥2000"
+                    android:text="2000"
                     android:ellipsize="end"
                     android:maxLines="1"
                     />

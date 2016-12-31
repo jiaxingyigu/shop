@@ -27,6 +27,7 @@ import com.yigu.shop.commom.result.MapiItemResult;
 import com.yigu.shop.commom.result.MapiResourceResult;
 import com.yigu.shop.commom.result.MapiSortResult;
 import com.yigu.shop.commom.util.DebugLog;
+import com.yigu.shop.commom.util.RequestCallback;
 import com.yigu.shop.commom.util.RequestExceptionCallback;
 import com.yigu.shop.commom.util.RequestPageCallback;
 import com.yigu.shop.commom.widget.MainToast;
@@ -70,6 +71,7 @@ public class IndextFragment extends BaseFrag {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_index, container, false);
         ButterKnife.bind(this, view);
         initView();
@@ -111,27 +113,26 @@ public class IndextFragment extends BaseFrag {
 
     public void load() {
 
-        ItemApi.indexUrl(getActivity(), pageIndex + "", pageSize + "", new RequestPageCallback<JSONObject>() {
+        ItemApi.indexUrl(getActivity(),new RequestCallback<JSONObject>() {
             @Override
-            public void success(Integer count, JSONObject success) {
-                counts = count;
+            public void success(JSONObject success) {
                 if(success.isEmpty())
                     return;
                 try{
-                    List<MapiSortResult> sortList =  JSONArray.parseArray(success.getJSONObject("data").getJSONArray("cate").toJSONString(),MapiSortResult.class);
-                    List<MapiResourceResult> resourceResults = JSONArray.parseArray(success.getJSONObject("data").getJSONArray("slider").toJSONString(),MapiResourceResult.class);
+                    List<MapiSortResult> sortList =  JSONArray.parseArray(success.getJSONObject("data").getJSONArray("categorylist").toJSONString(),MapiSortResult.class);
+                    List<MapiResourceResult> resourceResults = JSONArray.parseArray(success.getJSONObject("data").getJSONArray("banner").toJSONString(),MapiResourceResult.class);
                     if(null!=sortList){
                         list_title.clear();
                         list_title.addAll(sortList);
                         for(int i=0;i<list_title.size();i++){
-                            tablayout.addTab(tablayout.newTab().setText(list_title.get(i).getCat_name()));
+                            tablayout.addTab(tablayout.newTab().setText(list_title.get(i).getName()));
                             if(i==0){
                                 homeFragment = new HomeFragment();
-                                homeFragment.setCat_id(list_title.get(i).getCat_id(),resourceResults);
+                                homeFragment.setCat_id(list_title.get(i).getId(),resourceResults);
                                 list.add(homeFragment);
                             }else{
                                 indexDeviceFragment = new IndexDeviceFragment();
-                                indexDeviceFragment.setCat_id(list_title.get(i).getCat_id());
+                                indexDeviceFragment.setCat_id(list_title.get(i).getId());
                                 list.add(indexDeviceFragment);
                             }
 

@@ -81,12 +81,26 @@
             android:name=".activity.ForgetActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".activity.community.ComSearchActivity" />
-        <activity android:name=".activity.addr.SelAddrActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name=".activity.order.OderDetailActivity"
-            android:screenOrientation="portrait"
-            />
+        <activity
+            android:name=".activity.addr.SelAddrActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.OderDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.addr.ModifyAddrActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SearchActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SearchListActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.SelPayActivity"></activity>
     </application>
 
 </manifest>

@@ -36,6 +36,7 @@
         android:layout_height="@dimen/text_height_50dp"
         android:layout_alignParentBottom="true"
         android:background="@color/background_all"
+        android:orientation="horizontal"
         >
 
         <RelativeLayout
@@ -58,14 +59,15 @@
 
             <LinearLayout
                 android:id="@+id/count_ll"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/margin_5"
-                android:gravity="center_vertical"
+                android:gravity="center"
                 android:layout_toRightOf="@+id/all"
                 >
+
+
 
                 <TextView
                     style="@style/textViewStyle_small"
@@ -74,17 +76,40 @@
                     android:text="合计："
                     />
 
-                <TextView
-                    android:id="@+id/account"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_big_xx"
-                    android:textColor="@color/shop_red"
-                    android:textStyle="bold"
-                    android:text="￥200"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    />
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    >
+
+                    <TextView
+                        android:id="@+id/account_tip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_small"
+                        android:textColor="@color/shop_red"
+                        android:textStyle="bold"
+                        android:text="￥"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        />
+
+                    <TextView
+                        android:id="@+id/account"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_big_xx"
+                        android:textColor="@color/shop_red"
+                        android:textStyle="bold"
+                        android:text="0"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        />
+
+                </LinearLayout>
+
+
 
             </LinearLayout>
 
@@ -96,7 +121,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="结算（1）"
+            android:text="结算（0）"
             android:background="@drawable/selector_pressed_color_red"
             android:gravity="center"
             android:ellipsize="end"

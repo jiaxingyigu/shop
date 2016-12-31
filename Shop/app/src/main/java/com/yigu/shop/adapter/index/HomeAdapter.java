@@ -63,7 +63,15 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if (holder instanceof SliderViewHolder) {
             ((SliderViewHolder)holder).homeSliderLayout.load((List<MapiResourceResult>) mList.get(position).getData());
         }else if(holder instanceof ItemViewHolder){
-            ((ItemViewHolder)holder).homeItemLayout.load((String) mList.get(position).getData());
+            ((ItemViewHolder)holder).homeItemLayout.load((MapiResourceResult) mList.get(position).getData());
+        }else if(holder instanceof ToolViewHolder){
+            ((ToolViewHolder)holder).homeToolLayout.setTypeListener(new HomeToolLayout.TypeListener() {
+                @Override
+                public void getType(String type) {
+                    if(null!=typeListener)
+                        typeListener.getType(type);
+                }
+            });
         }
     }
 
@@ -108,5 +116,15 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
     }
 
+
+    public interface TypeListener{
+        void getType(String type);
+    }
+
+    private TypeListener typeListener;
+
+    public void setTypeListener(TypeListener typeListener){
+        this.typeListener = typeListener;
+    }
 
 }

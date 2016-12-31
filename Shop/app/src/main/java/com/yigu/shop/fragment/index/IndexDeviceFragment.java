@@ -37,14 +37,16 @@ public class IndexDeviceFragment extends BaseFrag{
     private final static String TOOL = "TOOL";
     private final static String ITEM = "ITEM";
     String cat_id = "";
+    String typeStr = "";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_index_device, container, false);
         ButterKnife.bind(this, view);
         initView();
-        load();
         initListener();
+        load();
         return view;
     }
 
@@ -63,14 +65,23 @@ public class IndexDeviceFragment extends BaseFrag{
     }
 
     private void initListener(){
-
+        mAdapter.setTypeListener(new HomeAdapter.TypeListener() {
+            @Override
+            public void getType(String type) {
+                typeStr = type;
+                load();
+            }
+        });
     }
 
     public void load() {
         DebugLog.i("load===>"+cat_id);
         mList.clear();
         mList.add(new IndexData(0,TOOL,new ArrayList<MapiResourceResult>()));
-        mList.add(new IndexData(1,ITEM,cat_id));
+        MapiResourceResult resourceResult = new MapiResourceResult();
+        resourceResult.setType(typeStr);
+        resourceResult.setCat_id(cat_id);
+        mList.add(new IndexData(1,ITEM,resourceResult));
         Collections.sort(mList);
         mAdapter.notifyDataSetChanged();
     }

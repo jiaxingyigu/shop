@@ -1,7 +1,9 @@
 package com.yigu.shop.adapter.purcase;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,11 +11,20 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.controller.BaseControllerListener;
+import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.common.ResizeOptions;
+import com.facebook.imagepipeline.image.ImageInfo;
+import com.facebook.imagepipeline.request.ImageRequest;
+import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.yigu.shop.R;
+import com.yigu.shop.base.BaseActivity;
 import com.yigu.shop.commom.result.IndexData;
 import com.yigu.shop.commom.result.MapiCartResult;
 import com.yigu.shop.commom.result.MapiItemResult;
+import com.yigu.shop.commom.util.DPUtil;
 import com.yigu.shop.commom.util.DebugLog;
 import com.yigu.shop.shopinterface.AdapterSelListener;
 import com.yigu.shop.view.PurcaseSheetLayout;
@@ -39,6 +50,10 @@ public class PurcaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return mList;
     }
 
+    public List<IndexData> getList(){
+        return list;
+    }
+
     public void setOnAdapterSelListener(AdapterSelListener listener){
         this.listener = listener;
     }
@@ -50,20 +65,30 @@ public class PurcaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemCount() {
-        int count = 1;
-        list.add(new IndexData(count++,"divider", new Object()));
-        for (MapiCartResult ware : mList) {
-            list.add(new IndexData(count++,"head",ware));
-            for (int i=0;i<ware.getItems().size();i++) {
-                if(i == ware.getItems().size()-1){
-                    ware.getItems().get(i).setLast(true);
-                }else
-                    ware.getItems().get(i).setLast(false);
-                list.add(new IndexData(count++,"item", ware.getItems().get(i)));
+        DebugLog.i("getItemCount");
+        int count;
+        if(mList==null||mList.size()==0){
 
-            }
+            count = 0;
+        }else{
+            count = 1;
+
             list.add(new IndexData(count++,"divider", new Object()));
+            for (MapiCartResult ware : mList) {
+                list.add(new IndexData(count++,"head",ware));
+                for (int i=0;i<ware.getCart_goods().size();i++) {
+                    if(i == ware.getCart_goods().size()-1){
+                        ware.getCart_goods().get(i).setLast(true);
+                    }else
+                        ware.getCart_goods().get(i).setLast(false);
+                    list.add(new IndexData(count++,"item", ware.getCart_goods().get(i)));
+
+                }
+                list.add(new IndexData(count++,"divider", new Object()));
+            }
         }
+
+
         return count;
 
     }
@@ -125,6 +150,8 @@ public class PurcaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         TextView content;
         @Bind(R.id.price)
         TextView price;
+        @Bind(R.id.goods_attr)
+        TextView goods_attr;
         @Bind(R.id.purcaseSheetLayout)
         PurcaseSheetLayout purcaseSheetLayout;
         @Bind(R.id.divider)
@@ -153,8 +180,9 @@ public class PurcaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         });
 
         MapiCartResult ware = (MapiCartResult) list.get(position).getData();
+        holder.name.setText(TextUtils.isEmpty(ware.getShop_name())?"":ware.getShop_name());
         boolean isAll = true;
-        for (MapiItemResult item : ware.getItems()) {
+        for (MapiItemResult item : ware.getCart_goods()) {
             if (!item.isSel()) {
                 isAll = false;
                 break;
@@ -181,12 +209,13 @@ public class PurcaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 //                        holder.rootSel.setImageResource(R.mipmap.circle_white);
 //                    }
                 ware.setSel(!ware.isSel());
+                for (MapiItemResult item : ware.getCart_goods()) {
+                    item.setSel(ware.isSel());
+                }
                 if(null!=listener){
                     listener.isAll();
                 }
-                for (MapiItemResult item : ware.getItems()) {
-                    item.setSel(ware.isSel());
-                }
+
                 notifyDataSetChanged();
             }
         });
@@ -195,6 +224,47 @@ public class PurcaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private  void setItem(ItemViewHolder holder,int position){
         DebugLog.i("ItemViewHolder=load");
         MapiItemResult result = (MapiItemResult) list.get(position).getData();
+
+        //创建将要下载的图片的URI
+        Uri imageUri = Uri.parse(TextUtils.isEmpty(result.getGoods_img())?"":result.getGoods_img());
+        ImageRequest request = ImageRequestBuilder.newBuilderWithSource(imageUri)
+                .setResizeOptions(new ResizeOptions(DPUtil.dip2px(120), DPUtil.dip2px(120)))
+                .build();
+        DraweeController controller = Fresco.newDraweeControllerBuilder()
+                .setImageRequest(request)
+                .setOldController(holder.image.getController())
+                .setControllerListener(new BaseControllerListener<ImageInfo>())
+                .build();
+        holder.image.setController(controller);
+
+        holder.content.setText(TextUtils.isEmpty(result.getGoods_name())?"":result.getGoods_name());
+        if(TextUtils.isEmpty(result.getGoods_attr()))
+            holder.goods_attr.setVisibility(View.GONE);
+        else{
+            holder.goods_attr.setVisibility(View.VISIBLE);
+            holder.goods_attr.setText(result.getGoods_attr());
+        }
+
+        holder.price.setText(TextUtils.isEmpty(result.getGoods_price())?"":result.getGoods_price());
+        String number = TextUtils.isEmpty(result.getGoods_number())?"0":result.getGoods_number();
+        holder.purcaseSheetLayout.setNum(Integer.parseInt(number));
+        holder.purcaseSheetLayout.setRec_id(result.getRec_id());
+        holder.purcaseSheetLayout.setActivity((BaseActivity) mContext);
+        holder.purcaseSheetLayout.setTag(position);
+        holder.purcaseSheetLayout.setNumListener(new PurcaseSheetLayout.NumInterface() {
+            @Override
+            public void modify(View view,int num,String price) {
+                int position = (int) view.getTag();
+
+                MapiItemResult item = (MapiItemResult) list.get(position).getData();
+                item.setGoods_number(num+"");
+                item.setGoods_price(price);
+                if(null!=listener){
+                    listener.isAll();
+                }
+                notifyDataSetChanged();
+            }
+        });
         if(result.isSel())
             holder.itemSel.setImageResource(R.mipmap.circle_red_sel);
         else

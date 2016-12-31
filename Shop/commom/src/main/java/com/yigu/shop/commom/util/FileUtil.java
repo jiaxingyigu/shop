@@ -17,7 +17,7 @@ import java.io.File;
 public class FileUtil {
     public final static String TYPE_IMAGE = "image";
     private final static String rootPath = "jgj";
-
+    public final static String TYPE_DB = "db";
     /**
      * 判断SD卡是否可用
      *
@@ -88,6 +88,9 @@ public class FileUtil {
         switch (type) {
             case TYPE_IMAGE:
                 pathBuilder.append(context.getString(R.string.image));
+            case TYPE_DB:
+                pathBuilder.append(context.getString(R.string.db));
+                break;
             default:
                 break;
         }

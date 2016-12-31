@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/margin_1"
+        android:paddingTop="@dimen/margin_1">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/margin_2"
+            android:paddingRight="@dimen/margin_2"
+            android:src="@mipmap/back" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_rect_soild_color_black_round_10"
+            >
+
+            <EditText
+                android:id="@+id/search_et"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:completionThreshold="1"
+                android:drawableLeft="@mipmap/search"
+                android:drawablePadding="4dp"
+                android:hint="搜索弄要的产品"
+                android:imeOptions="actionDone"
+                android:inputType="none"
+                android:padding="@dimen/margin_1"
+                android:singleLine="true"
+                android:textColor="@color/shop_black"
+                android:textSize="@dimen/text_small"
+                android:background="@null"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@mipmap/clear_circle_icon"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                />
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:id="@+id/search"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/margin_10dp"
+            android:layout_marginRight="@dimen/margin_10dp"
+            android:text="搜索"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_small"
+            android:background="@drawable/selector_pressed_round_4_color_red"
+            />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_1"
+            android:text="搜索历史"
+            android:textSize="@dimen/text_normal" />
+
+        <org.apmem.tools.layouts.FlowLayout
+            android:id="@+id/recent_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="fill">
+
+        </org.apmem.tools.layouts.FlowLayout>
+        
+        <TextView
+            android:id="@+id/clear_history"
+            android:layout_width="120dp"
+            android:layout_height="35dp"
+            android:text="清空历史记录"
+            android:textSize="@dimen/text_normal"
+            android:textColor="@color/shop_black"
+            android:gravity="center"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:background="@drawable/rect_stroke_gray_solid_white"
+            android:layout_marginBottom="@dimen/margin_1"
+            android:layout_marginTop="@dimen/margin_1"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="@dimen/margin_1"
+            android:layout_marginRight="@dimen/margin_1"
+            android:background="@color/divider_line" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_1"
+            android:text="热门搜索"
+            android:textSize="@dimen/text_normal" />
+
+        <org.apmem.tools.layouts.FlowLayout
+            android:id="@+id/hot_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="fill" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

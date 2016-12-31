@@ -3,6 +3,7 @@ package com.yigu.shop.adapter;
 import android.content.Context;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +32,6 @@ import butterknife.ButterKnife;
  * Created by brain on 2016/9/1.
  */
 public class ItemTwoAdapter extends RecyclerView.Adapter<ItemTwoAdapter.ViewHolder> {
-
 
     private LayoutInflater inflater;
     List<MapiItemResult> mList;
@@ -81,6 +81,22 @@ public class ItemTwoAdapter extends RecyclerView.Adapter<ItemTwoAdapter.ViewHold
         holder.image.setController(controller);
 
         holder.goodsName.setText(mList.get(position).getGoods_name());
+        holder.price.setText(TextUtils.isEmpty(itemResult.getShop_price())?"￥0":itemResult.getShop_price());
+        if(null!=itemResult.getSeller_info()){
+            holder.shopName.setText(TextUtils.isEmpty(itemResult.getSeller_info().getShop_name())?"":itemResult.getSeller_info().getShop_name());
+            //创建将要下载的图片的URI
+            Uri imageUri2 = Uri.parse(itemResult.getSeller_info().getLogo());
+            ImageRequest request2 = ImageRequestBuilder.newBuilderWithSource(imageUri2)
+                    .setResizeOptions(new ResizeOptions(DPUtil.dip2px(20), DPUtil.dip2px(20)))
+                    .build();
+            DraweeController controller2 = Fresco.newDraweeControllerBuilder()
+                    .setImageRequest(request2)
+                    .setOldController(holder.head.getController())
+                    .setControllerListener(new BaseControllerListener<ImageInfo>())
+                    .build();
+            holder.head.setController(controller2);
+        }
+
 
     }
 
@@ -93,6 +109,10 @@ public class ItemTwoAdapter extends RecyclerView.Adapter<ItemTwoAdapter.ViewHold
         SimpleDraweeView head;
         @Bind(R.id.goods_name)
         TextView goodsName;
+        @Bind(R.id.shop_name)
+        TextView shopName;
+        @Bind(R.id.price)
+        TextView price;
 
         public ViewHolder(View itemView) {
             super(itemView);

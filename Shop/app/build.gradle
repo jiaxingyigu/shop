@@ -30,4 +30,5 @@ dependencies {
     compile 'com.bigkoo:pickerview:2.1.0'
     compile 'com.github.xiaoxiongmeipigu:VersionUpdate-master:1.0.1'
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
+    compile 'com.kyleduo.switchbutton:library:1.4.4'
 }

@@ -39,6 +39,7 @@ public class IndexSubFragment extends BaseFrag{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_index_device, container, false);
         ButterKnife.bind(this, view);
         initView();

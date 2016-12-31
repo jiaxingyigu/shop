@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="140dp"
+    android:layout_height="wrap_content"
     android:background="@android:color/white"
     >
 
@@ -19,6 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="@dimen/margin_10dp"
+        android:paddingBottom="@dimen/margin_10dp"
+        android:paddingTop="@dimen/margin_10dp"
         >
 
         <com.facebook.drawee.view.SimpleDraweeView
@@ -29,6 +31,10 @@
             fresco:placeholderImage="@drawable/face_default"
             fresco:placeholderImageScaleType="fitCenter"
             android:layout_marginTop="@dimen/margin_10dp"
+            fresco:progressBarAutoRotateInterval="2000"
+            fresco:progressBarImage="@mipmap/progress"
+            fresco:progressBarImageScaleType="centerInside"
+            fresco:retryImageScaleType="fitXY"
             />
 
         <RelativeLayout
@@ -55,27 +61,71 @@
                 />
 
             <TextView
-                android:id="@+id/price"
+                android:id="@+id/goods_attr"
+                style="@style/textViewStyle_small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxLines="1"
+                android:maxLines="2"
                 android:ellipsize="end"
-                android:textSize="@dimen/text_big_x"
-                android:textColor="@color/shop_red"
-                android:textStyle="bold"
-                android:text="￥200"
+                android:text=""
+                android:lines="2"
+                android:gravity="center_vertical"
+                android:lineSpacingMultiplier="1.2"
                 android:layout_below="@+id/content"
-                android:layout_marginTop="13dp"
+                android:layout_marginTop="6dp"
                 />
 
-            <com.yigu.shop.view.PurcaseSheetLayout
-                android:id="@+id/purcaseSheetLayout"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/price"
-                android:layout_marginTop="13dp"
-                android:layout_marginRight="@dimen/margin_1"
-                />
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="6dp"
+                android:gravity="center_vertical"
+                android:layout_below="@+id/goods_attr"
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:textSize="@dimen/text_small"
+                        android:textColor="@color/shop_red"
+                        android:textStyle="bold"
+                        android:text="￥"
+                        />
+
+                    <TextView
+                        android:id="@+id/price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:textSize="@dimen/text_big_x"
+                        android:textColor="@color/shop_red"
+                        android:textStyle="bold"
+                        android:text="200"
+                        />
+
+                </LinearLayout>
+
+                <com.yigu.shop.view.PurcaseSheetLayout
+                    android:id="@+id/purcaseSheetLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="@dimen/margin_1"
+                    android:layout_marginTop="8dp"
+                    />
+
+            </LinearLayout>
+
+
 
         </RelativeLayout>
 

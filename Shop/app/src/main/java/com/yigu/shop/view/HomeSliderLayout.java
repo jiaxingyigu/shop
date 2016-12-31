@@ -28,6 +28,7 @@ import com.yigu.shop.adapter.ShopPagerAdapter;
 import com.yigu.shop.commom.result.MapiResourceResult;
 import com.yigu.shop.commom.util.DPUtil;
 import com.yigu.shop.commom.widget.MainToast;
+import com.yigu.shop.util.ControllerUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,7 +81,7 @@ public class HomeSliderLayout extends RelativeLayout {
             for (int i = 0; i < list.size(); i++) {
                 SimpleDraweeView view = (SimpleDraweeView) LayoutInflater.from(mContext).inflate(R.layout.layout_draweeview,null);
                 //创建将要下载的图片的URI
-                Uri imageUri = Uri.parse(list.get(i).getSrc());
+                Uri imageUri = Uri.parse(list.get(i).getThumb());
                 ImageRequest request = ImageRequestBuilder.newBuilderWithSource(imageUri)
                         .setResizeOptions(new ResizeOptions(DPUtil.dip2px(375), DPUtil.dip2px(180)))
                         .build();

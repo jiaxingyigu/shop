@@ -6,4 +6,8 @@ package com.yigu.shop.commom.util;
  *          定义常用字段
  */
 public class Constants {
+
+    public static final String Token = "token";
+    public static final String Uid = "uid";
+
 }

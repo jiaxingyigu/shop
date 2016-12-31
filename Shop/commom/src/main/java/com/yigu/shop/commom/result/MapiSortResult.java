@@ -4,8 +4,8 @@ package com.yigu.shop.commom.result;
  * Created by brain on 2016/9/26.
  */
 public class MapiSortResult extends MapiBaseResult{
-    private String cat_id;
-    private String cat_name;
+    private String id;
+    private String name;
     private String brand_id;
     private String brand_name;
     private String brand_logo;
@@ -34,19 +34,23 @@ public class MapiSortResult extends MapiBaseResult{
         this.brand_name = brand_name;
     }
 
-    public String getCat_id() {
-        return cat_id;
+    @Override
+    public String getId() {
+        return id;
     }
 
-    public void setCat_id(String cat_id) {
-        this.cat_id = cat_id;
+    @Override
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getCat_name() {
-        return cat_name;
+    @Override
+    public String getName() {
+        return name;
     }
 
-    public void setCat_name(String cat_name) {
-        this.cat_name = cat_name;
+    @Override
+    public void setName(String name) {
+        this.name = name;
     }
 }

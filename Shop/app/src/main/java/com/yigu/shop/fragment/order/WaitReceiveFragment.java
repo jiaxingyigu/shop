@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.yigu.shop.R;
 import com.yigu.shop.adapter.order.OrderAdapter;
 import com.yigu.shop.base.BaseFrag;
+import com.yigu.shop.commom.result.IndexData;
 import com.yigu.shop.commom.result.MapiCartResult;
 import com.yigu.shop.commom.result.MapiItemResult;
 import com.yigu.shop.commom.util.DPUtil;
@@ -31,7 +32,7 @@ public class WaitReceiveFragment extends BaseFrag {
 
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
-    private List<MapiCartResult> mList = new ArrayList<>();
+    List<IndexData> mList = new ArrayList<>();
     private Integer pageIndex = 0;
     private Integer pageSize = 10;
     private Integer ISNEXT = 0;
@@ -45,6 +46,7 @@ public class WaitReceiveFragment extends BaseFrag {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_order, container, false);
         ButterKnife.bind(this, view);
         initView();
@@ -62,17 +64,7 @@ public class WaitReceiveFragment extends BaseFrag {
     }
 
     public void load() {
-        mList.clear();
-        List<MapiItemResult> itemList = new ArrayList<>();
-        itemList.add(new MapiItemResult());
-        mList.add(new MapiCartResult(itemList));
-        itemList = new ArrayList<>();
-        itemList.add(new MapiItemResult());
-        itemList.add(new MapiItemResult());
-        itemList.add(new MapiItemResult());
-        itemList.add(new MapiItemResult());
-        mList.add(new MapiCartResult(itemList));
-        mAdapter.notifyDataSetChanged();
+
     }
 
     @Override

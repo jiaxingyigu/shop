@@ -33,6 +33,6 @@ public class TabObjectFragmentAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return list_Title.get(position%list_Title.size()).getCat_name();
+        return list_Title.get(position%list_Title.size()).getName();
     }
 }

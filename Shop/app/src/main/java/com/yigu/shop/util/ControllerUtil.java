@@ -8,6 +8,9 @@ import com.yigu.shop.activity.LoginActivity;
 import com.yigu.shop.activity.MainActivity;
 import com.yigu.shop.activity.ProductDetailActivity;
 import com.yigu.shop.activity.RegisterActivity;
+import com.yigu.shop.activity.SearchActivity;
+import com.yigu.shop.activity.SearchListActivity;
+import com.yigu.shop.activity.SettingActivity;
 import com.yigu.shop.activity.addr.AddAddrActivity;
 import com.yigu.shop.activity.addr.ManageAddrActivity;
 import com.yigu.shop.activity.addr.SelAddrActivity;
@@ -20,6 +23,9 @@ import com.yigu.shop.activity.shops.ShopDetailActivity;
 import com.yigu.shop.commom.application.AppContext;
 import com.yigu.shop.commom.result.MapiItemResult;
 import com.yigu.shop.commom.result.MapiShopResult;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by brain on 2016/6/22.
@@ -147,9 +153,38 @@ public class ControllerUtil {
     /**
      *
      */
-    public static void go2OderDetail() {
+    public static void go2OderDetail(ArrayList<MapiItemResult> list) {
         Intent intent = new Intent(AppContext.getInstance(),OderDetailActivity.class);
+        intent.putExtra("list",list);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        AppContext.getInstance().startActivity(intent);
+    }
+
+    /**
+     * 设置
+     */
+    public static void go2Setting() {
+        Intent intent = new Intent(AppContext.getInstance(),SettingActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        AppContext.getInstance().startActivity(intent);
+    }
+
+    /**
+     * 搜索
+     */
+    public static void go2Search() {
+        Intent intent = new Intent(AppContext.getInstance(), SearchActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        AppContext.getInstance().startActivity(intent);
+    }
+
+    /**
+     * 搜索列表
+     */
+    public static void go2SearchList(String search) {
+        Intent intent = new Intent(AppContext.getInstance(),SearchListActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("search",search);
         AppContext.getInstance().startActivity(intent);
     }
 

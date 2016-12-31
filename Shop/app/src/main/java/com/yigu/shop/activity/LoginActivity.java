@@ -11,6 +11,7 @@ import com.yigu.shop.commom.api.UserApi;
 import com.yigu.shop.commom.result.MapiUserResult;
 import com.yigu.shop.commom.util.RequestCallback;
 import com.yigu.shop.commom.util.RequestExceptionCallback;
+import com.yigu.shop.commom.util.StringUtil;
 import com.yigu.shop.commom.widget.MainToast;
 import com.yigu.shop.util.ControllerUtil;
 
@@ -48,6 +49,11 @@ public class LoginActivity extends BaseActivity {
                     return;
                 }
 
+                if(!StringUtil.isMobile(phoneStr)){
+                    MainToast.showShortToast("手机号格式不正确！");
+                    return;
+                }
+
                 if(TextUtils.isEmpty(psdStr)){
                     MainToast.showShortToast("请输入密码");
                     return;
@@ -58,7 +64,7 @@ public class LoginActivity extends BaseActivity {
                     public void success(MapiUserResult success) {
                         MainToast.showShortToast("登录成功");
                         userSP.saveUserBean(success);
-                        ControllerUtil.go2Main();
+//                        ControllerUtil.go2Main();
                         finish();
                     }
                 }, new RequestExceptionCallback() {

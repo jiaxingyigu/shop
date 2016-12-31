@@ -27,6 +27,8 @@ import com.facebook.imagepipeline.common.ResizeOptions;
 import com.facebook.imagepipeline.image.ImageInfo;
 import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.yigu.shop.R;
 import com.yigu.shop.activity.addr.SelAddrActivity;
 import com.yigu.shop.adapter.ShopPagerAdapter;
@@ -34,14 +36,17 @@ import com.yigu.shop.base.BaseFrag;
 import com.yigu.shop.base.RequestCode;
 import com.yigu.shop.commom.api.ItemApi;
 import com.yigu.shop.commom.result.MapiAddrResult;
+import com.yigu.shop.commom.result.MapiAttrResult;
 import com.yigu.shop.commom.result.MapiItemResult;
 import com.yigu.shop.commom.result.MapiResourceResult;
 import com.yigu.shop.commom.result.MapiShopResult;
+import com.yigu.shop.commom.result.ProvinceModel;
 import com.yigu.shop.commom.util.DPUtil;
 import com.yigu.shop.commom.util.RequestCallback;
 import com.yigu.shop.commom.util.RequestExceptionCallback;
 import com.yigu.shop.commom.widget.MainToast;
 import com.yigu.shop.util.AnimationUtil;
+import com.yigu.shop.util.ControllerUtil;
 import com.yigu.shop.view.ItemShopLayout;
 import com.yigu.shop.view.SelSizeLayout;
 import com.yigu.shop.widget.SelSizePopWindow;
@@ -73,6 +78,8 @@ public class ItemInfoFragment extends BaseFrag {
     TextView marketPrice;
     @Bind(R.id.selSizeLayout)
     SelSizeLayout selSizeLayout;
+    @Bind(R.id.bg_view)
+    View bg_view;
 
     List<View> sliderViewList;
 
@@ -84,6 +91,7 @@ public class ItemInfoFragment extends BaseFrag {
     private String goods_attr="";
     private String goods_attr_id="";
 
+    Gson gson = new Gson();
 
     public ItemInfoFragment() {
     }
@@ -91,6 +99,7 @@ public class ItemInfoFragment extends BaseFrag {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_item_info, container, false);
         ButterKnife.bind(this, view);
         initView();
@@ -121,9 +130,14 @@ public class ItemInfoFragment extends BaseFrag {
         selSizeLayout.setOnHideListener(new SelSizeLayout.OnHideListener() {
             @Override
             public void hide() {
+
+                infoTv.setText(selSizeLayout.getGoods_attr());
+                shopPrice.setText(selSizeLayout.getGoods_price());
                 hideAlbum();
             }
         });
+
+
     }
 
     public void load() {
@@ -136,8 +150,16 @@ public class ItemInfoFragment extends BaseFrag {
                         initViewPager(gallery);
 
                     MapiShopResult shopResult = JSONArray.parseObject(success.getJSONObject("data").getJSONObject("shop").toJSONString(),MapiShopResult.class);
+                    String shop_logo = success.getJSONObject("data").getJSONObject("shop").getJSONObject("shop_info").getString("shop_logo");
+                    String shop_name = success.getJSONObject("data").getJSONObject("shop").getJSONObject("shop_info").getString("shop_name");
+                    shopResult.setShop_logo(TextUtils.isEmpty(shop_logo)?"":shop_logo);
+                    shopResult.setShop_name(TextUtils.isEmpty(shop_name)?"":shop_name);
                     if(null!=shopResult)
                         itemShopLayout.load(shopResult);
+
+                    List<MapiAttrResult> attrs = gson.fromJson(success.getJSONObject("data").getJSONArray("attr").toJSONString(), new TypeToken<List<MapiAttrResult>>(){}.getType());
+                    if(null!=shopResult)
+                        selSizeLayout.load(attrs,itemResult);
 
                 }
             }, new RequestExceptionCallback() {
@@ -156,7 +178,7 @@ public class ItemInfoFragment extends BaseFrag {
             for (int i = 0; i < gallery.size(); i++) {
                 SimpleDraweeView view = (SimpleDraweeView) LayoutInflater.from(getActivity()).inflate(R.layout.layout_draweeview,null);
                 //创建将要下载的图片的URI
-                Uri imageUri = Uri.parse(gallery.get(i).getImg_url());
+                Uri imageUri = Uri.parse(gallery.get(i).getImg_original());
                 ImageRequest request = ImageRequestBuilder.newBuilderWithSource(imageUri)
                         .setResizeOptions(new ResizeOptions(DPUtil.dip2px(375), DPUtil.dip2px(375)))
                         .build();
@@ -236,11 +258,19 @@ public class ItemInfoFragment extends BaseFrag {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.info_rl:
-                album();
+                if (!userSP.checkLogin()) {
+                    ControllerUtil.go2Login();
+                } else {
+                    album();
+                }
                 break;
             case R.id.addr_rl:
-                Intent intent = new Intent(getActivity(), SelAddrActivity.class);
-                startActivityForResult(intent, RequestCode.sel_addr);
+                if (!userSP.checkLogin()) {
+                    ControllerUtil.go2Login();
+                } else {
+                    Intent intent = new Intent(getActivity(), SelAddrActivity.class);
+                    startActivityForResult(intent, RequestCode.sel_addr);
+                }
                 break;
         }
     }
@@ -256,6 +286,7 @@ public class ItemInfoFragment extends BaseFrag {
     /** 弹出 */
     private void popAlbum() {
         selSizeLayout.setVisibility(View.VISIBLE);
+        bg_view.setVisibility(View.VISIBLE);
         new AnimationUtil(getActivity(), R.anim.translate_up_current)
                 .setLinearInterpolator().startAnimation(selSizeLayout);
     }
@@ -265,6 +296,7 @@ public class ItemInfoFragment extends BaseFrag {
         new AnimationUtil(getActivity(), R.anim.translate_down)
                 .setLinearInterpolator().startAnimation(selSizeLayout);
         selSizeLayout.setVisibility(View.GONE);
+        bg_view.setVisibility(View.GONE);
     }
 
     public String getMarket_price() {

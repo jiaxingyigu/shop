@@ -25,16 +25,18 @@ public class ItemShopLayout extends RelativeLayout {
     SimpleDraweeView image;
     @Bind(R.id.name)
     TextView name;
-    @Bind(R.id.content)
-    TextView content;
+    /*@Bind(R.id.content)
+    TextView content;*/
     @Bind(R.id.all_num)
     TextView allNum;
     @Bind(R.id.new_num)
     TextView newNum;
-    @Bind(R.id.follow_num)
-    TextView followNum;
     @Bind(R.id.shop)
     TextView shop;
+    @Bind(R.id.concer_num)
+    TextView concer_num;
+
+
     private Context mContext;
     private View view;
 
@@ -69,6 +71,12 @@ public class ItemShopLayout extends RelativeLayout {
         this.shopResult = shopResult;
         allNum.setText(TextUtils.isEmpty(shopResult.getShop_goods_total())?"0":shopResult.getShop_goods_total());
         newNum.setText(TextUtils.isEmpty(shopResult.getShop_goods_new())?"0":shopResult.getShop_goods_new());
+        concer_num.setText(TextUtils.isEmpty(shopResult.getShop_goods_new())?"0":shopResult.getShop_goods_new());
+
+        name.setText(TextUtils.isEmpty(shopResult.getShop_name())?"":shopResult.getShop_name());
+
+        image.setImageURI(shopResult.getShop_logo());
+
     }
 
     @OnClick(R.id.shop)

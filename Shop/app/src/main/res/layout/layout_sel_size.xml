@@ -5,11 +5,11 @@
     android:layout_height="match_parent"
     >
 
-    <View
+   <!-- <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#33000000"
-        />
+        />-->
 
 
 
@@ -58,18 +58,22 @@
                         />
 
                     <TextView
+                        android:id="@+id/price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/text_big_x"
                         android:text="480"
                         android:textColor="@color/shop_red"
                         android:layout_marginLeft="4dp"
+                        android:maxLines="1"
+                        android:ellipsize="end"
                         />
 
                 </LinearLayout>
 
 
                 <TextView
+                    android:id="@+id/good_sn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="商品编号：13733452350"
@@ -104,10 +108,10 @@
             android:layout_width="match_parent"
             android:layout_height="260dp"
             android:layout_below="@+id/divider_view"
-            android:layout_above="@+id/count_rl"
+            android:layout_above="@+id/count_rlcount_rl"
             android:background="@android:color/white"
-            android:paddingLeft="@dimen/margin_10dp"
-            android:paddingRight="@dimen/margin_10dp"
+            android:layout_marginLeft="@dimen/margin_1"
+            android:layout_marginRight="@dimen/margin_1"
             >
 
 
@@ -123,7 +127,7 @@
             />
 
         <RelativeLayout
-            android:id="@+id/count_rl"
+            android:id="@+id/count_rlcount_rl"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:paddingLeft="@dimen/margin_10dp"

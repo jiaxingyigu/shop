@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_big"
             android:textColor="@color/shop_black"
-            android:text="asfasfasdf"
+            android:text=""
             android:ellipsize="end"
             android:lines="1"
             />
@@ -43,10 +43,11 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_normal"
             android:textColor="@color/light_gray"
-            android:text="asfasfasdf"
+            android:text=""
             android:ellipsize="end"
             android:lines="1"
             android:layout_marginTop="5dp"
+            android:visibility="gone"
             />
 
     </LinearLayout>
@@ -139,11 +140,11 @@
             >
 
             <TextView
-                android:id="@+id/follow_num"
+                android:id="@+id/concer_num"
                 style="@style/textViewStyle_big_x"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
+                android:text=""
                 android:ellipsize="end"
                 android:lines="1"
                 />

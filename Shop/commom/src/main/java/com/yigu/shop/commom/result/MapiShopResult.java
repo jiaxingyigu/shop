@@ -14,6 +14,25 @@ public class MapiShopResult extends MapiBaseResult{
     private boolean isSel = false;
     private String shop_goods_total;
     private String shop_goods_new;
+    private String concer_num;
+
+    private String logo;
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
+    public String getConcer_num() {
+        return concer_num;
+    }
+
+    public void setConcer_num(String concer_num) {
+        this.concer_num = concer_num;
+    }
 
     public String getShop_goods_new() {
         return shop_goods_new;

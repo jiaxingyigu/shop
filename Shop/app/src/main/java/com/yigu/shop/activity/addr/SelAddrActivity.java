@@ -105,6 +105,7 @@ public class SelAddrActivity extends BaseActivity {
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent();
                 intent.putExtra("addr",mList.get(position).getAddress());
+                intent.putExtra("item",mList.get(position));
                 setResult(RESULT_OK,intent);
                 finish();
             }
