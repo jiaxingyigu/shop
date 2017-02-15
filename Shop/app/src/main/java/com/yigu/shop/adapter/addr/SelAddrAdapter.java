@@ -56,9 +56,9 @@ public class SelAddrAdapter extends RecyclerView.Adapter<SelAddrAdapter.ViewHold
                     onItemClickListener.onItemClick(view, (Integer) view.getTag());
             }
         });
-        holder.consignee.setText("收货人："+addrResult.getConsignee());
+        holder.consignee.setText("收货人："+addrResult.getName());
         holder.tel.setText(addrResult.getTel());
-        holder.address.setText(addrResult.getProvince()+addrResult.getCity()+addrResult.getDistrict()+addrResult.getAddress());
+        holder.address.setText(addrResult.getProvince_name()+addrResult.getCity_name()+addrResult.getDistrict_name()+addrResult.getAddress());
 
     }
 

@@ -25,6 +25,7 @@ import com.yigu.shop.commom.widget.MainToast;
 import com.yigu.shop.shopinterface.RecyOnItemClickListener;
 import com.yigu.shop.util.ControllerUtil;
 import com.yigu.shop.widget.BestSwipeRefreshLayout;
+import com.yigu.shop.widget.CustomRecyclerView;
 import com.yigu.shop.widget.DividerListItemDecoration;
 
 import java.util.ArrayList;
@@ -77,6 +78,7 @@ public class HomeItemLayout extends RelativeLayout {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
         linearLayoutManager.setOrientation(OrientationHelper.VERTICAL);
         recyclerView.setHasFixedSize(true);
+        recyclerView.setNestedScrollingEnabled(false);
         recyclerView.addItemDecoration(new DividerListItemDecoration(mContext,OrientationHelper.HORIZONTAL, DPUtil.dip2px(10),getResources().getColor(R.color.divider_line)));
         recyclerView.setLayoutManager(linearLayoutManager);
         mAdapter = new ItemTwoAdapter(mContext,mList);
@@ -98,16 +100,17 @@ public class HomeItemLayout extends RelativeLayout {
 //                refreshData();
 //            }
 //        });
+
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
+                DebugLog.i("addOnScrollListener");
                 LinearLayoutManager manager = (LinearLayoutManager) recyclerView.getLayoutManager();
 
                 if ((newState == RecyclerView.SCROLL_STATE_IDLE) && manager.findLastVisibleItemPosition() > 0 && (manager.findLastVisibleItemPosition() == (manager.getItemCount() - 1))) {
                     loadNext();
                 }
-
             }
 
             @Override
@@ -129,13 +132,13 @@ public class HomeItemLayout extends RelativeLayout {
     }
 
     private void initData(){
-//        ((BaseActivity)mContext).showLoading();
+        ((BaseActivity)mContext).showLoading();
         DebugLog.i("HomeItemLayout=>"+mapiResourceResult.getCat_id());
         ItemApi.getGoods((BaseActivity)mContext,mapiResourceResult.getCat_id() ,"","",mapiResourceResult.getType(), pageIndex + "", new RequestPageCallback< List<MapiItemResult>>() {
             @Override
             public void success(Integer count,  List<MapiItemResult> success) {
 //                swipRefreshLayout.setRefreshing(false);
-//                ((BaseActivity)mContext).hideLoading();
+                ((BaseActivity)mContext).hideLoading();
                 counts = count;
                 if(success.isEmpty())
                     return;
@@ -146,30 +149,32 @@ public class HomeItemLayout extends RelativeLayout {
             @Override
             public void error(Integer code, String message) {
 //                swipRefreshLayout.setRefreshing(false);
-//                ((BaseActivity)mContext).hideLoading();
+                ((BaseActivity)mContext).hideLoading();
                 MainToast.showShortToast(message);
             }
         });
     }
 
-    private void loadNext() {
-        if (counts == null || counts==pageIndex) {
-            MainToast.showShortToast("没有更多数据了");
-            return;
+    public void loadNext() {
+        if(null!=mapiResourceResult){
+            if (counts == null || counts<=pageIndex) {
+                MainToast.showShortToast("没有更多数据了");
+                return;
+            }
+
+            pageIndex++;
+            initData();
         }
-        ((BaseActivity)mContext).showLoading();
-        pageIndex++;
-        initData();
+
     }
 
     public void refreshData() {
         if (null != mList) {
             mList.clear();
-            pageIndex = 0;
+            pageIndex = 1;
             mAdapter.notifyDataSetChanged();
             initData();
         }
     }
-
 
 }

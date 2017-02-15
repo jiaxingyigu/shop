@@ -44,6 +44,10 @@ public class ModifyAddrActivity extends BaseActivity {
     EditText mobileTv;
     @Bind(R.id.address_tv)
     EditText addressTv;
+    @Bind(R.id.iv_default)
+    ImageView iv_default;
+
+    private int isDefault = 0;
 
     private CityDialog cityDiolog = null;
     private String province = "";//省
@@ -68,6 +72,7 @@ public class ModifyAddrActivity extends BaseActivity {
             initView();
             if (TextUtils.isEmpty(userSP.getAddr()))
                 load();
+            loadItem();
         }
 
     }
@@ -76,20 +81,6 @@ public class ModifyAddrActivity extends BaseActivity {
         back.setImageResource(R.mipmap.back);
         center.setText("修改地址");
         tvRight.setText("确认");
-
-        consigneeTv.setText(mapiAddrResult.getConsignee());
-        mobileTv.setText(mapiAddrResult.getTel());
-
-        province = mapiAddrResult.getProvince_name();
-        city = mapiAddrResult.getCity_name();
-        county = mapiAddrResult.getDistrict_name();
-
-        provinceID = mapiAddrResult.getProvince();
-        cityID = mapiAddrResult.getCity();
-        countyID = mapiAddrResult.getDistrict();
-
-        areaTv.setText(province + "-" + city + "-" + county);
-        addressTv.setText(mapiAddrResult.getAddress());
 
     }
 
@@ -107,8 +98,45 @@ public class ModifyAddrActivity extends BaseActivity {
         });
     }
 
+    private void loadItem(){
+        showLoading();
+        ItemApi.addressdetail(this, mapiAddrResult.getId(), new RequestCallback<JSONObject>() {
+            @Override
+            public void success(JSONObject success) {
+                hideLoading();
+                consigneeTv.setText(success.getJSONObject("data").getString("name"));
+                mobileTv.setText(success.getJSONObject("data").getString("tel"));
 
-    @OnClick({R.id.back, R.id.tv_right, R.id.area_rl})
+                province = success.getJSONObject("data").getString("province_name");
+                city = success.getJSONObject("data").getString("city_name");
+                county = success.getJSONObject("data").getString("district_name");
+
+                provinceID = success.getJSONObject("data").getString("province");
+                cityID = success.getJSONObject("data").getString("city");
+                countyID = success.getJSONObject("data").getString("district");
+
+                areaTv.setText(province + "-" + city + "-" + county);
+                addressTv.setText(success.getJSONObject("data").getString("address"));
+
+                if(success.getJSONObject("data").getInteger("default_address")==0){
+                    isDefault = 0;
+                    iv_default.setImageResource(R.mipmap.sel_rect_black);
+                }else{
+                    isDefault = 1;
+                    iv_default.setImageResource(R.mipmap.sel_rect_red);
+                }
+            }
+        }, new RequestExceptionCallback() {
+            @Override
+            public void error(Integer code, String message) {
+                hideLoading();
+                MainToast.showShortToast(message);
+            }
+        });
+    }
+
+
+    @OnClick({R.id.back, R.id.tv_right, R.id.area_rl,R.id.iv_default})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back:
@@ -122,6 +150,15 @@ public class ModifyAddrActivity extends BaseActivity {
                     getAddress(userSP.getAddr());
                 else
                     MainToast.showShortToast("暂无地区信息");
+                break;
+            case R.id.iv_default:
+                if(isDefault==0){
+                    isDefault = 1;
+                    iv_default.setImageResource(R.mipmap.sel_rect_red);
+                }else{
+                    isDefault = 0;
+                    iv_default.setImageResource(R.mipmap.sel_rect_black);
+                }
                 break;
         }
     }
@@ -201,8 +238,8 @@ public class ModifyAddrActivity extends BaseActivity {
         }
 
         DebugLog.i("provinceID=>"+provinceID+",cityID=>"+cityID+",countyID=>"+countyID);
-
-        ItemApi.modifyAddress(this,mapiAddrResult.getAddress_id(), consignee, tel, provinceID, cityID, countyID, address, new RequestCallback() {
+        DebugLog.i("isDefault==>"+isDefault);
+        ItemApi.modifyAddress(this,mapiAddrResult.getId(), consignee, tel, provinceID, cityID, countyID, address, isDefault+"",new RequestCallback() {
             @Override
             public void success(Object success) {
                 setResult(RESULT_OK);

@@ -46,7 +46,8 @@ public class ManageAddrActivity extends BaseActivity {
         setContentView(R.layout.activity_manage_addr);
         ButterKnife.bind(this);
         initView();
-        load();
+        initListener();
+
     }
 
     private void initView() {
@@ -60,6 +61,73 @@ public class ManageAddrActivity extends BaseActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         mAdapter = new ManageAddrAdapter(this,mList);
         recyclerView.setAdapter(mAdapter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        refreshData();
+    }
+
+    public void refreshData() {
+        if (null != mList) {
+            mList.clear();
+            mAdapter.notifyDataSetChanged();
+            load();
+        }
+    }
+
+    private void initListener(){
+        mAdapter.setAddrListener(new ManageAddrAdapter.AddrListener() {
+            @Override
+            public void del(final int postion) {
+                ItemApi.delAddresses(ManageAddrActivity.this, mList.get(postion).getId(), new RequestCallback() {
+                    @Override
+                    public void success(Object success) {
+
+//                        mAdapter.notifyItemRangeRemoved(postion,mList.size());
+                        mList.remove(postion);
+                        mAdapter.notifyDataSetChanged();
+                    }
+                }, new RequestExceptionCallback() {
+                    @Override
+                    public void error(Integer code, String message) {
+                        MainToast.showShortToast(message);
+                    }
+                });
+            }
+
+            @Override
+            public void edit(int postion) {
+                Intent intent = new Intent(ManageAddrActivity.this,ModifyAddrActivity.class);
+                intent.putExtra("item",mList.get(postion));
+                startActivityForResult(intent, RequestCode.add_addr);
+            }
+
+            @Override
+            public void defaultAddr(final int postion) {
+                showLoading();
+                ItemApi.setdefault(ManageAddrActivity.this, mList.get(postion).getId(), new RequestCallback() {
+                    @Override
+                    public void success(Object success) {
+                        hideLoading();
+                        for(int pos=0;pos<mList.size();pos++){
+                            if(pos==postion)
+                                mList.get(pos).setDefault_address(1);
+                            else
+                                mList.get(pos).setDefault_address(0);
+                        }
+                        mAdapter.notifyDataSetChanged();
+                    }
+                }, new RequestExceptionCallback() {
+                    @Override
+                    public void error(Integer code, String message) {
+                        hideLoading();
+                        MainToast.showShortToast(message);
+                    }
+                });
+            }
+        });
     }
 
     @OnClick({R.id.back, R.id.add})
@@ -77,9 +145,11 @@ public class ManageAddrActivity extends BaseActivity {
     }
 
     private void load(){
-        ItemApi.getAddresses(this, userSP.getUserBean().getUser_id(), new RequestCallback<List<MapiAddrResult>>() {
+        showLoading();
+        ItemApi.getAddresses(this,new RequestCallback<List<MapiAddrResult>>() {
             @Override
             public void success(List<MapiAddrResult> success) {
+                hideLoading();
                 if(success.isEmpty())
                     return;
                 mList.clear();
@@ -89,6 +159,7 @@ public class ManageAddrActivity extends BaseActivity {
         }, new RequestExceptionCallback() {
             @Override
             public void error(Integer code, String message) {
+                hideLoading();
                 MainToast.showShortToast(message);
             }
         });

@@ -1,6 +1,7 @@
 package com.yigu.shop.view;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,15 +17,18 @@ import com.yigu.shop.R;
 import com.yigu.shop.adapter.product.ShopContentAdapter;
 import com.yigu.shop.base.BaseActivity;
 import com.yigu.shop.commom.api.ItemApi;
+import com.yigu.shop.commom.result.IndexData;
 import com.yigu.shop.commom.result.MapiItemResult;
 import com.yigu.shop.commom.result.MapiShopResult;
 import com.yigu.shop.commom.result.MapiSortResult;
+import com.yigu.shop.commom.util.DPUtil;
 import com.yigu.shop.commom.util.DebugLog;
 import com.yigu.shop.commom.util.RequestExceptionCallback;
 import com.yigu.shop.commom.util.RequestPageCallback;
 import com.yigu.shop.commom.widget.MainToast;
 import com.yigu.shop.shopinterface.TabSelListener;
 import com.yigu.shop.widget.BestSwipeRefreshLayout;
+import com.yigu.shop.widget.DividerGridItemDecoration;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -51,7 +55,7 @@ public class ShopContentLayout extends RelativeLayout {
     private View view;
     private List<MapiItemResult> mList;
     ShopContentAdapter mAdapter;
-    String type = "all";
+    String type = "";
     String seller_id = "";
     private Integer pageIndex = 1;
     private Integer pageSize = 8;
@@ -98,6 +102,7 @@ public class ShopContentLayout extends RelativeLayout {
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 2);
         recyclerView.setLayoutManager(gridLayoutManager);
+                recyclerView.addItemDecoration(new DividerGridItemDecoration(mContext, DPUtil.dip2px(5), Color.parseColor("#eeeeee")));//分割线
         mAdapter = new ShopContentAdapter(mContext,mList);
         recyclerView.setAdapter(mAdapter);
         initListener();
@@ -153,7 +158,7 @@ public class ShopContentLayout extends RelativeLayout {
         if(null!=item){
 
 
-            seller_id = TextUtils.isEmpty(item.getSeller_id())?"0":item.getSeller_id();
+            seller_id = TextUtils.isEmpty(item.getId())?"0":item.getId();
 
            /* Class clz = tablayout.getClass();
             try {
@@ -168,7 +173,7 @@ public class ShopContentLayout extends RelativeLayout {
 
             switch (item.getType()){
                 case 0:
-                    type = "all";
+                    type = "";
                     break;
                 case 1:
                     type = "new";
@@ -183,7 +188,7 @@ public class ShopContentLayout extends RelativeLayout {
             DebugLog.i(seller_id);
             DebugLog.i(type);
             mList.clear();
-            pageIndex = 0;
+            pageIndex = 1;
             mAdapter.notifyDataSetChanged();
             loadData();
         }
@@ -202,16 +207,18 @@ public class ShopContentLayout extends RelativeLayout {
     public void refreshData() {
         if (null != mList) {
             mList.clear();
-            pageIndex = 0;
+            pageIndex = 1;
             mAdapter.notifyDataSetChanged();
             loadData();
         }
     }
 
     private void loadData(){
-        ItemApi.shopDetail((BaseActivity)mContext, pageIndex + "", pageSize + "",seller_id,type, new RequestPageCallback< List<MapiItemResult>>() {
+
+        ((BaseActivity)mContext).showLoading();
+        ItemApi.getGoods((BaseActivity)mContext,"",seller_id,"",type, pageIndex + "", new RequestPageCallback< List<MapiItemResult>>() {
             @Override
-            public void success(Integer count, List<MapiItemResult> success) {
+            public void success(Integer count,  List<MapiItemResult> success) {
 //                swipRefreshLayout.setRefreshing(false);
                 ((BaseActivity)mContext).hideLoading();
                 counts = count;
@@ -219,6 +226,7 @@ public class ShopContentLayout extends RelativeLayout {
                     return;
                 mList.addAll(success);
                 mAdapter.notifyDataSetChanged();
+
             }
         }, new RequestExceptionCallback() {
             @Override
@@ -228,6 +236,8 @@ public class ShopContentLayout extends RelativeLayout {
                 MainToast.showShortToast(message);
             }
         });
+
+
     }
 
 

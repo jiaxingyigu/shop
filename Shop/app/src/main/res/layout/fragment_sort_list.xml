@@ -17,7 +17,6 @@
             android:numColumns="2"
             android:paddingBottom="@dimen/margin_1"
             />
-        />
     </com.yigu.shop.widget.BestSwipeRefreshLayout>
 
 </RelativeLayout>

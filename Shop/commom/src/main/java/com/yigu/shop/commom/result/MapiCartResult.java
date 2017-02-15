@@ -8,18 +8,18 @@ import java.util.List;
  */
 public class MapiCartResult extends MapiBaseResult{
     private String title;
-    private List<MapiItemResult> cart_goods= new ArrayList<>();
+    private List<MapiItemResult> list= new ArrayList<>();
     private boolean isSel;
 
     private String seller_id;
-    private String shop_name;;
+    private String shop_name;
 
-    public List<MapiItemResult> getCart_goods() {
-        return cart_goods;
+    public List<MapiItemResult> getList() {
+        return list;
     }
 
-    public void setCart_goods(List<MapiItemResult> cart_goods) {
-        this.cart_goods = cart_goods;
+    public void setList(List<MapiItemResult> list) {
+        this.list = list;
     }
 
     public String getSeller_id() {
@@ -44,7 +44,7 @@ public class MapiCartResult extends MapiBaseResult{
 
     public MapiCartResult(List<MapiItemResult> items) {
         super();
-        this.cart_goods = items;
+        this.list = items;
     }
 
     public boolean isSel() {

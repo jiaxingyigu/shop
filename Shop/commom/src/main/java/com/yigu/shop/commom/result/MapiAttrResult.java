@@ -9,7 +9,7 @@ public class MapiAttrResult extends MapiBaseResult{
 
     private String attr_id;
     private String attr_name;
-    private List<MapiResourceResult> goods_attr;
+    private List<MapiValueResult> value;
 
     public String getAttr_id() {
         return attr_id;
@@ -27,11 +27,11 @@ public class MapiAttrResult extends MapiBaseResult{
         this.attr_name = attr_name;
     }
 
-    public List<MapiResourceResult> getGoods_attr() {
-        return goods_attr;
+    public List<MapiValueResult> getValue() {
+        return value;
     }
 
-    public void setGoods_attr(List<MapiResourceResult> goods_attr) {
-        this.goods_attr = goods_attr;
+    public void setValue(List<MapiValueResult> value) {
+        this.value = value;
     }
 }

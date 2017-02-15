@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +33,10 @@ import com.yigu.shop.commom.util.RequestExceptionCallback;
 import com.yigu.shop.commom.util.RequestPageCallback;
 import com.yigu.shop.commom.widget.MainToast;
 import com.yigu.shop.widget.ViewPagerScroller;
+import com.yigu.updatelibrary.UpdateFunGo;
+import com.yigu.updatelibrary.config.DownloadKey;
+import com.yigu.updatelibrary.config.UpdateKey;
+import com.yigu.updatelibrary.utils.GetAppInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,18 +56,11 @@ public class IndextFragment extends BaseFrag {
     ViewPager viewpager;
     private HomeFragment homeFragment;
     private IndexDeviceFragment indexDeviceFragment;
-    private IndexToolFragment indexToolFragment;
-    private IndexMaterialFragment indexMaterialFragment;
-    private IndexSubFragment indexSubFragment;
     private List<Fragment> list = new ArrayList<>();
     private List<MapiSortResult> list_title = new ArrayList<>();
     TabObjectFragmentAdapter mAdapter;
 
     private int scrollTime = 270;
-
-    private Integer pageIndex = 1;
-    private Integer pageSize = 6;
-    private Integer counts;
 
     public IndextFragment() {
     }
@@ -119,8 +117,12 @@ public class IndextFragment extends BaseFrag {
                 if(success.isEmpty())
                     return;
                 try{
+
                     List<MapiSortResult> sortList =  JSONArray.parseArray(success.getJSONObject("data").getJSONArray("categorylist").toJSONString(),MapiSortResult.class);
                     List<MapiResourceResult> resourceResults = JSONArray.parseArray(success.getJSONObject("data").getJSONArray("banner").toJSONString(),MapiResourceResult.class);
+                    MapiResourceResult mapiResourceResult = JSONObject.parseObject(success.getJSONObject("data").getJSONObject("version_info").toJSONString(),MapiResourceResult.class);
+                    if(null!=mapiResourceResult&&!TextUtils.isEmpty(mapiResourceResult.getUrl()))
+                        checkVersion(mapiResourceResult);
                     if(null!=sortList){
                         list_title.clear();
                         list_title.addAll(sortList);
@@ -158,6 +160,35 @@ public class IndextFragment extends BaseFrag {
             }
         });
 
+    }
+
+    /**
+     * 检查版本，若不是最新版本则显示弹框
+     *
+     * @param result
+     */
+    private void checkVersion(MapiResourceResult result) {
+        if (!GetAppInfo.getAppVersionCode(getActivity()).equals(result.getVersion())) {
+            DownloadKey.version = result.getVersion();
+            DownloadKey.changeLog = result.getRemark();
+            DownloadKey.apkUrl = result.getUrl();
+            //如果你想通过Dialog来进行下载，可以如下设置
+            UpdateKey.DialogOrNotification= UpdateKey.WITH_DIALOG;
+            DownloadKey.ToShowDownloadView = DownloadKey.showUpdateView;
+            UpdateFunGo.init(getActivity());
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        UpdateFunGo.onResume(getActivity());//现在只能弹框下载
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        UpdateFunGo.onStop();
     }
 
     @Override

@@ -3,6 +3,8 @@ package com.yigu.shop.commom.api;
 import android.app.Activity;
 
 import com.alibaba.fastjson.JSONObject;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.yigu.shop.commom.result.MapiUserResult;
 import com.yigu.shop.commom.util.DebugLog;
 import com.yigu.shop.commom.util.MapiUtil;
@@ -25,7 +27,9 @@ public class UserApi extends BasicApi{
             @Override
             public void success(JSONObject json) {
                 DebugLog.i("json="+json);
-                MapiUserResult result = JSONObject.parseObject(json.getJSONObject("data").toJSONString(),MapiUserResult.class);
+                Gson gson = new Gson();
+                MapiUserResult result = gson.fromJson(json.getJSONObject("data").getJSONObject("user").toJSONString(), new TypeToken<MapiUserResult>(){}.getType());
+//                MapiUserResult result = JSONObject.parseObject(json.getJSONObject("data").getJSONObject("user").toJSONString(),MapiUserResult.class);
                 String token = json.getJSONObject("data").getString("token");
                 String uid = json.getJSONObject("data").getString("uid");
                 result.setToken(token);

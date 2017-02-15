@@ -13,10 +13,14 @@ import com.yigu.shop.R;
 import com.yigu.shop.base.BaseActivity;
 import com.yigu.shop.base.BaseFrag;
 import com.yigu.shop.base.RequestCode;
+import com.yigu.shop.fragment.find.UnCollectionFragment;
 import com.yigu.shop.fragment.index.FindShopFragment;
 import com.yigu.shop.fragment.index.IndextFragment;
 import com.yigu.shop.fragment.index.MyShopFragment;
 import com.yigu.shop.fragment.index.SortTwoFragment;
+import com.yigu.shop.fragment.shop.ShopListFragment;
+import com.yigu.shop.fragment.sort.SortItemsFragment;
+import com.yigu.shop.fragment.sort.SortItemsTwoFragment;
 import com.yigu.shop.util.ControllerUtil;
 
 import butterknife.Bind;
@@ -68,9 +72,9 @@ public class MainActivity extends BaseActivity {
         ivRightTwo.setImageResource(R.mipmap.purcase);
         fragments = new BaseFrag[5];
         fragments[0] = new IndextFragment();
-        fragments[1] = new FindShopFragment();
+        fragments[1] = new ShopListFragment();
         fragments[2] = new IndextFragment();
-        fragments[3] = new SortTwoFragment();
+        fragments[3] = new SortItemsTwoFragment();
         fragments[4] = new MyShopFragment();
 
         buttons = new RadioButton[5];
@@ -84,6 +88,11 @@ public class MainActivity extends BaseActivity {
 
 
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     private void selectTab() {
@@ -134,7 +143,7 @@ public class MainActivity extends BaseActivity {
             case R.id.radio_find:
                 index = 1;
                 selectTab();
-                fragments[index].load();
+//                fragments[index].load();
                 break;
             case R.id.radio_community:
                 buttons[index].setChecked(true);
@@ -143,7 +152,7 @@ public class MainActivity extends BaseActivity {
             case R.id.radio_sort:
                 index = 3;
                 selectTab();
-                fragments[index].load();
+//                fragments[index].load();
                 break;
             case R.id.radio_person:
                 index = 4;
@@ -154,7 +163,7 @@ public class MainActivity extends BaseActivity {
                 if (!userSP.checkLogin()) {
                     ControllerUtil.go2Login();
                 } else {
-                     ControllerUtil.go2Purcase();
+                     ControllerUtil.go2PurcaseList();
                 }
                 break;
             case R.id.iv_right:

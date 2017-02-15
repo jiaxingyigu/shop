@@ -1,5 +1,6 @@
 package com.yigu.shop.view;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
@@ -11,14 +12,20 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yigu.shop.R;
 import com.yigu.shop.adapter.SelSizeAdapter;
+import com.yigu.shop.base.BaseActivity;
+import com.yigu.shop.commom.api.ItemApi;
 import com.yigu.shop.commom.result.MapiAttrResult;
 import com.yigu.shop.commom.result.MapiItemResult;
 import com.yigu.shop.commom.result.MapiResourceResult;
 import com.yigu.shop.commom.result.MapiShopResult;
 import com.yigu.shop.commom.util.DebugLog;
+import com.yigu.shop.commom.util.RequestCallback;
+import com.yigu.shop.commom.util.RequestExceptionCallback;
+import com.yigu.shop.commom.widget.MainToast;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -34,6 +41,7 @@ import butterknife.OnClick;
 public class SelSizeLayout extends RelativeLayout {
     private Context mContext;
     private View view;
+    private BaseActivity activity;
 
     @Bind(R.id.image)
     SimpleDraweeView image;
@@ -60,18 +68,21 @@ public class SelSizeLayout extends RelativeLayout {
     public SelSizeLayout(Context context) {
         super(context);
         mContext = context;
+        activity = (BaseActivity) context;
         initView();
     }
 
     public SelSizeLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
+        activity = (BaseActivity) context;
         initView();
     }
 
     public SelSizeLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
+        activity = (BaseActivity) context;
         initView();
     }
 
@@ -103,10 +114,10 @@ public class SelSizeLayout extends RelativeLayout {
 
                 }
 
-                if(null!=prices){
+                /*if(null!=prices){
                     for(String str : prices)
                         pricesFloat += Double.parseDouble(TextUtils.isEmpty(str)?"0":str);
-                }
+                }*/
 
                 if(null!=attrIdStrs){
                     goods_attr_id = "";
@@ -122,9 +133,7 @@ public class SelSizeLayout extends RelativeLayout {
                 DebugLog.i("pricesFloat:"+pricesFloat);
                 DebugLog.i("goods_attr_id:"+goods_attr_id);
 
-
-
-                try{
+               /* try{
                     if(null!=itemResult){
                         Double priceff = Double.parseDouble(TextUtils.isEmpty(itemResult.getShop_price())?"0":itemResult.getShop_price());
                         priceff += pricesFloat;
@@ -133,12 +142,39 @@ public class SelSizeLayout extends RelativeLayout {
                     }
                 }catch (Exception e){
                     e.printStackTrace();
-                }
+                }*/
+                notifyPrice(goods_attr_id,purcaseSheetLayout.getNum()+"");
 
             }
         });
 
+        purcaseSheetLayout.setNumListener(new PurcaseSheetLayout.NumInterface() {
+            @Override
+            public void modify(View view, int num, String price) {
+                notifyPrice(goods_attr_id,num+"");
+            }
+        });
+
     }
+
+    private void notifyPrice(String goods_attr_id,String num){
+        activity.showLoading();
+        ItemApi.price(activity, itemResult.getGoods_id(),goods_attr_id, num, new RequestCallback<JSONObject>() {
+            @Override
+            public void success(JSONObject success) {
+                activity.hideLoading();
+                String priceStr = success.getJSONObject("data").getString("price");
+                price.setText(priceStr);
+            }
+        }, new RequestExceptionCallback() {
+            @Override
+            public void error(Integer code, String message) {
+                activity.hideLoading();
+                MainToast.showShortToast(message);
+            }
+        });
+    }
+
 
 
     public void load(List<MapiAttrResult> attrs, MapiItemResult itemResult) {

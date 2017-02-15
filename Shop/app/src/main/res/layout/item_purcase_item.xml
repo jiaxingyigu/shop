@@ -13,6 +13,7 @@
         android:src="@mipmap/circle_white"
         android:paddingLeft="@dimen/margin_10dp"
         android:paddingRight="@dimen/margin_10dp"
+        android:visibility="invisible"
         />
 
     <RelativeLayout
@@ -54,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:maxLines="2"
                 android:ellipsize="end"
-                android:text="排期仔细更强！阿飞阿三发射点发士大夫士大夫大师傅手动阀手动阀手动阀"
+                android:text=""
                 android:lines="2"
                 android:gravity="center_vertical"
                 android:lineSpacingMultiplier="1.2"
@@ -99,6 +100,7 @@
                         android:textColor="@color/shop_red"
                         android:textStyle="bold"
                         android:text="￥"
+                        android:visibility="gone"
                         />
 
                     <TextView
@@ -110,7 +112,7 @@
                         android:textSize="@dimen/text_big_x"
                         android:textColor="@color/shop_red"
                         android:textStyle="bold"
-                        android:text="200"
+                        android:text=""
                         />
 
                 </LinearLayout>

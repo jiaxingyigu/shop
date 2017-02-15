@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="226dp"
+    android:layout_height="246dp"
     android:background="@android:color/white"
     android:id="@+id/item_root"
     >
@@ -10,7 +10,7 @@
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/image"
         android:layout_width="400dp"
-        android:layout_height="160dp"
+        android:layout_height="180dp"
         fresco:fadeDuration="2000"
         fresco:placeholderImage="@drawable/carousel_default"
         fresco:placeholderImageScaleType="fitCenter"
@@ -18,6 +18,7 @@
         fresco:progressBarImage="@mipmap/progress"
         fresco:progressBarImageScaleType="centerInside"
         fresco:retryImageScaleType="fitXY"
+        fresco:actualImageScaleType="fitXY"
         android:layout_gravity="center"
         />
 

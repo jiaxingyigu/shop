@@ -76,12 +76,12 @@ public class PurcaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             list.add(new IndexData(count++,"divider", new Object()));
             for (MapiCartResult ware : mList) {
                 list.add(new IndexData(count++,"head",ware));
-                for (int i=0;i<ware.getCart_goods().size();i++) {
-                    if(i == ware.getCart_goods().size()-1){
-                        ware.getCart_goods().get(i).setLast(true);
+                for (int i=0;i<ware.getList().size();i++) {
+                    if(i == ware.getList().size()-1){
+                        ware.getList().get(i).setLast(true);
                     }else
-                        ware.getCart_goods().get(i).setLast(false);
-                    list.add(new IndexData(count++,"item", ware.getCart_goods().get(i)));
+                        ware.getList().get(i).setLast(false);
+                    list.add(new IndexData(count++,"item", ware.getList().get(i)));
 
                 }
                 list.add(new IndexData(count++,"divider", new Object()));
@@ -182,7 +182,7 @@ public class PurcaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         MapiCartResult ware = (MapiCartResult) list.get(position).getData();
         holder.name.setText(TextUtils.isEmpty(ware.getShop_name())?"":ware.getShop_name());
         boolean isAll = true;
-        for (MapiItemResult item : ware.getCart_goods()) {
+        for (MapiItemResult item : ware.getList()) {
             if (!item.isSel()) {
                 isAll = false;
                 break;
@@ -209,7 +209,7 @@ public class PurcaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 //                        holder.rootSel.setImageResource(R.mipmap.circle_white);
 //                    }
                 ware.setSel(!ware.isSel());
-                for (MapiItemResult item : ware.getCart_goods()) {
+                for (MapiItemResult item : ware.getList()) {
                     item.setSel(ware.isSel());
                 }
                 if(null!=listener){

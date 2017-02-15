@@ -12,24 +12,24 @@ import java.util.List;
 public class ProvinceModel implements Serializable{
 	private String region_id;
 	private String region_name;
-	private List<CityModel> _child = new ArrayList<CityModel>();
+	private List<CityModel> city_list = new ArrayList<CityModel>();
 	
 	public ProvinceModel() {
 		super();
 	}
 
-	public ProvinceModel(String region_name, List<CityModel> _child) {
+	public ProvinceModel(String region_name, List<CityModel> city_list) {
 		super();
 		this.region_name = region_name;
-		this._child = _child;
+		this.city_list = city_list;
 	}
 
-	public List<CityModel> get_child() {
-		return _child;
+	public List<CityModel> getCity_list() {
+		return city_list;
 	}
 
-	public void set_child(List<CityModel> _child) {
-		this._child = _child;
+	public void setCity_list(List<CityModel> city_list) {
+		this.city_list = city_list;
 	}
 
 	public String getRegion_id() {
@@ -50,7 +50,7 @@ public class ProvinceModel implements Serializable{
 
 	@Override
 	public String toString() {
-		return "ProvinceModel [region_name=" + region_name + ", cityList=" + _child + "]";
+		return "ProvinceModel [region_name=" + region_name + ", cityList=" + city_list + "]";
 	}
 	
 }

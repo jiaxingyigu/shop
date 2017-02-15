@@ -6,11 +6,12 @@
     android:layout_width="375dp"
     android:layout_height="180dp"
     android:layout_gravity="center_vertical"
-    android:scaleType="fitXY"
+    fresco:actualImageScaleType="fitXY"
     fresco:fadeDuration="2000"
     fresco:placeholderImage="@drawable/carousel_default"
     fresco:placeholderImageScaleType="fitCenter"
     fresco:progressBarAutoRotateInterval="2000"
     fresco:progressBarImage="@mipmap/progress"
     fresco:progressBarImageScaleType="centerInside"
-    fresco:retryImageScaleType="centerCrop" />
+    fresco:retryImageScaleType="fitCenter"
+    />

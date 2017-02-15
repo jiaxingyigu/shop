@@ -32,7 +32,6 @@
             >
 
 
-
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -55,6 +54,7 @@
                         android:textSize="@dimen/text_small"
                         android:text="￥"
                         android:textColor="@color/shop_red"
+                        android:visibility="gone"
                         />
 
                     <TextView

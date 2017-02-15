@@ -17,6 +17,16 @@ public class MapiUserResult extends MapiBaseResult {
     private String token;
     private String uid;
 
+    private MapiOrderResult order_num;
+
+    public MapiOrderResult getOrder_num() {
+        return order_num;
+    }
+
+    public void setOrder_num(MapiOrderResult order_num) {
+        this.order_num = order_num;
+    }
+
     public String getToken() {
         return token;
     }

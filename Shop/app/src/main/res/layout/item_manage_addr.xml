@@ -90,13 +90,14 @@
         >
 
             <LinearLayout
+                android:id="@+id/addr_default_ll"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:visibility="invisible"
                 >
 
                 <ImageView
+                    android:id="@+id/img_addr_default"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/sel_rect_black"

@@ -17,6 +17,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.yigu.shop.R;
 import com.yigu.shop.base.BaseActivity;
 import com.yigu.shop.commom.api.ItemApi;
+import com.yigu.shop.commom.util.DebugLog;
 import com.yigu.shop.commom.util.RequestCallback;
 import com.yigu.shop.commom.util.RequestExceptionCallback;
 import com.yigu.shop.commom.widget.MainToast;
@@ -42,6 +43,10 @@ public class AddAddrActivity extends BaseActivity {
     EditText mobileTv;
     @Bind(R.id.address_tv)
     EditText addressTv;
+    @Bind(R.id.iv_default)
+    ImageView iv_default;
+
+    private int isDefault = 0;
 
     private CityDialog cityDiolog = null;
     private String province = "";//省
@@ -69,21 +74,24 @@ public class AddAddrActivity extends BaseActivity {
     }
 
     private void load() {
+        showLoading();
         ItemApi.getArea(this, new RequestCallback<JSONObject>() {
             @Override
             public void success(JSONObject success) {
+                hideLoading();
                 userSP.setAddr(success.toJSONString());
             }
         }, new RequestExceptionCallback() {
             @Override
             public void error(Integer code, String message) {
+                hideLoading();
                 MainToast.showShortToast(message);
             }
         });
     }
 
 
-    @OnClick({R.id.back, R.id.tv_right, R.id.area_rl})
+    @OnClick({R.id.back, R.id.tv_right, R.id.area_rl,R.id.iv_default})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back:
@@ -97,6 +105,15 @@ public class AddAddrActivity extends BaseActivity {
                     getAddress(userSP.getAddr());
                 else
                     MainToast.showShortToast("暂无地区信息");
+                break;
+            case R.id.iv_default:
+                if(isDefault==0){
+                    isDefault = 1;
+                    iv_default.setImageResource(R.mipmap.sel_rect_red);
+                }else{
+                    isDefault = 0;
+                    iv_default.setImageResource(R.mipmap.sel_rect_black);
+                }
                 break;
         }
     }
@@ -174,8 +191,7 @@ public class AddAddrActivity extends BaseActivity {
             MainToast.showShortToast("请输入详细地址");
             return;
         }
-
-        ItemApi.addAddress(this, userSP.getUserBean().getUser_id(), consignee, tel, provinceID, cityID, countyID, address, new RequestCallback() {
+        ItemApi.addAddress(this,consignee, tel, provinceID, cityID, countyID, address,isDefault+"", new RequestCallback() {
             @Override
             public void success(Object success) {
                 setResult(RESULT_OK);

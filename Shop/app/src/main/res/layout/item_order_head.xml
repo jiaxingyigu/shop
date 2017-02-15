@@ -6,7 +6,7 @@
     android:paddingRight="@dimen/margin_10dp"
     android:gravity="center_vertical"
     android:background="@android:color/white"
-
+    android:id="@+id/item_root"
     >
 
     <LinearLayout
@@ -42,6 +42,7 @@
         android:textSize="@dimen/text_normal"
         android:textColor="@color/shop_red"
         android:layout_centerVertical="true"
+        android:visibility="gone"
         />
 
     <View

@@ -30,6 +30,35 @@ public class MapiResourceResult implements Serializable{
     private String cat_id;
     private String type;
 
+    private boolean isBottom;
+
+    private String remark;
+    private int version;
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
+    }
+
+    public boolean isBottom() {
+        return isBottom;
+    }
+
+    public void setBottom(boolean bottom) {
+        isBottom = bottom;
+    }
+
     public String getCat_id() {
         return cat_id;
     }

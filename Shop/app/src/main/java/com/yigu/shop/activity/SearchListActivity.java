@@ -13,8 +13,12 @@ import android.widget.TextView;
 import com.yigu.shop.R;
 import com.yigu.shop.adapter.ItemTwoAdapter;
 import com.yigu.shop.base.BaseActivity;
+import com.yigu.shop.commom.api.ItemApi;
 import com.yigu.shop.commom.result.MapiItemResult;
 import com.yigu.shop.commom.util.DPUtil;
+import com.yigu.shop.commom.util.DebugLog;
+import com.yigu.shop.commom.util.RequestExceptionCallback;
+import com.yigu.shop.commom.util.RequestPageCallback;
 import com.yigu.shop.commom.widget.MainToast;
 import com.yigu.shop.shopinterface.RecyOnItemClickListener;
 import com.yigu.shop.util.ControllerUtil;
@@ -42,6 +46,7 @@ public class SearchListActivity extends BaseActivity {
     BestSwipeRefreshLayout swipRefreshLayout;
 
     private String search = "";
+    private String sort = "goods_id";
 
     ItemTwoAdapter mAdapter;
     List<MapiItemResult> mList = new ArrayList<>();
@@ -119,7 +124,22 @@ public class SearchListActivity extends BaseActivity {
         tablayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                MainToast.showShortToast(tab.getPosition()+"===pos");
+                switch (tab.getPosition()){
+                    case 0:
+                        sort = "goods_id";
+                        break;
+                    case 1:
+                        sort = "sales_volume";
+                        break;
+                    case 2:
+                        sort = "shop_price";
+                        break;
+                    case 3:
+                        sort = "comments_number";
+                        break;
+
+                }
+                refreshData();
             }
 
             @Override
@@ -136,15 +156,34 @@ public class SearchListActivity extends BaseActivity {
     }
 
     public void load() {
-
+        showLoading();
+        ItemApi.search(this, search, pageIndex + "",sort,"DESC", new RequestPageCallback<List<MapiItemResult>>() {
+            @Override
+            public void success(Integer count, List<MapiItemResult> success) {
+                swipRefreshLayout.setRefreshing(false);
+                hideLoading();
+                counts = count;
+                if(success.isEmpty())
+                    return;
+                mList.addAll(success);
+                mAdapter.notifyDataSetChanged();
+            }
+        }, new RequestExceptionCallback() {
+            @Override
+            public void error(Integer code, String message) {
+                swipRefreshLayout.setRefreshing(false);
+                hideLoading();
+                MainToast.showShortToast(message);
+            }
+        });
     }
 
     private void loadNext() {
+
         if (counts == null || counts == pageIndex) {
             MainToast.showShortToast("没有更多数据了");
             return;
         }
-        showLoading();
         pageIndex++;
         load();
     }
@@ -152,7 +191,7 @@ public class SearchListActivity extends BaseActivity {
     public void refreshData() {
         if (null != mList) {
             mList.clear();
-            pageIndex = 0;
+            pageIndex = 1;
             mAdapter.notifyDataSetChanged();
             load();
         }

@@ -12,16 +12,16 @@ import java.util.List;
 public class CityModel implements Serializable {
 	private String region_id;
 	private String region_name;
-	private List<DistrictModel> _child = new ArrayList<DistrictModel>();
+	private List<DistrictModel> area_list = new ArrayList<DistrictModel>();
 	
 	public CityModel() {
 		super();
 	}
 
-	public CityModel(String region_name, List<DistrictModel> _child) {
+	public CityModel(String region_name, List<DistrictModel> area_list) {
 		super();
 		this.region_name = region_name;
-		this._child = _child;
+		this.area_list = area_list;
 	}
 
 	public String getRegion_name() {
@@ -40,17 +40,17 @@ public class CityModel implements Serializable {
 		this.region_id = region_id;
 	}
 
-	public List<DistrictModel> get_child() {
-		return _child;
+	public List<DistrictModel> getArea_list() {
+		return area_list;
 	}
 
-	public void set_child(List<DistrictModel> _child) {
-		this._child = _child;
+	public void setArea_list(List<DistrictModel> area_list) {
+		this.area_list = area_list;
 	}
 
 	@Override
 	public String toString() {
-		return "CityModel [region_name=" + region_name + ", districtList=" + _child
+		return "CityModel [region_name=" + region_name + ", districtList=" + area_list
 				+ "]";
 	}
 	

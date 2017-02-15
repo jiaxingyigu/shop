@@ -49,19 +49,20 @@ public class LoginActivity extends BaseActivity {
                     return;
                 }
 
-                if(!StringUtil.isMobile(phoneStr)){
+               /* if(!StringUtil.isMobile(phoneStr)){
                     MainToast.showShortToast("手机号格式不正确！");
                     return;
-                }
+                }*/
 
                 if(TextUtils.isEmpty(psdStr)){
                     MainToast.showShortToast("请输入密码");
                     return;
                 }
-
+                showLoading();
                 UserApi.login(this, phoneStr, psdStr, new RequestCallback<MapiUserResult>() {
                     @Override
                     public void success(MapiUserResult success) {
+                        hideLoading();
                         MainToast.showShortToast("登录成功");
                         userSP.saveUserBean(success);
 //                        ControllerUtil.go2Main();
@@ -70,6 +71,7 @@ public class LoginActivity extends BaseActivity {
                 }, new RequestExceptionCallback() {
                     @Override
                     public void error(Integer code, String message) {
+                        hideLoading();
                         MainToast.showShortToast(message);
                     }
                 });

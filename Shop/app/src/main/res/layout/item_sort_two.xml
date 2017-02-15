@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/selector_pressed_sort"
+    android:textColor="@drawable/selector_sort_text"
+    android:text=""
+    android:gravity="center"
+    android:id="@+id/item_root"
+    android:maxLines="2"
+    android:ellipsize="end"
+    android:clickable="true"
+    android:padding="@dimen/margin_10dp"
+    >
+
+</TextView>

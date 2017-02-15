@@ -41,7 +41,6 @@ public class ItemDetailFragment extends BaseFrag {
         View view = inflater.inflate(R.layout.fragment_item_detail, container, false);
         ButterKnife.bind(this, view);
         initView();
-        load();
         return view;
     }
 
@@ -54,6 +53,12 @@ public class ItemDetailFragment extends BaseFrag {
         webSetting.setAppCacheEnabled(true);
         webSetting.setBuiltInZoomControls(false);
         webview.addJavascriptInterface(new WebViewUtil(getActivity(), webview), "app");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        load();
     }
 
     public void load(){

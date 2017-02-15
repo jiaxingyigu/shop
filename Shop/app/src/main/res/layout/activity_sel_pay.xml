@@ -20,9 +20,10 @@
         >
 
         <TextView
+            android:id="@+id/price_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="订单总额：￥25.00"
+            android:text=""
             android:textColor="@color/shop_red"
             android:textSize="@dimen/text_big_x"
             />
@@ -30,6 +31,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/weixin_ll"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:orientation="horizontal"
@@ -73,6 +75,7 @@
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/weixin_sel"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@mipmap/circle_white"
@@ -89,6 +92,7 @@
         />
 
     <LinearLayout
+        android:id="@+id/zhifubao_ll"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:orientation="horizontal"
@@ -132,6 +136,7 @@
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/zhifubao_sel"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@mipmap/circle_white"
@@ -142,6 +147,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/upload"
         android:layout_width="match_parent"
         android:layout_height="@dimen/text_height_50dp"
         android:background="@drawable/selector_pressed_round_4_color_red"

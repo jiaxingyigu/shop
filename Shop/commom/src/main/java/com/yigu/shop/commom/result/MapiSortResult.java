@@ -1,14 +1,33 @@
 package com.yigu.shop.commom.result;
 
+import java.util.List;
+
 /**
  * Created by brain on 2016/9/26.
  */
 public class MapiSortResult extends MapiBaseResult{
-    private String id;
-    private String name;
     private String brand_id;
     private String brand_name;
     private String brand_logo;
+    private boolean isChecked;
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
+    }
+
+    private List<MapiSortChildResult> children;
+
+    public List<MapiSortChildResult> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<MapiSortChildResult> children) {
+        this.children = children;
+    }
 
     public String getBrand_logo() {
         return brand_logo;

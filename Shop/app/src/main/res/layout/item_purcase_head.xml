@@ -12,6 +12,7 @@
         android:src="@mipmap/circle_white"
         android:paddingLeft="@dimen/margin_10dp"
         android:paddingRight="@dimen/margin_10dp"
+        android:visibility="invisible"
         />
 
     <RelativeLayout
@@ -29,6 +30,8 @@
             android:layout_height="wrap_content"
             android:text="格林汽车饰品专卖店"
             android:layout_centerVertical="true"
+            android:maxLines="1"
+            android:ellipsize="end"
             />
 
         <ImageView
@@ -38,6 +41,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/margin_10dp"
             android:layout_alignParentRight="true"
+            android:visibility="gone"
             />
 
         <View

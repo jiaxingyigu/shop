@@ -3,6 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="@dimen/margin_10dp"
     android:background="#e5e5e5"
+    android:id="@+id/divider_view"
     >
 
 </LinearLayout>

@@ -42,8 +42,10 @@ import com.yigu.shop.commom.result.MapiResourceResult;
 import com.yigu.shop.commom.result.MapiShopResult;
 import com.yigu.shop.commom.result.ProvinceModel;
 import com.yigu.shop.commom.util.DPUtil;
+import com.yigu.shop.commom.util.DebugLog;
 import com.yigu.shop.commom.util.RequestCallback;
 import com.yigu.shop.commom.util.RequestExceptionCallback;
+import com.yigu.shop.commom.util.StringUtil;
 import com.yigu.shop.commom.widget.MainToast;
 import com.yigu.shop.util.AnimationUtil;
 import com.yigu.shop.util.ControllerUtil;
@@ -91,6 +93,12 @@ public class ItemInfoFragment extends BaseFrag {
     private String goods_attr="";
     private String goods_attr_id="";
 
+    private boolean isNeedAttr = true;
+
+    public boolean isNeedAttr() {
+        return isNeedAttr;
+    }
+
     Gson gson = new Gson();
 
     public ItemInfoFragment() {
@@ -111,10 +119,10 @@ public class ItemInfoFragment extends BaseFrag {
     private void initView() {
         try {
             if (null != itemResult) {
-                goodsDesc.setText(TextUtils.isEmpty(itemResult.getGoods_brief()) ? "" : itemResult.getGoods_brief());
-                marketPrice.setText(TextUtils.isEmpty(itemResult.getMarket_price()) ? "原价：0" : "原价：" + itemResult.getMarket_price());
-                shopPrice.setText(TextUtils.isEmpty(itemResult.getShop_price()) ? "0" : itemResult.getShop_price());
-                marketPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+//                goodsDesc.setText(TextUtils.isEmpty(itemResult.getGoods_name()) ? "" : itemResult.getGoods_name());
+//                marketPrice.setText(TextUtils.isEmpty(itemResult.getMarket_price()) ? "原价：0" : "原价：" + itemResult.getMarket_price());
+//                shopPrice.setText(TextUtils.isEmpty(itemResult.getShop_price()) ? "0" : itemResult.getShop_price());
+//                marketPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
 
             }
         } catch (Exception e) {
@@ -142,24 +150,42 @@ public class ItemInfoFragment extends BaseFrag {
 
     public void load() {
         if(null!=itemResult){
-            ItemApi.GoodDetail(getActivity(), itemResult.getGoods_id(), itemResult.getSeller_id(), new RequestCallback<JSONObject>() {
+            ItemApi.GoodDetail(getActivity(), itemResult.getGoods_id(),new RequestCallback<JSONObject>() {
                 @Override
                 public void success(JSONObject success) {
-                    List<MapiResourceResult> gallery = JSONArray.parseArray(success.getJSONObject("data").getJSONArray("gallery").toJSONString(),MapiResourceResult.class);
+
+                    String goods_name = success.getJSONObject("data").getString("goods_name");
+                    String market_price = success.getJSONObject("data").getString("market_price");
+                    String shop_price = success.getJSONObject("data").getString("shop_price");
+
+                    goodsDesc.setText(TextUtils.isEmpty(goods_name) ? "" : goods_name);
+                    marketPrice.setText(TextUtils.isEmpty(market_price) ? "原价：￥0" : "原价：" + market_price);
+                    shopPrice.setText(TextUtils.isEmpty(shop_price) ? "￥0" : shop_price);
+                    marketPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+
+                    List<MapiResourceResult> gallery = JSONArray.parseArray(success.getJSONObject("data").getJSONArray("pictures").toJSONString(),MapiResourceResult.class);
                     if(null!=gallery)
                         initViewPager(gallery);
-
-                    MapiShopResult shopResult = JSONArray.parseObject(success.getJSONObject("data").getJSONObject("shop").toJSONString(),MapiShopResult.class);
-                    String shop_logo = success.getJSONObject("data").getJSONObject("shop").getJSONObject("shop_info").getString("shop_logo");
-                    String shop_name = success.getJSONObject("data").getJSONObject("shop").getJSONObject("shop_info").getString("shop_name");
-                    shopResult.setShop_logo(TextUtils.isEmpty(shop_logo)?"":shop_logo);
-                    shopResult.setShop_name(TextUtils.isEmpty(shop_name)?"":shop_name);
-                    if(null!=shopResult)
+                    MapiShopResult shopResult = JSONArray.parseObject(success.getJSONObject("data").getJSONObject("seller_info").toJSONString(),MapiShopResult.class);
+                    if(null!=shopResult&& !StringUtil.isEmpty(shopResult.getId()))
                         itemShopLayout.load(shopResult);
+                    else
+                        itemShopLayout.setVisibility(View.GONE);
 
-                    List<MapiAttrResult> attrs = gson.fromJson(success.getJSONObject("data").getJSONArray("attr").toJSONString(), new TypeToken<List<MapiAttrResult>>(){}.getType());
-                    if(null!=shopResult)
-                        selSizeLayout.load(attrs,itemResult);
+                    List<MapiAttrResult> attrs = gson.fromJson(success.getJSONObject("data").getJSONArray("specification").toJSONString(), new TypeToken<List<MapiAttrResult>>(){}.getType());
+                    if(null!=attrs&&!attrs.isEmpty()) {
+                        isNeedAttr = true;
+
+                    }else{
+                        isNeedAttr = false;
+                    }
+
+                    selSizeLayout.load(attrs, itemResult);
+
+                    int collect = success.getJSONObject("data").getInteger("collected");
+                    if(null!=collectListener)
+                        collectListener.getCollcetStatus(collect);
+
 
                 }
             }, new RequestExceptionCallback() {
@@ -178,7 +204,7 @@ public class ItemInfoFragment extends BaseFrag {
             for (int i = 0; i < gallery.size(); i++) {
                 SimpleDraweeView view = (SimpleDraweeView) LayoutInflater.from(getActivity()).inflate(R.layout.layout_draweeview,null);
                 //创建将要下载的图片的URI
-                Uri imageUri = Uri.parse(gallery.get(i).getImg_original());
+                Uri imageUri = Uri.parse(gallery.get(i).getUrl());
                 ImageRequest request = ImageRequestBuilder.newBuilderWithSource(imageUri)
                         .setResizeOptions(new ResizeOptions(DPUtil.dip2px(375), DPUtil.dip2px(375)))
                         .build();
@@ -323,4 +349,15 @@ public class ItemInfoFragment extends BaseFrag {
         goods_attr = selSizeLayout.getGoods_attr();
         return goods_attr;
     }
+
+    CollectListener collectListener;
+
+    public interface CollectListener{
+        void getCollcetStatus(int status);
+    }
+
+    public void setCollectListener(CollectListener collectListener){
+        this.collectListener = collectListener;
+    }
+
 }

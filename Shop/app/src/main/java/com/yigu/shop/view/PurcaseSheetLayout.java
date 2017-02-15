@@ -38,6 +38,12 @@ public class PurcaseSheetLayout extends RelativeLayout {
     String rec_id;
     BaseActivity activity;
 
+    private boolean canDo = true;
+
+    public void setCanDo(boolean canDo) {
+        this.canDo = canDo;
+    }
+
     public PurcaseSheetLayout(Context context) {
         super(context);
         mContext = context;
@@ -73,8 +79,11 @@ public class PurcaseSheetLayout extends RelativeLayout {
             num = 1;
             count.setText(num+"");
         }else{
+            count.setText(--num+"");
+            if(null!=numInterface)
+                numInterface.modify(view,num,"0");
 
-            ItemApi.setCartGoodsNum(activity, rec_id,  "-1", new RequestCallback<JSONObject>() {
+            /*ItemApi.setCartGoodsNum(activity, rec_id,  "-1", new RequestCallback<JSONObject>() {
                 @Override
                 public void success(JSONObject success) {
                     count.setText(--num+"");
@@ -89,15 +98,17 @@ public class PurcaseSheetLayout extends RelativeLayout {
                 public void error(Integer code, String message) {
                     MainToast.showShortToast(message);
                 }
-            });
+            });*/
 
         }
 
     }
 
     private void add() {
-
-        ItemApi.setCartGoodsNum(activity, rec_id,  "+1", new RequestCallback<JSONObject>() {
+        count.setText(++num+"");
+        if(null!=numInterface)
+            numInterface.modify(view,num,"0");
+        /*ItemApi.setCartGoodsNum(activity, rec_id,  "+1", new RequestCallback<JSONObject>() {
             @Override
             public void success(JSONObject success) {
                 count.setText(++num+"");
@@ -111,7 +122,7 @@ public class PurcaseSheetLayout extends RelativeLayout {
             public void error(Integer code, String message) {
                 MainToast.showShortToast(message);
             }
-        });
+        });*/
 
 
     }
@@ -137,12 +148,21 @@ public class PurcaseSheetLayout extends RelativeLayout {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.cut:
-                cut();
+                if(canDo){
+                    cut();
+                }else{
+                    MainToast.showShortToast("编辑状态，不可修改");
+                }
+
                 break;
             case R.id.count:
                 break;
             case R.id.add:
-                add();
+                if(canDo){
+                    add();
+                }else{
+                    MainToast.showShortToast("编辑状态，不可修改");
+                }
                 break;
         }
     }

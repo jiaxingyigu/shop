@@ -6,105 +6,315 @@
         layout="@layout/lay_header"
         />
 
-    <LinearLayout
-        android:orientation="vertical" android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:id="@+id/addr_root"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_below="@+id/lay_header"
-        android:clickable="true"
+        android:layout_above="@+id/deel_ll"
         >
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <RelativeLayout
+                android:id="@+id/addr_root_ll"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 >
+
+                <LinearLayout
+                    android:orientation="vertical" android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:id="@+id/addr_root"
+                    android:clickable="true"
+                    android:visibility="gone"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="14dp"
+                            android:layout_marginLeft="@dimen/margin_10dp"
+                            android:layout_marginRight="@dimen/margin_10dp"
+                            >
+
+                            <TextView
+                                android:id="@+id/consignee"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="13sp"
+                                android:textColor="@color/shop_black"
+                                android:text=""
+                                android:layout_marginLeft="12dp"
+                                />
+
+                            <TextView
+                                android:id="@+id/tel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textSize="13sp"
+                                android:textColor="@color/shop_black"
+                                android:layout_alignParentRight="true"
+                                />
+
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginLeft="@dimen/margin_10dp"
+                            android:layout_marginRight="@dimen/margin_10dp"
+                            android:orientation="horizontal"
+                            android:paddingBottom="16dp"
+                            >
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@mipmap/manage_addr"
+                                />
+
+                            <TextView
+                                android:id="@+id/address"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textSize="13sp"
+                                android:textColor="@color/shop_black"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginLeft="7dp"
+                                android:lineSpacingMultiplier="1.5"
+                                android:inputType="textMultiLine"
+                                android:layout_marginTop="2dp"
+                                />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@mipmap/right_gray"
+                                android:layout_gravity="right|center_vertical"
+                                android:layout_marginLeft="@dimen/margin_1"
+                                />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
-                    android:layout_marginLeft="@dimen/margin_10dp"
-                    android:layout_marginRight="@dimen/margin_10dp"
-                    >
-
-                    <TextView
-                        android:id="@+id/consignee"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="13sp"
-                        android:textColor="@color/shop_black"
-                        android:text=""
-                        android:layout_marginLeft="12dp"
-                        />
-
-                    <TextView
-                        android:id="@+id/tel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textSize="13sp"
-                        android:textColor="@color/shop_black"
-                        android:layout_alignParentRight="true"
-                        />
-
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginLeft="@dimen/margin_10dp"
-                    android:layout_marginRight="@dimen/margin_10dp"
+                    android:layout_height="60dp"
+                    android:background="@android:color/white"
+                    android:id="@+id/no_addr_root"
+                    android:clickable="true"
                     android:orientation="horizontal"
-                    android:paddingBottom="16dp"
                     >
 
-                    <ImageView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/manage_addr"
-                        />
+                        android:layout_centerInParent="true"
+                        >
 
-                    <TextView
-                        android:id="@+id/address"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textSize="13sp"
-                        android:textColor="@color/shop_black"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginLeft="7dp"
-                        android:lineSpacingMultiplier="1.5"
-                        android:inputType="textMultiLine"
-                        android:layout_marginTop="2dp"
-                        />
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/manage_addr"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="请选择地址"
+                            android:layout_marginLeft="@dimen/margin_10dp"
+
+                            />
+
+                    </LinearLayout>
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@mipmap/right_gray"
-                        android:layout_gravity="right|center_vertical"
-                        android:layout_marginLeft="@dimen/margin_1"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/margin_10dp"
+                        android:layout_centerVertical="true"
+                        />
+
+
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="@dimen/margin_10dp"
+                ></android.support.v7.widget.RecyclerView>
+
+
+            <com.yigu.shop.view.LogisticsLayout
+                android:id="@+id/logisticLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/ship_tip"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:gravity="right|center_vertical"
+                android:text="免邮"
+                android:background="@android:color/white"
+                android:paddingRight="@dimen/margin_10dp"
+                android:visibility="gone"
+                android:textSize="@dimen/text_big_x"
+                android:textColor="@color/shop_red"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="付款方式"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/text_big_x"
+                android:textColor="@color/shop_black"
+                android:paddingLeft="@dimen/margin_10dp"
+                />
+
+            <LinearLayout
+                android:id="@+id/weixin_ll"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/margin_10dp"
+                android:paddingRight="@dimen/margin_10dp"
+                android:background="@android:color/white"
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/weixin"
+                    />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:orientation="vertical"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="微信支付"
+                        android:textSize="@dimen/text_big_xx"
+                        android:textColor="@color/shop_black"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="推荐安装微信5.0及以上版本的用户使用"
+                        android:textSize="@dimen/text_small"
+                        android:textColor="@color/light_gray"
+                        android:layout_marginTop="5dp"
                         />
 
                 </LinearLayout>
 
+                <ImageView
+                    android:id="@+id/weixin_sel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/circle_white"
+                    />
+
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/divider_line"
+                android:layout_marginLeft="@dimen/margin_10dp"
+                android:layout_marginRight="@dimen/margin_10dp"
+                />
+
+            <LinearLayout
+                android:id="@+id/zhifubao_ll"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/margin_10dp"
+                android:paddingRight="@dimen/margin_10dp"
+                android:background="@android:color/white"
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/zhifubao"
+                    />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:orientation="vertical"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="支付宝支付"
+                        android:textSize="@dimen/text_big_xx"
+                        android:textColor="@color/shop_black"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="推荐有支付宝账号的用户"
+                        android:textSize="@dimen/text_small"
+                        android:textColor="@color/light_gray"
+                        android:layout_marginTop="5dp"
+                        />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/zhifubao_sel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/circle_white"
+                    />
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/addr_root"
-        android:layout_above="@+id/deel_ll"
-        android:paddingTop="@dimen/margin_10dp"
-        ></android.support.v7.widget.RecyclerView>
+    </ScrollView>
 
     <LinearLayout
         android:id="@+id/deel_ll"
@@ -158,9 +368,10 @@
                     android:textSize="@dimen/text_big_xx"
                     android:textColor="@color/shop_red"
                     android:textStyle="bold"
-                    android:text="2000"
+                    android:text="0"
                     android:ellipsize="end"
                     android:maxLines="1"
+                    android:layout_marginLeft="3dp"
                     />
 
             </LinearLayout>

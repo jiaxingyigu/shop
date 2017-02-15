@@ -107,7 +107,7 @@ View.OnClickListener, WheelView.OnScrollingStop,OnWheelChangedListener {
                                 new TypeReference<List<ProvinceModel>>() {
                                 });*/
 
-			provinceList = gson.fromJson(object.getJSONArray("data").getJSONObject(0).getJSONArray("_child").toJSONString(), new TypeToken<List<ProvinceModel>>(){}.getType());
+			provinceList = gson.fromJson(object.getJSONArray("data").toJSONString(), new TypeToken<List<ProvinceModel>>(){}.getType());
 
 //			provinceList = JSONArray.parseArray(object.getJSONArray("data").getJSONObject(0).getJSONArray("_child").toJSONString(), ProvinceModel.class);
 
@@ -120,13 +120,13 @@ View.OnClickListener, WheelView.OnScrollingStop,OnWheelChangedListener {
 							Log.i("info", "设置省==>" + i);
 							//							mViewProvince.setCurrentItem(i);
 							provincePosition = i;
-							for (int j = 0; j < provinceList.get(i).get_child().size(); j++) {
-								if (mCurrentCityName.equals(provinceList.get(i).get_child().get(j).getRegion_name())) {
+							for (int j = 0; j < provinceList.get(i).getCity_list().size(); j++) {
+								if (mCurrentCityName.equals(provinceList.get(i).getCity_list().get(j).getRegion_name())) {
 									Log.i("info", "设置市==>" + j);
 									//									mViewCity.setCurrentItem(j);
 									cityPosition = j;
-									for (int k = 0; k < provinceList.get(i).get_child().get(j).get_child().size(); k++) {
-										if (mCurrentDistrictName.equals(provinceList.get(i).get_child().get(j).get_child().get(k).getRegion_name())) {
+									for (int k = 0; k < provinceList.get(i).getCity_list().get(j).getArea_list().size(); k++) {
+										if (mCurrentDistrictName.equals(provinceList.get(i).getCity_list().get(j).getArea_list().get(k).getRegion_name())) {
 											Log.i("info", "设置区===>" + k);
 											//											mViewDistrict.setCurrentItem(k);
 											districtPosition = k;
@@ -146,10 +146,10 @@ View.OnClickListener, WheelView.OnScrollingStop,OnWheelChangedListener {
 			} else {
 				if (provinceList != null && !provinceList.isEmpty()) {
 					mCurrentProviceName = provinceList.get(0).getRegion_name();
-					List<CityModel> cityList = provinceList.get(0).get_child();
+					List<CityModel> cityList = provinceList.get(0).getCity_list();
 					if (cityList != null && !cityList.isEmpty()) {
 						mCurrentCityName = cityList.get(0).getRegion_name();
-						List<DistrictModel> districtList = cityList.get(0).get_child();
+						List<DistrictModel> districtList = cityList.get(0).getArea_list();
 						if (districtList != null && !districtList.isEmpty()) {
 							mCurrentDistrictName = districtList.get(0).getRegion_name();
 							mCurrentZipCode = districtList.get(0).getRegion_id();
@@ -162,12 +162,12 @@ View.OnClickListener, WheelView.OnScrollingStop,OnWheelChangedListener {
 			for (int i = 0; i < provinceList.size(); i++) {
 				// 遍历所有省的数据
 				mProvinceDatas[i] = provinceList.get(i).getRegion_name();
-				List<CityModel> cityList = provinceList.get(i).get_child();
+				List<CityModel> cityList = provinceList.get(i).getCity_list();
 				String[] cityNames = new String[cityList.size()];
 				for (int j = 0; j < cityList.size(); j++) {
 					// 遍历省下面的所有市的数据
 					cityNames[j] = cityList.get(j).getRegion_name();
-					List<DistrictModel> districtList = cityList.get(j).get_child();
+					List<DistrictModel> districtList = cityList.get(j).getArea_list();
 					String[] distrinctNameArray = new String[districtList.size()];
 					DistrictModel[] distrinctArray = new DistrictModel[districtList.size()];
 					for (int k = 0; k < districtList.size(); k++) {
@@ -399,8 +399,8 @@ View.OnClickListener, WheelView.OnScrollingStop,OnWheelChangedListener {
 			Log.i("info","confirm_layout");
 			lis.refreshPriorityUI(mCurrentProviceName,
 					mCurrentCityName, mCurrentDistrictName,provinceList.get(mViewProvince.getCurrentItem()).getRegion_id(),
-					provinceList.get(mViewProvince.getCurrentItem()).get_child().get(mViewCity.getCurrentItem()).getRegion_id(),
-					provinceList.get(mViewProvince.getCurrentItem()).get_child().get(mViewCity.getCurrentItem()).get_child().get(mViewDistrict.getCurrentItem()).getRegion_id());
+					provinceList.get(mViewProvince.getCurrentItem()).getCity_list().get(mViewCity.getCurrentItem()).getRegion_id(),
+					provinceList.get(mViewProvince.getCurrentItem()).getCity_list().get(mViewCity.getCurrentItem()).getArea_list().get(mViewDistrict.getCurrentItem()).getRegion_id());
 
 			this.dismiss();
 			break;

@@ -1,5 +1,7 @@
 package com.yigu.shop.commom.result;
 
+import java.util.List;
+
 /**
  * Created by brain on 2016/9/1.
  */
@@ -30,7 +32,47 @@ public class MapiItemResult extends MapiBaseResult{
     private String allAcount;
     private String allNum;
 
+    private String img;
+
+    private MapiResourceResult img_info;
+
+    public MapiResourceResult getImg_info() {
+        return img_info;
+    }
+
+    public void setImg_info(MapiResourceResult img_info) {
+        this.img_info = img_info;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
     private MapiShopResult seller_info;
+
+    private int collected;
+
+    private List<MapiValueResult> attr_list;
+
+    public List<MapiValueResult> getAttr_list() {
+        return attr_list;
+    }
+
+    public void setAttr_list(List<MapiValueResult> attr_list) {
+        this.attr_list = attr_list;
+    }
+
+    public int getCollected() {
+        return collected;
+    }
+
+    public void setCollected(int collected) {
+        this.collected = collected;
+    }
 
     public MapiShopResult getSeller_info() {
         return seller_info;

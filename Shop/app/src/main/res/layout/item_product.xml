@@ -10,11 +10,17 @@
         android:layout_width="120dp"
         android:layout_height="120dp"
         fresco:fadeDuration="2000"
-        fresco:placeholderImage="@drawable/product_default"
-        fresco:placeholderImageScaleType="fitXY"
+        fresco:placeholderImage="@drawable/carousel_default"
+        fresco:placeholderImageScaleType="fitCenter"
+        fresco:progressBarAutoRotateInterval="2000"
+        fresco:progressBarImage="@mipmap/progress"
+        fresco:progressBarImageScaleType="centerInside"
+        fresco:retryImageScaleType="fitXY"
+        fresco:actualImageScaleType="fitXY"
         android:padding="3dp"
         android:layout_marginTop="7dp"
         android:background="@drawable/rect_stroke_white__width_2"
+        android:layout_gravity="center"
         />
 
     <TextView
@@ -40,6 +46,7 @@
         android:maxLines="1"
         android:layout_below="@+id/title"
         android:paddingBottom="@dimen/margin_1"
+        android:visibility="gone"
         />
 
 

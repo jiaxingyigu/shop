@@ -21,6 +21,8 @@ import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.yigu.shop.R;
 import com.yigu.shop.commom.result.IndexData;
 import com.yigu.shop.commom.result.MapiItemResult;
+import com.yigu.shop.commom.result.MapiOrderItem;
+import com.yigu.shop.commom.result.MapiValueResult;
 import com.yigu.shop.commom.util.DPUtil;
 
 import java.util.ArrayList;
@@ -44,22 +46,6 @@ public class OrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        /*int count = 0;//1
-//        list.add(new IndexData(count++,"divider", new Object()));
-        for (MapiCartResult ware : mList) {
-            list.add(new IndexData(count++,"head",ware));
-            for (int i=0;i<ware.getCart_goods().size();i++) {
-                if(i == ware.getCart_goods().size()-1){
-                    ware.getCart_goods().get(i).setLast(true);
-                }else
-                    ware.getCart_goods().get(i).setLast(false);
-                list.add(new IndexData(count++,"item", ware.getCart_goods().get(i)));
-
-            }
-            list.add(new IndexData(count++,"bottom", new Object()));
-            list.add(new IndexData(count++,"divider", new Object()));
-        }
-        return count;*/
         return mList == null ? 0 : mList.size();
     }
 
@@ -88,7 +74,7 @@ public class OrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             case 4:
                 return new DividerViewHolder(inflater.inflate(R.layout.item_purcase_divider, parent, false));
             default:
-                return new HeadViewHolder(inflater.inflate(R.layout.item_order_head, parent, false));
+                return new HeadViewHolder(inflater.inflate(R.layout.item_purcase_divider, parent, false));
         }
     }
 
@@ -160,10 +146,10 @@ public class OrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     private void setItem(ItemViewHolder holder, int position) {
 
-        MapiItemResult itemResult = (MapiItemResult) mList.get(position).getData();
+        MapiOrderItem itemResult = (MapiOrderItem) mList.get(position).getData();
 
         //创建将要下载的图片的URI
-        Uri imageUri = Uri.parse(TextUtils.isEmpty(itemResult.getGoods_img()) ? "" : itemResult.getGoods_img());
+        Uri imageUri = Uri.parse(itemResult.getGoods_img());
         ImageRequest request = ImageRequestBuilder.newBuilderWithSource(imageUri)
                 .setResizeOptions(new ResizeOptions(DPUtil.dip2px(120), DPUtil.dip2px(120)))
                 .build();
@@ -175,16 +161,18 @@ public class OrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         holder.image.setController(controller);
 
         holder.content.setText(TextUtils.isEmpty(itemResult.getGoods_name()) ? "" : itemResult.getGoods_name());
-        if (TextUtils.isEmpty(itemResult.getGoods_attr()))
+
+       String attrs = itemResult.getGoods_attr();
+        if (TextUtils.isEmpty(attrs))
             holder.goodsAttr.setVisibility(View.GONE);
         else {
             holder.goodsAttr.setVisibility(View.VISIBLE);
-            holder.goodsAttr.setText(itemResult.getGoods_attr());
+            holder.goodsAttr.setText(attrs);
         }
 
-        holder.price.setText(TextUtils.isEmpty(itemResult.getGoods_price()) ? "" : itemResult.getGoods_price());
+        holder.price.setText(TextUtils.isEmpty(itemResult.getGoods_price()) ? "0" : itemResult.getGoods_price());
 
-        holder.num.setText("x" + (TextUtils.isEmpty(itemResult.getGoods_number()) ? "0" : itemResult.getGoods_number()));
+        holder.num.setText("x " + (TextUtils.isEmpty(itemResult.getGoods_number()) ? "0" : itemResult.getGoods_number()));
 
     }
 

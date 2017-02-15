@@ -1,6 +1,7 @@
 package com.yigu.shop.adapter.product;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -8,9 +9,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.controller.BaseControllerListener;
+import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.common.ResizeOptions;
+import com.facebook.imagepipeline.image.ImageInfo;
+import com.facebook.imagepipeline.request.ImageRequest;
+import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.yigu.shop.R;
 import com.yigu.shop.commom.result.MapiItemResult;
+import com.yigu.shop.commom.util.DPUtil;
 
 import java.util.List;
 
@@ -45,7 +54,19 @@ public class ShopContentAdapter extends RecyclerView.Adapter<ShopContentAdapter.
 
         MapiItemResult item = mList.get(position);
         holder.goodsName.setText(item.getGoods_name());
-        holder.shopPrice.setText(TextUtils.isEmpty(item.getShop_price())?"":"￥"+item.getShop_price());
+        holder.shopPrice.setText(TextUtils.isEmpty(item.getShop_price())?"":item.getShop_price());
+
+        //创建将要下载的图片的URI
+        Uri imageUri = Uri.parse(item.getGoods_img());
+        ImageRequest request = ImageRequestBuilder.newBuilderWithSource(imageUri)
+                .setResizeOptions(new ResizeOptions(DPUtil.dip2px(165), DPUtil.dip2px(165)))
+                .build();
+        DraweeController controller = Fresco.newDraweeControllerBuilder()
+                .setImageRequest(request)
+                .setOldController(holder.image.getController())
+                .setControllerListener(new BaseControllerListener<ImageInfo>())
+                .build();
+        holder.image.setController(controller);
 
     }
 

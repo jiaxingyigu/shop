@@ -36,12 +36,12 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 //        list.add(new IndexData(count++,"divider", new Object()));
         for (MapiCartResult ware : mList) {
             list.add(new IndexData(count++,"head",ware));
-            for (int i=0;i<ware.getCart_goods().size();i++) {
-                if(i == ware.getCart_goods().size()-1){
-                    ware.getCart_goods().get(i).setLast(true);
+            for (int i=0;i<ware.getList().size();i++) {
+                if(i == ware.getList().size()-1){
+                    ware.getList().get(i).setLast(true);
                 }else
-                    ware.getCart_goods().get(i).setLast(false);
-                list.add(new IndexData(count++,"item", ware.getCart_goods().get(i)));
+                    ware.getList().get(i).setLast(false);
+                list.add(new IndexData(count++,"item", ware.getList().get(i)));
 
             }
             list.add(new IndexData(count++,"bottom", new Object()));

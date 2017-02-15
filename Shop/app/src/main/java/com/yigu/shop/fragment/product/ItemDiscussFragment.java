@@ -12,9 +12,13 @@ import com.yigu.shop.R;
 import com.yigu.shop.adapter.index.HomeAdapter;
 import com.yigu.shop.adapter.product.ItemDiscussAdapter;
 import com.yigu.shop.base.BaseFrag;
+import com.yigu.shop.commom.api.ItemApi;
 import com.yigu.shop.commom.result.MapiItemResult;
 import com.yigu.shop.commom.result.MapiOrderResult;
 import com.yigu.shop.commom.util.DPUtil;
+import com.yigu.shop.commom.util.RequestExceptionCallback;
+import com.yigu.shop.commom.util.RequestPageCallback;
+import com.yigu.shop.commom.widget.MainToast;
 import com.yigu.shop.widget.BestSwipeRefreshLayout;
 import com.yigu.shop.widget.DividerListItemDecoration;
 
@@ -34,19 +38,30 @@ public class ItemDiscussFragment extends BaseFrag {
     BestSwipeRefreshLayout swipRefreshLayout;
     List<MapiOrderResult> mList = new ArrayList<>();
     ItemDiscussAdapter mAdapter;
-    private Integer pageIndex = 0;
-    private Integer pageSize = 10;
-    private Integer ISNEXT = 0;
+    private Integer pageIndex = 1;
+    private Integer counts;
+
+    MapiItemResult itemResult;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_item_discuss, container, false);
         ButterKnife.bind(this, view);
-        initView();
-        initListener();
-        load();
+        if(null!=itemResult){
+            initView();
+            initListener();
+
+        }
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mList.clear();
+        load();
     }
 
     private void initView() {
@@ -54,7 +69,7 @@ public class ItemDiscussFragment extends BaseFrag {
         linearLayoutManager.setOrientation(OrientationHelper.VERTICAL);
         recyclerView.addItemDecoration(new DividerListItemDecoration(getActivity(),OrientationHelper.HORIZONTAL, DPUtil.dip2px(10),getResources().getColor(R.color.divider_line)));
         recyclerView.setLayoutManager(linearLayoutManager);
-        mAdapter = new ItemDiscussAdapter(getActivity());
+        mAdapter = new ItemDiscussAdapter(getActivity(),mList);
         recyclerView.setAdapter(mAdapter);
     }
 
@@ -85,12 +100,37 @@ public class ItemDiscussFragment extends BaseFrag {
         });
     }
 
+    public void setBasicInfo(MapiItemResult itemResult) {
+        this.itemResult = itemResult;
+    }
+
     public void load() {
+        showLoading();
+        ItemApi.getcomment(getActivity(),itemResult.getGoods_id(),pageIndex + "", new RequestPageCallback<List<MapiOrderResult>>() {
+            @Override
+            public void success(Integer count, List<MapiOrderResult> success) {
+                swipRefreshLayout.setRefreshing(false);
+                hideLoading();
+                counts = count;
+                if(success.isEmpty())
+                    return;
+                mList.addAll(success);
+                mAdapter.notifyDataSetChanged();
+            }
+        }, new RequestExceptionCallback() {
+            @Override
+            public void error(Integer code, String message) {
+                swipRefreshLayout.setRefreshing(false);
+                hideLoading();
+                MainToast.showShortToast(message);
+            }
+        });
 
     }
 
     private void loadNext() {
-        if (ISNEXT != null && ISNEXT == 0) {
+        if (counts == null || counts == pageIndex) {
+            MainToast.showShortToast("没有更多数据了");
             return;
         }
         pageIndex++;
@@ -100,7 +140,7 @@ public class ItemDiscussFragment extends BaseFrag {
     public void refreshData() {
         if (null != mList) {
             mList.clear();
-            pageIndex = 0;
+            pageIndex = 1;
             mAdapter.notifyDataSetChanged();
             load();
         }

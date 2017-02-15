@@ -23,9 +23,14 @@
             fresco:fadeDuration="2000"
             fresco:placeholderImage="@drawable/face_default"
             fresco:placeholderImageScaleType="fitCenter"
+            fresco:progressBarAutoRotateInterval="2000"
+            fresco:progressBarImage="@mipmap/progress"
+            fresco:progressBarImageScaleType="centerInside"
+            fresco:retryImageScaleType="fitXY"
             />
         
         <TextView
+            android:id="@+id/shop_name"
             style="@style/textViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,6 +54,16 @@
             android:textColor="@drawable/selector_collection_text"
             android:textSize="12sp"
             android:background="@drawable/selector_press_round_color_red"
+            android:visibility="gone"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/right"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/margin_10dp"
+            android:layout_centerVertical="true"
             />
 
     </RelativeLayout>

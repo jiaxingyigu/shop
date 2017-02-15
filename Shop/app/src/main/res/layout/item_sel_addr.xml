@@ -22,10 +22,10 @@
             android:id="@+id/sel_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/sel_rect_red"
+            android:src="@mipmap/sel_rect_black"
             android:layout_gravity="center"
             android:padding="@dimen/margin_10dp"
-            android:visibility="invisible"
+            android:visibility="gone"
             />
 
         <LinearLayout

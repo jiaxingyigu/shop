@@ -15,6 +15,9 @@
         android:button="@null"
         android:gravity="center"
         android:id="@+id/menu"
+        android:ellipsize="end"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
         />
 
     <View

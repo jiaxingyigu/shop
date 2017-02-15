@@ -115,6 +115,8 @@ public class MapiUtil {
         if(null!=userSP.getUserBean()){
             params.put(Constants.Token, TextUtils.isEmpty(userSP.getUserBean().getToken())?"":userSP.getUserBean().getToken());
             params.put(Constants.Uid, TextUtils.isEmpty(userSP.getUserBean().getUid())?"":userSP.getUserBean().getUid());
+            DebugLog.i("token=>"+userSP.getUserBean().getToken());
+            DebugLog.i("userSP.getUserBean().getUid()=>"+userSP.getUserBean().getUid());
         }
         StringRequest stringRequest = new StringRequest(Request.Method.POST, BasicApi.BASIC_URL + url,
                 new Response.Listener<String>() {
@@ -126,14 +128,15 @@ public class MapiUtil {
                             response.success(jsonObject);
                         }
                         Integer code = jsonObject.getInteger("code");
-                        if (null!=code&&code==9998) {
+                        if (null!=code&&code==3) {
                             //打开登录UI
                             if (act == null) {
                                 return;
                             }
                             Intent intent = new Intent();
-                            intent.setAction("com.ypn.mobile.login");
+                            intent.setAction("com.yigu.shop.login");
                             act.sendBroadcast(intent);
+
                             return;
                         }
                         if (fail != null && code!=1) {

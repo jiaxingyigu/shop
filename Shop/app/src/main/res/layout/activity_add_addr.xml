@@ -156,14 +156,14 @@
     </LinearLayout>
 
 
-    <!-- <RelativeLayout
+     <RelativeLayout
          android:layout_width="match_parent"
          android:layout_height="@dimen/text_height_45dp"
          android:gravity="center_vertical"
          android:background="@android:color/white"
          android:layout_marginTop="@dimen/margin_10dp"
          android:paddingLeft="@dimen/margin_10dp"
-         android:paddingRight="@dimen/margin_10dp"
+         android:visibility="invisible"
          >
 
          <TextView
@@ -176,13 +176,16 @@
              />
 
          <ImageView
+             android:id="@+id/iv_default"
              android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
+             android:layout_height="match_parent"
              android:layout_alignParentRight="true"
              android:src="@mipmap/sel_rect_black"
              android:layout_centerVertical="true"
+             android:paddingLeft="@dimen/margin_10dp"
+             android:paddingRight="@dimen/margin_10dp"
              />
 
-     </RelativeLayout>-->
+     </RelativeLayout>
 
 </LinearLayout>

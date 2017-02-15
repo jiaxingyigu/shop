@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.yigu.shop.R;
 import com.yigu.shop.commom.result.MapiResourceResult;
+import com.yigu.shop.commom.result.MapiValueResult;
 import com.yigu.shop.commom.util.DPUtil;
 
 import org.apmem.tools.layouts.FlowLayout;
@@ -33,7 +34,7 @@ public class SelSizeViewLayout extends RelativeLayout {
     private Context mContext;
     private View rootView;
 
-    List<MapiResourceResult> list = new ArrayList<>();
+    List<MapiValueResult> list = new ArrayList<>();
     int selPos = -1;
 
    /* SelSizeItemAdapter mAdapter;
@@ -73,7 +74,7 @@ public class SelSizeViewLayout extends RelativeLayout {
     }
 
 
-    public void load(final String titleStr,List<MapiResourceResult> attrs) {
+    public void load(final String titleStr,List<MapiValueResult> attrs) {
         if (list.isEmpty()) {
             list.addAll(attrs);
            /* if(null!=mAdapter)
@@ -81,7 +82,7 @@ public class SelSizeViewLayout extends RelativeLayout {
 
             for (int i=0;i<list.size();i++) {
 
-                final MapiResourceResult resourceResult = list.get(i);
+                final MapiValueResult resourceResult = list.get(i);
 
                 final TextView textView = new TextView(mContext);
                 FlowLayout.LayoutParams params = new FlowLayout.LayoutParams(
@@ -89,7 +90,7 @@ public class SelSizeViewLayout extends RelativeLayout {
                 params.setMargins(10, 10, 10, 10);
                 textView.setLayoutParams(params);
                 textView.setPadding(DPUtil.dip2px(15), DPUtil.dip2px(4), DPUtil.dip2px(15), DPUtil.dip2px(4));
-                textView.setText(resourceResult.getAttr_value());
+                textView.setText(resourceResult.getLabel());
                 textView.setGravity(Gravity.CENTER);
                 textView.setMaxLines(1);
                 textView.setEllipsize(TextUtils.TruncateAt.END);
@@ -119,14 +120,14 @@ public class SelSizeViewLayout extends RelativeLayout {
                                 textView.setBackgroundResource(R.drawable.rect_stroke_yellow__width_1_round_4);
                                 selPos = (Integer) view.getTag();
                                 if(null!=selSizeInterface)
-                                    selSizeInterface.sizeDetail(rootView,titleStr+":"+resourceResult.getAttr_value(),TextUtils.isEmpty(resourceResult.getAttr_price())?"":resourceResult.getAttr_price(),resourceResult.getGoods_attr_id());
+                                    selSizeInterface.sizeDetail(rootView,titleStr+":"+resourceResult.getLabel(),TextUtils.isEmpty(resourceResult.getPrice())?"":resourceResult.getPrice(),resourceResult.getId());
                             }
                         }else{
                             textView.setTextColor(mContext.getResources().getColor(R.color.light_yellow));
                             textView.setBackgroundResource(R.drawable.rect_stroke_yellow__width_1_round_4);
                             selPos = (Integer) view.getTag();
                             if(null!=selSizeInterface)
-                                selSizeInterface.sizeDetail(rootView,titleStr+":"+resourceResult.getAttr_value(),TextUtils.isEmpty(resourceResult.getAttr_price())?"":resourceResult.getAttr_price(),resourceResult.getGoods_attr_id());
+                                selSizeInterface.sizeDetail(rootView,titleStr+":"+resourceResult.getLabel(),TextUtils.isEmpty(resourceResult.getPrice())?"":resourceResult.getPrice(),resourceResult.getId());
                         }
 
                     }

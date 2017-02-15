@@ -13,6 +13,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.yigu.shop.R;
 import com.yigu.shop.adapter.purcase.PurcaseAdapter;
 import com.yigu.shop.base.BaseActivity;
@@ -95,6 +98,21 @@ public class PurcaseActivity extends BaseActivity {
             public void isAll() {
                 notifyData();
             }
+
+            @Override
+            public void notifyParentStatus(int position) {
+
+            }
+
+            @Override
+            public void notifyChildStatus(int position) {
+
+            }
+
+            @Override
+            public void notifyChildNum(int position, int num) {
+
+            }
         });
     }
 
@@ -107,18 +125,20 @@ public class PurcaseActivity extends BaseActivity {
             if (!result.isSel()) {
                 isAll = false;
             }
-            for (MapiItemResult item : result.getCart_goods()) {
+            for (MapiItemResult item : result.getList()) {
                 if (!item.isSel()) {
                     isAll = false;
                 } else {
 
-                    Double priceff = Double.parseDouble(TextUtils.isEmpty(item.getGoods_price())?"0":item.getGoods_price());
-                    accountNum += priceff;
-                    String numStr = TextUtils.isEmpty(item.getGoods_number())?"0":item.getGoods_number();
-                    count += Integer.parseInt(numStr);
+                   /* Double priceff = Double.parseDouble(TextUtils.isEmpty(item.getGoods_price())?"0":item.getGoods_price());
+                    accountNum += priceff;*/
+                   /* String numStr = TextUtils.isEmpty(item.getGoods_number())?"0":item.getGoods_number();
+                    count += Integer.parseInt(numStr);*/
                     item.setShop_name(result.getShop_name());
                     delList.add(item);
                 }
+                String numStr = TextUtils.isEmpty(item.getGoods_number())?"0":item.getGoods_number();
+                count += Integer.parseInt(numStr);
             }
         }
         isall = isAll;
@@ -128,23 +148,25 @@ public class PurcaseActivity extends BaseActivity {
             all.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.circle_white, 0, 0, 0);
         if ("编辑".equals(tvRight.getText().toString())){
             statement.setText(String.format("结算（%d）", count));
-            DecimalFormat df = new DecimalFormat("#0.00");
-            account.setText(df.format(accountNum));
+           /* DecimalFormat df = new DecimalFormat("#0.00");
+            account.setText(df.format(accountNum));*/
 
         }else{
             statement.setText("删除");
-            DecimalFormat df = new DecimalFormat("#0.00");
-            account.setText(df.format(accountNum));
+           /* DecimalFormat df = new DecimalFormat("#0.00");
+            account.setText(df.format(accountNum));*/
         }
     }
 
     public void load() {
-        ItemApi.getCartGoods(this, userSP.getUserBean().getUser_id(), new RequestPageCallback<List<MapiCartResult>>() {
+        ItemApi.getCartGoods(this,new RequestCallback<JSONObject>() {
             @Override
-            public void success(Integer count, List<MapiCartResult> success) {
-                if(success.isEmpty())
+            public void success(JSONObject success) {
+                Gson gson = new Gson();
+                List<MapiCartResult> result = gson.fromJson(success.getJSONObject("data").getJSONArray("goods_list").toJSONString(), new TypeToken<List<MapiCartResult>>(){}.getType());
+                if(result.isEmpty())
                     return;
-                mList.addAll(success);
+                mList.addAll(result);
                 mAdapter.notifyDataSetChanged();
             }
         }, new RequestExceptionCallback() {
@@ -186,12 +208,12 @@ public class PurcaseActivity extends BaseActivity {
                     all.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.circle_white, 0, 0, 0);
                 for (MapiCartResult item : mAdapter.getmList()) {
                     item.setSel(isall);
-                    for (MapiItemResult result : item.getCart_goods()) {
+                    for (MapiItemResult result : item.getList()) {
                         result.setSel(isall);
                         String numStr = TextUtils.isEmpty(result.getGoods_number())?"0":result.getGoods_number();
                         count += Integer.parseInt(numStr);
-                        Double priceff = Double.parseDouble(TextUtils.isEmpty(result.getGoods_price())?"0":result.getGoods_price());
-                        accountNum += priceff;
+                      /*  Double priceff = Double.parseDouble(TextUtils.isEmpty(result.getGoods_price())?"0":result.getGoods_price());
+                        accountNum += priceff;*/
                         if(isall)
                             delList.add(result);
                     }
@@ -201,23 +223,23 @@ public class PurcaseActivity extends BaseActivity {
 
                     if (isall) {
                         statement.setText(String.format("结算（%d）", count));
-                        DecimalFormat df = new DecimalFormat("#0.00");
-                        account.setText(df.format(accountNum));
+                      /*  DecimalFormat df = new DecimalFormat("#0.00");
+                        account.setText(df.format(accountNum));*/
                     } else {
                         count = 0;
                         accountNum = 0;
-                        DecimalFormat df = new DecimalFormat("#0.00");
-                        account.setText(df.format(accountNum));
+                       /*  DecimalFormat df = new DecimalFormat("#0.00");
+                       account.setText(df.format(accountNum));*/
                         statement.setText(String.format("结算（%d）", count));
                     }
                 }else{
                     if (isall) {
-                        DecimalFormat df = new DecimalFormat("#0.00");
-                        account.setText(df.format(accountNum));
+                        /*DecimalFormat df = new DecimalFormat("#0.00");
+                        account.setText(df.format(accountNum));*/
                     } else {
                         accountNum = 0;
-                        DecimalFormat df = new DecimalFormat("#0.00");
-                        account.setText(df.format(accountNum));
+                       /* DecimalFormat df = new DecimalFormat("#0.00");
+                        account.setText(df.format(accountNum));*/
                     }
                 }
 
@@ -225,7 +247,7 @@ public class PurcaseActivity extends BaseActivity {
             case R.id.statement:
                 if ("编辑".equals(tvRight.getText().toString())) {
                     if (count > 0) {
-                        ControllerUtil.go2OderDetail(delList);
+                        ControllerUtil.go2OderDetail();
                     }else{
                         MainToast.showShortToast("请选择需要结算的商品");
                     }
@@ -246,7 +268,7 @@ public class PurcaseActivity extends BaseActivity {
                                 try{
 
                                     for(MapiCartResult mapiCartResult : mAdapter.getmList()){
-                                        Iterator<MapiItemResult> it =mapiCartResult.getCart_goods().iterator();
+                                        Iterator<MapiItemResult> it =mapiCartResult.getList().iterator();
                                         while(it.hasNext()){
                                             MapiItemResult x = it.next();
                                                 if(delList.contains(x)){
@@ -269,7 +291,7 @@ public class PurcaseActivity extends BaseActivity {
                                             }
                                         }else if(indexData.getType().equals("head")){
                                             MapiCartResult mapiCartResult = (MapiCartResult) indexData.getData();
-                                            if(null==mapiCartResult.getCart_goods()||mapiCartResult.getCart_goods().size()==0){
+                                            if(null==mapiCartResult.getList()||mapiCartResult.getList().size()==0){
                                                 it.remove();
                                             }
                                         }

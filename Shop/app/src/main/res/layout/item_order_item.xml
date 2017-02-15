@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="140dp"
+    android:layout_height="150dp"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:paddingLeft="@dimen/margin_10dp"
     android:paddingRight="@dimen/margin_10dp"
@@ -21,6 +21,7 @@
         fresco:progressBarImage="@mipmap/progress"
         fresco:progressBarImageScaleType="centerInside"
         fresco:retryImageScaleType="fitXY"
+        fresco:actualImageScaleType="fitXY"
         />
 
     <LinearLayout
@@ -72,6 +73,7 @@
                 >
 
                 <TextView
+                    android:id="@+id/price_tip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="￥"

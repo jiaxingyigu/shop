@@ -68,10 +68,10 @@ public class SelSizeAdapter extends RecyclerView.Adapter<SelSizeAdapter.ViewHold
     public void onBindViewHolder(SelSizeAdapter.ViewHolder holder, int position) {
 //        holder.title.setText(mList.get(position).getAttr_name());
         holder.selSizeViewLayout.setTag(position);
-        if(null!=mList.get(position).getGoods_attr()){
+        if(null!=mList.get(position).getValue()){
 
-            holder.selSizeViewLayout.setTitleTV(mList.get(position).getAttr_name());
-            holder.selSizeViewLayout.load(mList.get(position).getAttr_name(),mList.get(position).getGoods_attr());
+            holder.selSizeViewLayout.setTitleTV(mList.get(position).getName());
+            holder.selSizeViewLayout.load(mList.get(position).getName(),mList.get(position).getValue());
 
            /* GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext,2);
             holder.recyclerView.setLayoutManager(gridLayoutManager);

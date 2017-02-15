@@ -1,6 +1,7 @@
 package com.yigu.shop.view;
 
 import android.content.Context;
+import android.net.Uri;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -8,9 +9,17 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.controller.BaseControllerListener;
+import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.common.ResizeOptions;
+import com.facebook.imagepipeline.image.ImageInfo;
+import com.facebook.imagepipeline.request.ImageRequest;
+import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.yigu.shop.R;
 import com.yigu.shop.commom.result.MapiShopResult;
+import com.yigu.shop.commom.util.DPUtil;
 import com.yigu.shop.util.ControllerUtil;
 
 import butterknife.Bind;
@@ -69,13 +78,23 @@ public class ItemShopLayout extends RelativeLayout {
 
     public void load(MapiShopResult shopResult) {
         this.shopResult = shopResult;
-        allNum.setText(TextUtils.isEmpty(shopResult.getShop_goods_total())?"0":shopResult.getShop_goods_total());
-        newNum.setText(TextUtils.isEmpty(shopResult.getShop_goods_new())?"0":shopResult.getShop_goods_new());
-        concer_num.setText(TextUtils.isEmpty(shopResult.getShop_goods_new())?"0":shopResult.getShop_goods_new());
+        allNum.setText(TextUtils.isEmpty(shopResult.getGoods_count())?"0":shopResult.getGoods_count());
+        newNum.setText(TextUtils.isEmpty(shopResult.getNew_goods_count())?"0":shopResult.getNew_goods_count());
+        concer_num.setText(TextUtils.isEmpty(shopResult.getSeller_foller_count())?"0":shopResult.getSeller_foller_count());
 
-        name.setText(TextUtils.isEmpty(shopResult.getShop_name())?"":shopResult.getShop_name());
+        name.setText(TextUtils.isEmpty(shopResult.getName())?"":shopResult.getName());
 
-        image.setImageURI(shopResult.getShop_logo());
+        //创建将要下载的图片的URI
+        Uri imageUri = Uri.parse(shopResult.getLogo());
+        ImageRequest request = ImageRequestBuilder.newBuilderWithSource(imageUri)
+                .setResizeOptions(new ResizeOptions(DPUtil.dip2px(50), DPUtil.dip2px(50)))
+                .build();
+        DraweeController controller = Fresco.newDraweeControllerBuilder()
+                .setImageRequest(request)
+                .setOldController(image.getController())
+                .setControllerListener(new BaseControllerListener<ImageInfo>())
+                .build();
+        image.setController(controller);
 
     }
 

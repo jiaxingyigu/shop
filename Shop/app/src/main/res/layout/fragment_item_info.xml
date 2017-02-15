@@ -107,6 +107,7 @@
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:layout_marginTop="5dp"
+                        android:visibility="gone"
                         />
 
                     <TextView
@@ -253,6 +254,7 @@
                 android:background="@android:color/white"
                 android:clickable="true"
                 android:descendantFocusability="blocksDescendants"
+                android:visibility="gone"
                 >
 
                 <TextView
@@ -298,6 +300,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_10dp"
                 android:background="@color/divider_line"
+                android:visibility="gone"
                 />
 
 

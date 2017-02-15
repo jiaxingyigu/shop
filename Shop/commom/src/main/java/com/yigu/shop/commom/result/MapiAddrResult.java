@@ -19,6 +19,16 @@ public class MapiAddrResult extends MapiBaseResult{
     private String city_name;
     private String district_name;
 
+    private int default_address;
+
+    public int getDefault_address() {
+        return default_address;
+    }
+
+    public void setDefault_address(int default_address) {
+        this.default_address = default_address;
+    }
+
     public String getCity_name() {
         return city_name;
     }

@@ -11,7 +11,7 @@
         android:layout_width="165dp"
         android:layout_height="165dp"
         fresco:fadeDuration="2000"
-        fresco:placeholderImage="@drawable/product_default"
+        fresco:placeholderImage="@drawable/carousel_default"
         fresco:placeholderImageScaleType="fitXY"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
@@ -24,31 +24,35 @@
         android:orientation="horizontal"
         android:layout_marginTop="12dp"
         android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical"
         >
 
         <TextView
             android:id="@+id/goods_name"
             style="@style/textViewStyle_small"
             android:layout_width="0dp"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="记忆腰靠枕3件套"
+            android:text=""
             android:ellipsize="end"
-            android:maxLines="1"
+            android:maxLines="2"
+            android:layout_marginLeft="4dp"
             />
 
         <TextView
             android:id="@+id/shop_price"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="￥5600"
+            android:text=""
             android:ellipsize="end"
             android:maxLines="1"
             android:gravity="right"
+            android:layout_gravity="right"
             android:textSize="12sp"
             android:textColor="@color/shop_red"
             android:textStyle="bold"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
             />
 
     </LinearLayout>

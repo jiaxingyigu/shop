@@ -12,9 +12,19 @@ public class MapiShopResult extends MapiBaseResult{
     private List<MapiItemResult> goods;
     private int type;
     private boolean isSel = false;
-    private String shop_goods_total;
-    private String shop_goods_new;
-    private String concer_num;
+    private String goods_count;
+    private String new_goods_count;
+    private String seller_foller_count;
+
+    private List<MapiItemResult> goods_list;
+
+    public List<MapiItemResult> getGoods_list() {
+        return goods_list;
+    }
+
+    public void setGoods_list(List<MapiItemResult> goods_list) {
+        this.goods_list = goods_list;
+    }
 
     private String logo;
 
@@ -26,28 +36,28 @@ public class MapiShopResult extends MapiBaseResult{
         this.logo = logo;
     }
 
-    public String getConcer_num() {
-        return concer_num;
+    public String getGoods_count() {
+        return goods_count;
     }
 
-    public void setConcer_num(String concer_num) {
-        this.concer_num = concer_num;
+    public void setGoods_count(String goods_count) {
+        this.goods_count = goods_count;
     }
 
-    public String getShop_goods_new() {
-        return shop_goods_new;
+    public String getNew_goods_count() {
+        return new_goods_count;
     }
 
-    public void setShop_goods_new(String shop_goods_new) {
-        this.shop_goods_new = shop_goods_new;
+    public void setNew_goods_count(String new_goods_count) {
+        this.new_goods_count = new_goods_count;
     }
 
-    public String getShop_goods_total() {
-        return shop_goods_total;
+    public String getSeller_foller_count() {
+        return seller_foller_count;
     }
 
-    public void setShop_goods_total(String shop_goods_total) {
-        this.shop_goods_total = shop_goods_total;
+    public void setSeller_foller_count(String seller_foller_count) {
+        this.seller_foller_count = seller_foller_count;
     }
 
     public boolean isSel() {

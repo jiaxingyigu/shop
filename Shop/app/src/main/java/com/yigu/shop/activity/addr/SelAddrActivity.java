@@ -82,7 +82,7 @@ public class SelAddrActivity extends BaseActivity {
     }
 
     private void load(){
-        ItemApi.getAddresses(this, userSP.getUserBean().getUser_id(), new RequestCallback<List<MapiAddrResult>>() {
+        ItemApi.getAddresses(this, new RequestCallback<List<MapiAddrResult>>() {
             @Override
             public void success(List<MapiAddrResult> success) {
                 if(success.isEmpty())
@@ -103,11 +103,28 @@ public class SelAddrActivity extends BaseActivity {
         mAdapter.setOnItemClickListener(new RecyOnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent intent = new Intent();
-                intent.putExtra("addr",mList.get(position).getAddress());
-                intent.putExtra("item",mList.get(position));
-                setResult(RESULT_OK,intent);
-                finish();
+
+                final int pos = position;
+
+                showLoading();
+                ItemApi.setdefault(SelAddrActivity.this, mList.get(position).getId(), new RequestCallback() {
+                    @Override
+                    public void success(Object success) {
+                        hideLoading();
+                        Intent intent = new Intent();
+                        intent.putExtra("item",mList.get(pos));
+                        setResult(RESULT_OK,intent);
+                        finish();
+                    }
+                }, new RequestExceptionCallback() {
+                    @Override
+                    public void error(Integer code, String message) {
+                        hideLoading();
+                        MainToast.showShortToast(message);
+                    }
+                });
+
+
             }
         });
     }
