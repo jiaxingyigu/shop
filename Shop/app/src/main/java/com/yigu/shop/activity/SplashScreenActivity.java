@@ -1,11 +1,10 @@
 package com.yigu.shop.activity;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.yigu.house.base.BaseActivity;
-import com.yigu.house.util.ControllerUtil;
+
+import com.yigu.shop.base.BaseActivity;
+import com.yigu.shop.util.ControllerUtil;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -24,7 +23,7 @@ public class SplashScreenActivity extends BaseActivity {
                     ControllerUtil.go2Guide();
                     finish();
                 }else{
-                    ControllerUtil.go2Main();
+                    ControllerUtil.go2Community();
                     finish();
                 }
 

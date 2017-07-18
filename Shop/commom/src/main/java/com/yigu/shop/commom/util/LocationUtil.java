@@ -9,6 +9,7 @@ import com.baidu.location.LocationClientOption.LocationMode;
 import android.app.Service;
 import android.content.Context;
 import android.os.Vibrator;
+import android.util.Log;
 
 public class LocationUtil {
 
@@ -32,6 +33,7 @@ public class LocationUtil {
 	 * 开始定位
 	 */
 	public void startLoc(){
+		Log.i("LocationUtil","开始定位");
 		mLocationClient.start();//定位SDK start之后会默认发起一次定位请求，开发者无须判断isstart并主动调用request
         mLocationClient.requestLocation();
 	}
@@ -61,6 +63,11 @@ public class LocationUtil {
 		public void onReceiveLocation(BDLocation location) {
 			if(null!=locationListener)
 				locationListener.localInfo(location);
+		}
+
+		@Override
+		public void onConnectHotSpotMessage(String s, int i) {
+
 		}
 	}
 

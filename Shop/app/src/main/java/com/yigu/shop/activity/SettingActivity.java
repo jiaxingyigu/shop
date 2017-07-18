@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.kyleduo.switchbutton.SwitchButton;
 import com.yigu.shop.R;
 import com.yigu.shop.base.BaseActivity;
+import com.yigu.shop.base.RequestCode;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -46,9 +47,10 @@ public class SettingActivity extends BaseActivity {
                 break;
             case R.id.exit:
                 userSP.clearUserData();
-                Intent i = new Intent(this, MainActivity.class);
+                comUserSP.clearUserData();
+                Intent i = new Intent(this, CommunityActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                i.putExtra("type",3);
+                i.putExtra("type", RequestCode.login_exit);
                 startActivity(i);
                 finish();
                 break;

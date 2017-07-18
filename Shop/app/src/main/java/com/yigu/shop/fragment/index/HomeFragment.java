@@ -26,6 +26,7 @@ import com.yigu.shop.commom.result.MapiShopResult;
 import com.yigu.shop.commom.util.DPUtil;
 import com.yigu.shop.commom.util.DebugLog;
 import com.yigu.shop.commom.util.RequestExceptionCallback;
+import com.yigu.shop.commom.util.RequestExceptionCallback2;
 import com.yigu.shop.commom.util.RequestPageCallback;
 import com.yigu.shop.commom.widget.MainToast;
 import com.yigu.shop.shopinterface.RecyOnItemClickListener;

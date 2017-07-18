@@ -36,7 +36,7 @@
             android:background="@drawable/selector_pressed_color_orange"
             android:gravity="center"
             android:text="Welcome"
-            android:textColor="@color/shop_white"
+            android:textColor="@android:color/white"
             android:textSize="@dimen/text_big"
             android:visibility="visible" />
     </RelativeLayout>

@@ -42,16 +42,7 @@ import butterknife.OnClick;
 public class ComDetailPortalLayout extends RelativeLayout {
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
-    @Bind(R.id.image)
-    SimpleDraweeView image;
-    @Bind(R.id.care)
-    TextView care;
-    @Bind(R.id.nick)
-    TextView nick;
-    @Bind(R.id.userTitle)
-    TextView userTitle;
-    @Bind(R.id.date)
-    TextView date;
+
     private Context mContext;
     private View view;
 
@@ -80,7 +71,7 @@ public class ComDetailPortalLayout extends RelativeLayout {
         if (isInEditMode())
             return;
 
-        view = LayoutInflater.from(mContext).inflate(R.layout.layout_com_detail_topic, this);
+        view = LayoutInflater.from(mContext).inflate(R.layout.layout_com_detail_portal, this);
         ButterKnife.bind(this, view);
         mList = new ArrayList<>();
 
@@ -95,32 +86,12 @@ public class ComDetailPortalLayout extends RelativeLayout {
 
     public void load(MapiTopicResult mapiTopicResult) {
 
-        Uri imageUri = Uri.parse(mapiTopicResult.getIcon());
-        ImageRequest request = ImageRequestBuilder.newBuilderWithSource(imageUri)
-                .setResizeOptions(new ResizeOptions(DPUtil.dip2px(40), DPUtil.dip2px(40)))
-                .build();
-        DraweeController controller = Fresco.newDraweeControllerBuilder()
-                .setImageRequest(request)
-                .setOldController(image.getController())
-                .setControllerListener(new BaseControllerListener<ImageInfo>())
-                .build();
-        image.setController(controller);
-
-        nick.setText(TextUtils.isEmpty(mapiTopicResult.getUser_nick_name())?"":mapiTopicResult.getUser_nick_name());
-        userTitle.setText(TextUtils.isEmpty(mapiTopicResult.getUserTitle())?"":mapiTopicResult.getUserTitle());
-        date.setText(DateUtil.getInstance().string2YMD_H(mapiTopicResult.getCreate_date()));
-
         List<MapiContentResult> list = mapiTopicResult.getContent();
         if(null==list||list.isEmpty())
             return;
         mList.clear();
         mList.addAll(list);
         mAdapter.notifyDataSetChanged();
-    }
-
-    @OnClick(R.id.care)
-    public void onClick() {
-
     }
 
     @Override

@@ -1,13 +1,346 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.yigu.shop.activity.community.job.ComJobDetailActivity">
+
+    <include
+        layout="@layout/lay_header"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/lay_header"
+        android:background="@android:color/white"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/company"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="@dimen/text_big_x"
+                android:textColor="@color/shop_black"
+                android:layout_marginLeft="@dimen/margin_10dp"
+                android:layout_marginRight="@dimen/margin_10dp"
+                android:layout_marginTop="14dp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/margin_10dp"
+                >
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="软件工程师"
+                    android:textSize="@dimen/text_big"
+                    android:textColor="@color/shop_black"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:layout_marginLeft="@dimen/margin_10dp"
+                    />
+
+                <TextView
+                    android:id="@+id/pay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="@dimen/text_big"
+                    android:textColor="@color/shop_red"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:layout_marginRight="@dimen/margin_10dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                >
+
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="2012-12-12-12"
+                    android:textSize="@dimen/text_normal"
+                    android:textColor="@color/shop_black"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:layout_marginLeft="@dimen/margin_10dp"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginRight="@dimen/margin_10dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/views"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="@dimen/text_normal"
+                        android:textColor="@color/light_gray"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        />
+
+                    <TextView
+                        android:id="@+id/no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="@dimen/text_normal"
+                        android:textColor="@color/light_gray"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:layout_marginLeft="12dp"
+                        />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/divider_line"
+                android:layout_marginLeft="@dimen/margin_10dp"
+                android:layout_marginRight="@dimen/margin_10dp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="14dp"
+                android:gravity="center_vertical"
+                >
+
+
+                <TextView
+                    android:id="@+id/region"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="@dimen/text_big_x"
+                    android:textColor="@color/light_gray"
+                    android:layout_marginLeft="@dimen/margin_10dp"
+                    android:drawableLeft="@mipmap/location_yellow"
+                    android:drawablePadding="@dimen/margin_2"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/divider_line"
+                android:layout_marginLeft="@dimen/margin_10dp"
+                android:layout_marginRight="@dimen/margin_10dp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/margin_10dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/margin_10dp"
+                    android:orientation="vertical"
+                    >
+
+                    <TextView
+                        android:id="@+id/xueli"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="@dimen/text_big_x"
+                        android:textColor="@color/light_gray"
+                        android:drawableLeft="@mipmap/record_yellow"
+                        android:drawablePadding="@dimen/margin_2"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        />
+
+                    <TextView
+                        android:id="@+id/type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="@dimen/text_big_x"
+                        android:textColor="@color/light_gray"
+                        android:drawableLeft="@mipmap/job_type_yellow"
+                        android:drawablePadding="@dimen/margin_2"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        />
+
+                    <TextView
+                        android:id="@+id/sex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="@dimen/text_big_x"
+                        android:textColor="@color/light_gray"
+                        android:drawableLeft="@mipmap/job_sex_yellow"
+                        android:drawablePadding="@dimen/margin_2"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                   android:layout_marginRight="@dimen/margin_10dp"
+                    android:orientation="vertical"
+                    android:weightSum="3"
+                    >
+
+                    <TextView
+                        android:id="@+id/work_nx"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="@dimen/text_big_x"
+                        android:textColor="@color/light_gray"
+                        android:drawableLeft="@mipmap/job_nx_yellow"
+                        android:drawablePadding="@dimen/margin_2"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        />
+
+                    <TextView
+                        android:id="@+id/renshu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="@dimen/text_big_x"
+                        android:textColor="@color/light_gray"
+                        android:drawableLeft="@mipmap/job_pin_yellow"
+                        android:drawablePadding="@dimen/margin_2"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:background="@color/divider_line"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="职位描述"
+                android:textColor="@color/shop_black"
+                android:textSize="@dimen/text_big_x"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="@dimen/margin_10dp"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/divider_line"
+                android:layout_marginLeft="@dimen/margin_10dp"
+                android:layout_marginRight="@dimen/margin_10dp"
+                />
+
+            <TextView
+                android:id="@+id/desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="@dimen/text_big"
+                android:textColor="@color/light_gray"
+                android:lineSpacingMultiplier="1.2"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="@dimen/margin_1"
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/send_ll"
+        android:layout_width="match_parent"
+        android:layout_height="55.5dp"
+        android:layout_alignParentBottom="true"
+        >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentTop="true"
+            android:background="@color/divider_line"
+            />
+
+        <TextView
+            android:id="@+id/send"
+            android:layout_width="105dp"
+            android:layout_height="45dp"
+            android:text="投递简历"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_big_x"
+            android:background="@drawable/selector_pressed_color_red"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:gravity="center"
+            />
+
+
+    </RelativeLayout>
 
 </RelativeLayout>

@@ -17,6 +17,13 @@ android {
         }
     }
     useLibrary 'org.apache.http.legacy'
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
 }
 
 dependencies {
@@ -34,4 +41,6 @@ dependencies {
     compile 'com.jakewharton:butterknife:7.0.1'
     compile files('libs/gson-2.2.4.jar')
     compile 'org.apmem.tools:layouts:1.9@aar'
+    compile 'com.bigkoo:pickerview:2.1.0'
+    compile files('libs/BaiduLBS_Android.jar')
 }

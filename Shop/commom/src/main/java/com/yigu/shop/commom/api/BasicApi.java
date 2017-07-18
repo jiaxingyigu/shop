@@ -96,4 +96,34 @@ public class BasicApi {
     public static String orderpay = "act=/order/pay";
     /**我的信息*/
     public static String getinfo = "act=/user/getinfo";
+
+
+
+    /**社区案例列表*/
+    public static String topiclist = "http://www.autek.top/mobcent/app/web/index.php?r=forum/topiclist";
+    /**交流案例列表*/
+    public static String postlist = "http://www.autek.top/mobcent/app/web/index.php?r=forum/postlist";
+    /**评论*/
+    public static String topicadmin = "http://www.autek.top/mobcent/app/web/index.php?r=forum/topicadmin";
+    /**帖子搜索*/
+    public static String forumsearch = "http://www.autek.top/mobcent/app/web/index.php?r=forum/search";
+    /**文章搜索*/
+    public static String portalsearch = "http://www.autek.top/mobcent/app/web/index.php?r=portal/search";
+    /**文章详情*/
+    public static String portalnewsview = "http://www.autek.top/mobcent/app/web/index.php?r=portal/newsview";
+    /**用户搜索*/
+    public static String searchuser = "http://www.autek.top/mobcent/app/web/index.php?r=user/searchuser";
+    /**获取社区token*/
+    public static String userlogin = "http://www.autek.top/mobcent/app/web/index.php?r=user/login";
+    /**关注*/
+    public static String useradmin = "http://www.autek.top/mobcent/app/web/index.php?r=user/useradmin";
+    /**我的关注*/
+    public static String userlist = "http://www.autek.top/mobcent/app/web/index.php?r=user/userlist";
+    /**我的发表*/
+    public static String usertopiclist = "http://www.autek.top/mobcent/app/web/index.php?r=user/topiclist";
+    /**个人资料*/
+    public static String userinfo = "http://www.autek.top/mobcent/app/web/index.php?r=user/userinfo";
+    /**招聘*/
+    public static String zhaopin = "http://www.autek.top/mobcent/app/web/index.php?r=app/zhaopin";
+
 }

@@ -134,7 +134,7 @@ public class MyShopFragment extends BaseFrag {
         ButterKnife.unbind(this);
     }
 
-    @OnClick({R.id.rl_order, R.id.rl_addr, R.id.rl_setting, R.id.rl_collect, R.id.rl_help, R.id.name,R.id.rl_waitpay,R.id.rl_waitsend,R.id.rl_waitreceive,R.id.rl_ordercomplete})
+    @OnClick({R.id.rl_order, R.id.rl_addr, R.id.rl_collect, R.id.rl_help, R.id.name,R.id.rl_waitpay,R.id.rl_waitsend,R.id.rl_waitreceive,R.id.rl_ordercomplete})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rl_order:
@@ -183,14 +183,6 @@ public class MyShopFragment extends BaseFrag {
                 } else {
 
                     ControllerUtil.go2ManageAddr();
-                }
-                break;
-            case R.id.rl_setting:
-                if (!userSP.checkLogin()) {
-                    ControllerUtil.go2Login();
-                } else {
-                    ControllerUtil.go2Setting();
-
                 }
                 break;
             case R.id.rl_collect:

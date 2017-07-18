@@ -6,10 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yigu.shop.R;
 import com.yigu.shop.commom.result.MapiResourceResult;
+import com.yigu.shop.shopinterface.RecyOnItemClickListener;
 import com.yigu.shop.util.ShopDataSource;
 
 import java.util.List;
@@ -25,6 +27,11 @@ public class ComToolAdapter extends RecyclerView.Adapter<ComToolAdapter.ViewHold
     LayoutInflater inflater;
     List<MapiResourceResult> mList;
 
+    private RecyOnItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(RecyOnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
 
     public ComToolAdapter(Context context, List<MapiResourceResult> list) {
         inflater = LayoutInflater.from(context);
@@ -73,6 +80,16 @@ public class ComToolAdapter extends RecyclerView.Adapter<ComToolAdapter.ViewHold
 
         holder.title.setText(item.getTitle());
 
+        holder.rootView.setTag(position);
+        holder.rootView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int pos = (int) view.getTag();
+                if(null!=onItemClickListener)
+                    onItemClickListener.onItemClick(view,pos);
+            }
+        });
+
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -80,6 +97,8 @@ public class ComToolAdapter extends RecyclerView.Adapter<ComToolAdapter.ViewHold
         ImageView image;
         @Bind(R.id.title)
         TextView title;
+        @Bind(R.id.root_view)
+        LinearLayout rootView;
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);

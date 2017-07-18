@@ -7,10 +7,13 @@ import android.widget.EditText;
 
 import com.yigu.shop.R;
 import com.yigu.shop.base.BaseActivity;
+import com.yigu.shop.commom.api.CommunityApi;
 import com.yigu.shop.commom.api.UserApi;
+import com.yigu.shop.commom.result.MapiMunityUserResult;
 import com.yigu.shop.commom.result.MapiUserResult;
 import com.yigu.shop.commom.util.RequestCallback;
 import com.yigu.shop.commom.util.RequestExceptionCallback;
+import com.yigu.shop.commom.util.RequestExceptionCallback2;
 import com.yigu.shop.commom.util.StringUtil;
 import com.yigu.shop.commom.widget.MainToast;
 import com.yigu.shop.util.ControllerUtil;
@@ -42,8 +45,8 @@ public class LoginActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.login:
-                String phoneStr = phoneEt.getText().toString();
-                String psdStr = psdEt.getText().toString();
+                final String phoneStr = phoneEt.getText().toString();
+                final String psdStr = psdEt.getText().toString();
                 if(TextUtils.isEmpty(phoneStr)){
                     MainToast.showShortToast("请输入账号");
                     return;
@@ -65,8 +68,25 @@ public class LoginActivity extends BaseActivity {
                         hideLoading();
                         MainToast.showShortToast("登录成功");
                         userSP.saveUserBean(success);
-//                        ControllerUtil.go2Main();
-                        finish();
+                        userSP.setUserName(phoneStr);
+                        userSP.setUserPsd(psdStr);
+
+                        showLoading();
+                        CommunityApi.userlogin(LoginActivity.this, userSP.getUserName(), userSP.getUserPsd(), new RequestCallback<MapiMunityUserResult>() {
+                            @Override
+                            public void success(MapiMunityUserResult success) {
+                                hideLoading();
+                                comUserSP.saveUserBean(success);
+//                                ControllerUtil.go2Community();
+                                finish();
+                            }
+                        }, new RequestExceptionCallback2() {
+                            @Override
+                            public void error(String code, String message) {
+                                hideLoading();
+                                MainToast.showShortToast(message);
+                            }
+                        });
                     }
                 }, new RequestExceptionCallback() {
                     @Override

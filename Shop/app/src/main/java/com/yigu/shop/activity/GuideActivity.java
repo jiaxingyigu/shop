@@ -13,10 +13,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.yigu.commom.util.DPUtil;
-import com.yigu.house.R;
-import com.yigu.house.base.BaseActivity;
-import com.yigu.house.util.ControllerUtil;
+import com.yigu.shop.R;
+import com.yigu.shop.base.BaseActivity;
+import com.yigu.shop.commom.util.DPUtil;
+import com.yigu.shop.util.ControllerUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -112,7 +112,7 @@ public class GuideActivity extends BaseActivity {
         if (versionCode != null) {
             userSP.saveUserGuide(versionCode + "");
         }
-        ControllerUtil.go2Main();
+        ControllerUtil.go2Community();
         finish();
     }
 

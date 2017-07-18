@@ -4,6 +4,7 @@ import android.content.Intent;
 
 import com.yigu.shop.activity.CommunityActivity;
 import com.yigu.shop.activity.ForgetActivity;
+import com.yigu.shop.activity.GuideActivity;
 import com.yigu.shop.activity.HelpActivity;
 import com.yigu.shop.activity.ItemListActivity;
 import com.yigu.shop.activity.LoginActivity;
@@ -18,17 +19,33 @@ import com.yigu.shop.activity.addr.AddAddrActivity;
 import com.yigu.shop.activity.addr.ManageAddrActivity;
 import com.yigu.shop.activity.addr.SelAddrActivity;
 import com.yigu.shop.activity.collect.CollectListActivity;
+import com.yigu.shop.activity.community.ComChangeActivity;
+import com.yigu.shop.activity.community.ComDetailActivity;
+import com.yigu.shop.activity.community.ComPersonInfoActivity;
 import com.yigu.shop.activity.community.ComSearchActivity;
+import com.yigu.shop.activity.community.ComSearchTwoActivity;
+import com.yigu.shop.activity.community.FollowListActivity;
+import com.yigu.shop.activity.community.MunityListActivity;
+import com.yigu.shop.activity.community.TopicListActivity;
+import com.yigu.shop.activity.community.job.ComJobDetailActivity;
+import com.yigu.shop.activity.community.job.ComJobEditActivity;
+import com.yigu.shop.activity.community.job.ComJobHisActivity;
+import com.yigu.shop.activity.community.job.ComJobListActivity;
+import com.yigu.shop.activity.community.master.MasterListActivity;
+import com.yigu.shop.activity.community.service.ServiceDetailActivity;
+import com.yigu.shop.activity.community.service.ServiceListActivity;
 import com.yigu.shop.activity.order.HisOrderDetailActivity;
 import com.yigu.shop.activity.order.MyOrderActivity;
 import com.yigu.shop.activity.order.OderDetailActivity;
 import com.yigu.shop.activity.products.ProductListActivity;
 import com.yigu.shop.activity.purcase.PurcaseActivity;
 import com.yigu.shop.activity.purcase.PurcaseListActivity;
+import com.yigu.shop.activity.search.PortalDetailActivity;
 import com.yigu.shop.activity.shops.ShopDetailActivity;
 import com.yigu.shop.activity.webview.WebviewControlActivity;
 import com.yigu.shop.commom.application.AppContext;
 import com.yigu.shop.commom.result.MapiItemResult;
+import com.yigu.shop.commom.result.MapiMunityResult;
 import com.yigu.shop.commom.result.MapiOrderResult;
 import com.yigu.shop.commom.result.MapiShopResult;
 
@@ -155,7 +172,7 @@ public class ControllerUtil {
      * 社区-搜索
      */
     public static void go2ComSearch() {
-        Intent intent = new Intent(AppContext.getInstance(), ComSearchActivity.class);
+        Intent intent = new Intent(AppContext.getInstance(), ComSearchTwoActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         AppContext.getInstance().startActivity(intent);
     }
@@ -264,6 +281,152 @@ public class ControllerUtil {
     public static void go2HisOrderDetail(MapiOrderResult itemResult) {
         Intent intent = new Intent(AppContext.getInstance(), HisOrderDetailActivity.class);
         intent.putExtra("item",itemResult);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        AppContext.getInstance().startActivity(intent);
+    }
+
+    /**
+     * 案例详情
+     */
+    public static void go2ComDetail(String topicId,String boardId) {
+        Intent intent = new Intent(AppContext.getInstance(), ComDetailActivity.class);
+        intent.putExtra("topicId",topicId);
+        intent.putExtra("boardId",boardId);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        AppContext.getInstance().startActivity(intent);
+    }
+
+    /**
+     * 文章详情
+     */
+    public static void go2PortalDetail(String aid) {
+        Intent intent = new Intent(AppContext.getInstance(), PortalDetailActivity.class);
+        intent.putExtra("aid",aid);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        AppContext.getInstance().startActivity(intent);
+    }
+
+    /**
+     * 我的关注
+     */
+    public static void go2FollowList() {
+        Intent intent = new Intent(AppContext.getInstance(), FollowListActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        AppContext.getInstance().startActivity(intent);
+    }
+
+    /**
+     * 我的发表
+     */
+    public static void go2TopicList() {
+        Intent intent = new Intent(AppContext.getInstance(), TopicListActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        AppContext.getInstance().startActivity(intent);
+    }
+
+    /**
+     * 社区个人信息
+     */
+    public static void go2ComPersonInfo(String uid,boolean isEdit) {
+        Intent intent = new Intent(AppContext.getInstance(), ComPersonInfoActivity.class);
+        intent.putExtra("uid",uid);
+        intent.putExtra("isEdit",isEdit);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        AppContext.getInstance().startActivity(intent);
+    }
+
+    /**
+     * 案列-列表
+     */
+    public static void go2MunityList(String title,String boardId) {
+        Intent intent = new Intent(AppContext.getInstance(),  MunityListActivity.class);
+        intent.putExtra("title",title);
+        intent.putExtra("boardId",boardId);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        AppContext.getInstance().startActivity(intent);
+    }
+
+    /**
+     * 求职招聘
+     */
+    public static void go2ComJobList() {
+        Intent intent = new Intent(AppContext.getInstance(),  ComJobListActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        AppContext.getInstance().startActivity(intent);
+    }
+
+    /**
+     * 求职招聘-详情
+     */
+    public static void go2ComJobDetail(String id) {
+        Intent intent = new Intent(AppContext.getInstance(),  ComJobDetailActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("id",id);
+        AppContext.getInstance().startActivity(intent);
+    }
+
+    /**
+     * 求职招聘-添加
+     */
+    public static void go2ComJobEdit() {
+        Intent intent = new Intent(AppContext.getInstance(),  ComJobEditActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        AppContext.getInstance().startActivity(intent);
+    }
+
+    /**
+     * 大咖列表
+     */
+    public static void go2MasterList() {
+        Intent intent = new Intent(AppContext.getInstance(),  MasterListActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        AppContext.getInstance().startActivity(intent);
+    }
+
+    /**
+     * 交流切磋
+     */
+    public static void go2ComChange() {
+        Intent intent = new Intent(AppContext.getInstance(),  ComChangeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        AppContext.getInstance().startActivity(intent);
+    }
+
+    /**
+     * 服务列表
+     */
+    public static void go2ServiceList() {
+        Intent intent = new Intent(AppContext.getInstance(),  ServiceListActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        AppContext.getInstance().startActivity(intent);
+    }
+
+    /**
+     * 点评详情
+     */
+    public static void go2ServiceDetail(String topicId, String boardId, MapiMunityResult mapiMunityResult) {
+        Intent intent = new Intent(AppContext.getInstance(), ServiceDetailActivity.class);
+        intent.putExtra("topicId",topicId);
+        intent.putExtra("boardId",boardId);
+        intent.putExtra("item",mapiMunityResult);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        AppContext.getInstance().startActivity(intent);
+    }
+
+    /**
+     * 引导页
+     */
+    public static void go2Guide() {
+        Intent intent = new Intent(AppContext.getInstance(), GuideActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        AppContext.getInstance().startActivity(intent);
+    }
+
+    /**
+     * 求职列表
+     */
+    public static void go2ComJobHis() {
+        Intent intent = new Intent(AppContext.getInstance(), ComJobHisActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         AppContext.getInstance().startActivity(intent);
     }

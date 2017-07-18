@@ -1,13 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.yigu.shop.activity.community.service.ServiceListActivity">
+
+    <include
+        layout="@layout/lay_header"
+        />
+
+    <LinearLayout
+        android:id="@+id/search_ll"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:background="@android:color/white"
+        android:layout_below="@+id/lay_header"
+        android:visibility="gone"
+        >
+
+        <EditText
+            android:id="@+id/search_et"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:completionThreshold="1"
+            android:drawableLeft="@mipmap/search"
+            android:drawablePadding="4dp"
+            android:hint="搜索职位"
+            android:textColorHint="@color/light_gray"
+            android:imeOptions="actionDone"
+            android:padding="@dimen/margin_1"
+            android:singleLine="true"
+            android:textColor="@color/shop_black"
+            android:textSize="@dimen/text_small"
+            android:background="@drawable/shape_rect_soild_color_black_round_10"
+            android:layout_marginLeft="@dimen/margin_10dp"
+            android:layout_marginRight="@dimen/margin_10dp"
+            />
+
+    </LinearLayout>
+
+
+
+    <com.yigu.shop.widget.BestSwipeRefreshLayout
+        android:id="@+id/swipRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/lay_header"
+        >
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+    </com.yigu.shop.widget.BestSwipeRefreshLayout>
 
 </RelativeLayout>

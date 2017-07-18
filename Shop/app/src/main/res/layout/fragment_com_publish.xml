@@ -1,13 +1,122 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.yigu.shop.fragment.community.ComPublishFragment">
+    tools:context="com.yigu.shop.fragment.community.ComPublishFragment"
+    android:orientation="vertical"
+    >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <include layout="@layout/lay_header"
+        />
+
+    <LinearLayout
+        android:id="@+id/board_ll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="@dimen/text_height_45dp"
+        android:gravity="center_vertical"
+        android:background="@android:color/white"
+        >
 
-</FrameLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="选择模块"
+            android:textColor="@color/shop_black"
+            android:textSize="@dimen/text_big_x"
+            android:layout_marginLeft="@dimen/margin_10dp"
+            />
+
+        <TextView
+            android:id="@+id/board_tv"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="选择模块"
+            android:textColor="@color/shop_black"
+            android:textSize="@dimen/text_normal"
+            android:layout_marginLeft="@dimen/margin_10dp"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/right"
+            android:layout_marginRight="@dimen/margin_10dp"
+            />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/divider_line"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/text_height_45dp"
+        android:gravity="center_vertical"
+        android:background="@android:color/white"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="标题："
+            android:textColor="@color/shop_black"
+            android:textSize="@dimen/text_big_x"
+            android:layout_marginLeft="@dimen/margin_10dp"
+            />
+
+        <EditText
+            android:id="@+id/title_edit"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text=""
+            android:textColor="@color/shop_black"
+            android:textSize="@dimen/text_normal"
+            android:layout_marginLeft="@dimen/margin_10dp"
+            android:background="@null"
+            android:hint="请输入标题"
+            android:textColorHint="@color/light_gray"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:ellipsize="end"
+            />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/divider_line"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        >
+
+        <EditText
+            android:id="@+id/info_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/shop_black"
+            android:textSize="@dimen/text_normal"
+            android:background="@null"
+            android:hint="不吐不快..."
+            android:textColorHint="@color/light_gray"
+            android:minHeight="100dp"
+            android:layout_marginLeft="@dimen/margin_10dp"
+            android:layout_marginRight="@dimen/margin_10dp"
+            android:layout_marginTop="@dimen/margin_10dp"
+            android:layout_marginBottom="@dimen/margin_10dp"
+            />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

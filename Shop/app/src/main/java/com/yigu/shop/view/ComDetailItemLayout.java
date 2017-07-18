@@ -22,7 +22,9 @@ import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.yigu.shop.R;
 import com.yigu.shop.adapter.community.ComContentAdapter;
+import com.yigu.shop.adapter.community.ComDetailItemAdapter;
 import com.yigu.shop.commom.result.MapiContentResult;
+import com.yigu.shop.commom.result.MapiReplyResult;
 import com.yigu.shop.commom.result.MapiTopicResult;
 import com.yigu.shop.commom.util.DPUtil;
 import com.yigu.shop.commom.util.DateUtil;
@@ -41,21 +43,11 @@ import butterknife.OnClick;
 public class ComDetailItemLayout extends RelativeLayout {
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
-    @Bind(R.id.image)
-    SimpleDraweeView image;
-    @Bind(R.id.care)
-    TextView care;
-    @Bind(R.id.nick)
-    TextView nick;
-    @Bind(R.id.userTitle)
-    TextView userTitle;
-    @Bind(R.id.date)
-    TextView date;
     private Context mContext;
     private View view;
 
-    ComContentAdapter mAdapter;
-    List<MapiContentResult> mList;
+    ComDetailItemAdapter mAdapter;
+    List<MapiReplyResult> mList;
 
     public ComDetailItemLayout(Context context) {
         super(context);
@@ -79,37 +71,20 @@ public class ComDetailItemLayout extends RelativeLayout {
         if (isInEditMode())
             return;
 
-        view = LayoutInflater.from(mContext).inflate(R.layout.layout_com_detail_topic, this);
+        view = LayoutInflater.from(mContext).inflate(R.layout.layout_com_detail_item, this);
         ButterKnife.bind(this, view);
         mList = new ArrayList<>();
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
         linearLayoutManager.setOrientation(OrientationHelper.VERTICAL);
-        recyclerView.addItemDecoration(new DividerListItemDecoration(mContext, OrientationHelper.HORIZONTAL, DPUtil.dip2px(8), getResources().getColor(android.R.color.white)));
+        recyclerView.addItemDecoration(new DividerListItemDecoration(mContext, OrientationHelper.HORIZONTAL, DPUtil.dip2px(1), getResources().getColor(R.color.divider_line)));
         recyclerView.setLayoutManager(linearLayoutManager);
-        mAdapter = new ComContentAdapter(mContext, mList);
+        mAdapter = new ComDetailItemAdapter(mContext, mList);
         recyclerView.setAdapter(mAdapter);
 
     }
 
-    public void load(MapiTopicResult mapiTopicResult) {
-
-        Uri imageUri = Uri.parse(mapiTopicResult.getIcon());
-        ImageRequest request = ImageRequestBuilder.newBuilderWithSource(imageUri)
-                .setResizeOptions(new ResizeOptions(DPUtil.dip2px(40), DPUtil.dip2px(40)))
-                .build();
-        DraweeController controller = Fresco.newDraweeControllerBuilder()
-                .setImageRequest(request)
-                .setOldController(image.getController())
-                .setControllerListener(new BaseControllerListener<ImageInfo>())
-                .build();
-        image.setController(controller);
-
-        nick.setText(TextUtils.isEmpty(mapiTopicResult.getUser_nick_name())?"":mapiTopicResult.getUser_nick_name());
-        userTitle.setText(TextUtils.isEmpty(mapiTopicResult.getUserTitle())?"":mapiTopicResult.getUserTitle());
-        date.setText(DateUtil.getInstance().string2YMD_H(mapiTopicResult.getCreate_date()));
-
-        List<MapiContentResult> list = mapiTopicResult.getContent();
+    public void load(List<MapiReplyResult> list) {
         if(null==list||list.isEmpty())
             return;
         mList.clear();
@@ -117,8 +92,4 @@ public class ComDetailItemLayout extends RelativeLayout {
         mAdapter.notifyDataSetChanged();
     }
 
-    @OnClick(R.id.care)
-    public void onClick() {
-
-    }
 }

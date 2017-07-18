@@ -14,6 +14,7 @@ import android.widget.EditText;
 
 import com.yigu.shop.R;
 import com.yigu.shop.commom.application.AppContext;
+import com.yigu.shop.commom.sharedpreferences.ComUserSP;
 import com.yigu.shop.commom.sharedpreferences.UserSP;
 import com.yigu.shop.widget.LoadingDialog;
 
@@ -24,11 +25,12 @@ import com.yigu.shop.widget.LoadingDialog;
 public class BaseActivity extends AppCompatActivity {
 
     protected UserSP userSP;
-
+    protected ComUserSP comUserSP;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         userSP = new UserSP(AppContext.getInstance());
+        comUserSP = new ComUserSP(AppContext.getInstance());
     }
 
     public boolean checkLogin() {
@@ -134,4 +136,9 @@ public class BaseActivity extends AppCompatActivity {
         return versionCode.toString();
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        hideLoading();
+    }
 }

@@ -15,6 +15,8 @@
     <color name="shop_blue">#37c2ea</color>
     <color name="shop_orange">#ff7711</color>
     <color name="gray_middle">#bdbdbd</color>
+    <color name="shop_light_yellow">#ffe1ad</color>
+    <color name="dark_orange">#db6003</color>
 
     <drawable name="background_all">#eeeeee</drawable>
     <drawable name="dark_black">#333333</drawable>

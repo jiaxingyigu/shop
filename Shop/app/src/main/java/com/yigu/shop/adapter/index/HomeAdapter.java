@@ -166,7 +166,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         //创建将要下载的图片的URI
         Uri imageUri = Uri.parse(itemResult.getGoods_img());
         ImageRequest request = ImageRequestBuilder.newBuilderWithSource(imageUri)
-                .setResizeOptions(new ResizeOptions(DPUtil.dip2px(400), DPUtil.dip2px(160)))
+                .setResizeOptions(new ResizeOptions(DPUtil.dip2px(400), DPUtil.dip2px(180)))
                 .build();
         DraweeController controller = Fresco.newDraweeControllerBuilder()
                 .setImageRequest(request)

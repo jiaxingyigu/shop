@@ -63,8 +63,8 @@ public class PortalSearchAdapter extends RecyclerView.Adapter<PortalSearchAdapte
     public void onBindViewHolder(ViewHolder holder, int position) {
         MapiMunityResult mapiMunityResult = mList.get(position);
         holder.title.setText(mapiMunityResult.getTitle());
-        holder.subject.setText(mapiMunityResult.getSubject());
-        holder.date.setText(DateUtil.getInstance().string2YMD_H(mapiMunityResult.getLast_reply_date()));
+        holder.subject.setText(mapiMunityResult.getSummary());
+        holder.date.setText(DateUtil.getInstance().string2YMD_H(mapiMunityResult.getDateline()));
         holder.hits.setText(TextUtils.isEmpty(mapiMunityResult.getHits()) ? "0" : mapiMunityResult.getHits());
         holder.nick.setText(mapiMunityResult.getUser_nick_name());
 
@@ -84,7 +84,6 @@ public class PortalSearchAdapter extends RecyclerView.Adapter<PortalSearchAdapte
                     .build();
             holder.image.setController(controller);
         }
-
 
         holder.rootView.setTag(position);
         holder.rootView.setOnClickListener(new View.OnClickListener() {

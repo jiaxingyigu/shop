@@ -26,7 +26,6 @@ public class JobListHisAdapter extends RecyclerView.Adapter<JobListHisAdapter.Vi
     LayoutInflater inflater;
     List<MapiJobResult> mList;
 
-
     private RecyOnItemClickListener onItemClickListener;
 
     public void setOnItemClickListener(RecyOnItemClickListener onItemClickListener) {
@@ -45,25 +44,23 @@ public class JobListHisAdapter extends RecyclerView.Adapter<JobListHisAdapter.Vi
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(inflater.inflate(R.layout.item_job_list, parent, false));
+        return new ViewHolder(inflater.inflate(R.layout.item_job_his_list, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder,int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
         MapiJobResult mapiJobResult = mList.get(position);
-        holder.title.setText(TextUtils.isEmpty(mapiJobResult.getTitle())?"":mapiJobResult.getTitle());
-        holder.company.setText(TextUtils.isEmpty(mapiJobResult.getCompany())?"":mapiJobResult.getCompany());
-        holder.regions.setText(TextUtils.isEmpty(mapiJobResult.getRegions())?"":mapiJobResult.getRegions());
-        holder.xueli.setText(TextUtils.isEmpty(mapiJobResult.getXueli())?"":mapiJobResult.getXueli());
-        holder.date.setText(TextUtils.isEmpty(mapiJobResult.getDate())?"":mapiJobResult.getDate());
-        holder.pay.setText(TextUtils.isEmpty(mapiJobResult.getPay())?"":mapiJobResult.getPay());
+        holder.title.setText(TextUtils.isEmpty(mapiJobResult.getPosition_name()) ? "" : mapiJobResult.getPosition_name());
+        holder.company.setText("公司："+(TextUtils.isEmpty(mapiJobResult.getGongsi()) ? "" : mapiJobResult.getGongsi()));
+        holder.date.setText(TextUtils.isEmpty(mapiJobResult.getTimestamp()) ? "" : mapiJobResult.getTimestamp());
+        holder.status.setText(TextUtils.isEmpty(mapiJobResult.getStatus()) ? "" : mapiJobResult.getStatus());
         holder.rootView.setTag(position);
         holder.rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int pos = (int) view.getTag();
-                if(null!=onItemClickListener)
-                    onItemClickListener.onItemClick(view,pos);
+                if (null != onItemClickListener)
+                    onItemClickListener.onItemClick(view, pos);
             }
         });
     }
@@ -73,16 +70,13 @@ public class JobListHisAdapter extends RecyclerView.Adapter<JobListHisAdapter.Vi
         TextView title;
         @Bind(R.id.company)
         TextView company;
-        @Bind(R.id.regions)
-        TextView regions;
-        @Bind(R.id.xueli)
-        TextView xueli;
         @Bind(R.id.date)
         TextView date;
-        @Bind(R.id.pay)
-        TextView pay;
         @Bind(R.id.root_view)
         LinearLayout rootView;
+        @Bind(R.id.status)
+        TextView status;
+
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);

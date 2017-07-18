@@ -202,6 +202,7 @@ public class ShopDetailActivity extends BaseActivity {
             mList.add(new IndexData(1, SHOP_TAB, item));
             pageIndex = 1;
             totalChange = 0;
+            recyclerView.getLayoutManager().scrollToPosition(0);
             mAdapter.notifyDataSetChanged();
            /* stickyHeaderView.post(new Runnable() {
                 @Override

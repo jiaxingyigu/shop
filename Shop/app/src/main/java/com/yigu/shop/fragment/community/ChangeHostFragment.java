@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.yigu.shop.R;
+import com.yigu.shop.adapter.community.MunityAdapter;
 import com.yigu.shop.adapter.community.MunityHostAdapter;
 import com.yigu.shop.base.BaseFrag;
 import com.yigu.shop.commom.api.CommunityApi;
@@ -20,6 +21,8 @@ import com.yigu.shop.commom.util.DebugLog;
 import com.yigu.shop.commom.util.RequestExceptionCallback2;
 import com.yigu.shop.commom.util.RequestPageCallback;
 import com.yigu.shop.commom.widget.MainToast;
+import com.yigu.shop.shopinterface.RecyOnItemClickListener;
+import com.yigu.shop.util.ControllerUtil;
 import com.yigu.shop.widget.BestSwipeRefreshLayout;
 import com.yigu.shop.widget.DividerListItemDecoration;
 
@@ -46,7 +49,7 @@ public class ChangeHostFragment extends BaseFrag {
     private final static String TEXT = "TEXT";
     private final static String IMAGE = "IMAGE";
     private final static String LIST = "LIST";
-    MunityHostAdapter mAdapter;
+    MunityAdapter mAdapter;
 
     private Integer pageIndex = 1;
     private Integer pageSize = 11;
@@ -69,18 +72,23 @@ public class ChangeHostFragment extends BaseFrag {
     }
 
     private void initView() {
+
+        mList = new ArrayList<>();
+        data = new ArrayList<>();
+        pageIndex = 1;
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(OrientationHelper.VERTICAL);
         recyclerView.addItemDecoration(new DividerListItemDecoration(getActivity(), OrientationHelper.HORIZONTAL, DPUtil.dip2px(8), getResources().getColor(R.color.divider_line)));
         recyclerView.setLayoutManager(linearLayoutManager);
-        mAdapter = new MunityHostAdapter(getActivity(), mList);
+        mAdapter = new MunityAdapter(getActivity(), mList);
         recyclerView.setAdapter(mAdapter);
     }
 
     public void load() {
 
         showLoading();
-        CommunityApi.topiclist(getActivity(), "0", "0", "marrow", "1", pageIndex + "", pageSize + "", new RequestPageCallback<List<MapiMunityResult>>() {
+        CommunityApi.topiclist(getActivity(), "0", "52", "new", "1", pageIndex + "", pageSize + "", new RequestPageCallback<List<MapiMunityResult>>() {
             @Override
             public void success(Integer count, List<MapiMunityResult> success) {
                 swipRefreshLayout.setRefreshing(false);
@@ -146,6 +154,15 @@ public class ChangeHostFragment extends BaseFrag {
                 super.onScrolled(recyclerView, dx, dy);
             }
         });
+
+        mAdapter.setOnItemClickListener(new RecyOnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                MapiMunityResult mapiMunityResult = (MapiMunityResult) mList.get(position).getData();
+                ControllerUtil.go2ComDetail(mapiMunityResult.getTopic_id(),mapiMunityResult.getBoard_id());
+            }
+        });
+
     }
 
     public void loadNext() {

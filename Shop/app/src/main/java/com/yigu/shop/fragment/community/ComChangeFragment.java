@@ -29,13 +29,13 @@ public class ComChangeFragment extends BaseFrag {
     TabLayout tablayout;
     @Bind(R.id.viewpager)
     ViewPager viewpager;
-    private MunityHostFragment munityHostFragment;
-    private MunityChiTaiFragment munityChiTaiFragment;
-    private MunityPaoPianFragment munityPaoPianFragment;
-    private MunityDouDonFragment munityDouDonFragment;
-    private MunityQiTaFragment munityQiTaFragment;
-    private MunitySheBeiFragment munitySheBeiFragment;
-    private MunityDiPanFragment munityDiPanFragment;
+    private ChangeHostFragment changeHostFragment;
+    private ChangeSiLunFragment changeSiLunFragment;
+    private ChangeDPHFragment changeDPHFragment;
+    private ChangeLunTaiFragment changeLunTaiFragment;
+    private ChangeTiaoZhengFragment changeTiaoZhengFragment;
+    private ChangeXuanGuaFragment changeXuanGuaFragment;
+    private ChangeShaCheFragment changeShaCheFragment;
     private List<Fragment> list = new ArrayList<>();
     private List<String> list_title = new ArrayList<>();
     TabFragmentAdapter mAdapter;
@@ -59,29 +59,29 @@ public class ComChangeFragment extends BaseFrag {
     }
 
     private void initView() {
-        munityHostFragment = new MunityHostFragment();
-        munityChiTaiFragment = new MunityChiTaiFragment();
-        munityPaoPianFragment = new MunityPaoPianFragment();
-        munityDouDonFragment = new MunityDouDonFragment();
-        munityQiTaFragment = new MunityQiTaFragment();
-        munitySheBeiFragment = new MunitySheBeiFragment();
-        munityDiPanFragment = new MunityDiPanFragment();
+        changeHostFragment = new ChangeHostFragment();
+        changeSiLunFragment = new ChangeSiLunFragment();
+        changeDPHFragment = new ChangeDPHFragment();
+        changeLunTaiFragment = new ChangeLunTaiFragment();
+        changeTiaoZhengFragment = new ChangeTiaoZhengFragment();
+        changeXuanGuaFragment = new ChangeXuanGuaFragment();
+        changeShaCheFragment = new ChangeShaCheFragment();
 
-        list.add(munityHostFragment);
-        list.add(munityChiTaiFragment);
-        list.add(munityPaoPianFragment);
-        list.add(munityDouDonFragment);
-        list.add(munityQiTaFragment);
-        list.add(munitySheBeiFragment);
-        list.add(munityDiPanFragment);
+        list.add(changeHostFragment);
+        list.add(changeSiLunFragment);
+        list.add(changeDPHFragment);
+        list.add(changeLunTaiFragment);
+        list.add(changeTiaoZhengFragment);
+        list.add(changeXuanGuaFragment);
+        list.add(changeShaCheFragment);
 
-        list_title.add("推荐");
-        list_title.add("吃胎案例");
-        list_title.add("跑偏案例");
-        list_title.add("抖动案例");
-        list_title.add("其它案例");
-        list_title.add("设备培训");
-        list_title.add("地盘培训");
+        list_title.add("最新");
+        list_title.add("四轮定位");
+        list_title.add("动平衡");
+        list_title.add("轮胎拆装");
+        list_title.add("调整组件");
+        list_title.add("悬挂系统");
+        list_title.add("刹车系统");
 
         tablayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         tablayout.setTabGravity(TabLayout.GRAVITY_FILL);

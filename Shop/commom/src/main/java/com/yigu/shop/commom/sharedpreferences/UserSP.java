@@ -16,12 +16,49 @@ public class UserSP extends AbstractSP {
     private final static String KEY_SP_Resources = "jgj.resources";
     private final static String KEY_SP_Alias = "user_Alias";
     private final static String KEY_SP_Addr = "user_addr";
+    private final static String KEY_SP_UserName = "user_name";
+    private final static String KEY_SP_UserPsd = "user_psd";
+    private final static String KEY_SP_munity_token = "munity_token";
+    private final static String KEY_SP_munity_secret = "munity_secret";
+
     public UserSP(Context context) {
         super(context);
     }
 
+    public void setMunityToken(String munity_token){
+        sharedPreferences.edit().putString(KEY_SP_munity_token, munity_token).commit();
+    }
+
+    public void setMunitySecret(String munity_secret){
+        sharedPreferences.edit().putString(KEY_SP_munity_secret, munity_secret).commit();
+    }
+
+    public String getMunityToken(){
+        return sharedPreferences.getString(KEY_SP_munity_token,"");
+    }
+
+    public String getMunitySecret(){
+        return sharedPreferences.getString(KEY_SP_munity_secret,"");
+    }
+
     public void saveUserBean(MapiUserResult userbean) {
         sharedPreferences.edit().putString(KEY_SP_USER, JSONObject.toJSONString(userbean)).commit();
+    }
+
+    public void setUserName(String userName){
+        sharedPreferences.edit().putString(KEY_SP_UserName, userName).commit();
+    }
+
+    public void setUserPsd(String psd){
+        sharedPreferences.edit().putString(KEY_SP_UserPsd, psd).commit();
+    }
+
+    public String getUserName(){
+        return sharedPreferences.getString(KEY_SP_UserName,"");
+    }
+
+    public String getUserPsd(){
+        return sharedPreferences.getString(KEY_SP_UserPsd,"");
     }
 
     public MapiUserResult getUserBean() {

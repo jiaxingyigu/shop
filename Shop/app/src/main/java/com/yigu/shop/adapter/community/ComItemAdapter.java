@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.yigu.shop.R;
 import com.yigu.shop.commom.result.MapiResourceResult;
+import com.yigu.shop.shopinterface.RecyOnItemClickListener;
 import com.yigu.shop.util.ShopDataSource;
 
 import java.util.List;
@@ -26,7 +27,11 @@ public class ComItemAdapter extends RecyclerView.Adapter<ComItemAdapter.ViewHold
     LayoutInflater inflater;
     List<MapiResourceResult> mList;
 
+    private RecyOnItemClickListener onItemClickListener;
 
+    public void setOnItemClickListener(RecyOnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
 
     public ComItemAdapter(Context context, List<MapiResourceResult> list) {
         inflater = LayoutInflater.from(context);
@@ -69,6 +74,17 @@ public class ComItemAdapter extends RecyclerView.Adapter<ComItemAdapter.ViewHold
 
         holder.title.setText(item.getTitle());
         holder.content.setText(item.getContent());
+
+        holder.rootView.setTag(position);
+        holder.rootView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int pos = (int) view.getTag();
+                if(null!=onItemClickListener)
+                    onItemClickListener.onItemClick(view,pos);
+            }
+        });
+
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

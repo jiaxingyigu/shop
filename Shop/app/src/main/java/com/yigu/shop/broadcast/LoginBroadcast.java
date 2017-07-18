@@ -10,6 +10,7 @@ import android.content.Intent;
 
 import com.yigu.shop.activity.LoginActivity;
 import com.yigu.shop.commom.application.AppContext;
+import com.yigu.shop.commom.sharedpreferences.ComUserSP;
 import com.yigu.shop.commom.sharedpreferences.UserSP;
 
 /**
@@ -26,6 +27,8 @@ public class LoginBroadcast extends BroadcastReceiver {
 
         UserSP userSP = new UserSP(AppContext.getInstance());
         userSP.clearUserData();
+        ComUserSP comUserSP = new ComUserSP(AppContext.getInstance());
+        comUserSP.clearUserData();
 
         Intent it = new Intent(AppContext.getInstance(), LoginActivity.class);
         it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

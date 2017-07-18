@@ -10,4 +10,7 @@ public class Constants {
     public static final String Token = "token";
     public static final String Uid = "uid";
 
+    public static final String Munity_Token = "accessToken";
+    public static final String Munity_Secret = "accessSecret";
+    public static final String Munity_uid = "uid";
 }

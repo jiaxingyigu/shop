@@ -1,6 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="95dp"
+    android:background="@android:color/white"
+    android:id="@+id/root_view"
+    >
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/image"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        fresco:fadeDuration="2000"
+        fresco:placeholderImage="@drawable/face_default"
+        fresco:placeholderImageScaleType="fitCenter"
+        fresco:progressBarAutoRotateInterval="2000"
+        fresco:progressBarImage="@mipmap/progress"
+        fresco:progressBarImageScaleType="centerInside"
+        fresco:actualImageScaleType="fitXY"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/margin_10dp"
+        />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="@dimen/margin_1"
+        >
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="小熊"
+            android:textSize="@dimen/text_big"
+            android:textColor="@color/shop_black"
+            android:maxLines="1"
+            android:ellipsize="end"
+            />
+
+        <TextView
+            android:id="@+id/userTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="崭露头角"
+            android:textSize="@dimen/text_small"
+            android:textColor="@android:color/white"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:background="#80c2ff"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
+            android:paddingTop="1dp"
+            android:paddingBottom="1dp"
+            android:layout_marginTop="@dimen/margin_1"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="这个人很懒，不用理他~"
+            android:textSize="@dimen/text_small"
+            android:textColor="@color/light_gray"
+            android:layout_marginTop="@dimen/margin_1"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginRight="@dimen/margin_10dp"
+        android:gravity="center_vertical"
+        >
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20203"
+            android:textSize="@dimen/text_small"
+            android:textColor="@color/light_gray"
+            />
+
+        <TextView
+            android:id="@+id/guanzhu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="关注"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_normal"
+            android:background="@drawable/selector_pressed_color_red"
+            android:paddingLeft="14dp"
+            android:paddingRight="14dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:layout_marginTop="@dimen/margin_10dp"
+            />
+
+    </LinearLayout>
 
 </LinearLayout>

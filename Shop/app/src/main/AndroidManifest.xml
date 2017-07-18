@@ -23,6 +23,7 @@
     <application
         android:name=".commom.application.AppContext"
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
@@ -49,13 +50,7 @@
             android:name=".activity.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity
             android:name=".activity.products.ProductListActivity"
             android:screenOrientation="portrait" />
@@ -73,9 +68,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.purcase.PurcaseActivity"
-            android:screenOrientation="portrait"
             android:launchMode="singleTask"
-            />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.collect.RecordActivity"
             android:screenOrientation="portrait" />
@@ -93,11 +87,11 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.order.MyOrderActivity"
-            android:screenOrientation="portrait"
             android:launchMode="singleTask"
-            />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.CommunityActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.LoginActivity"
@@ -134,9 +128,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.purcase.PurcaseListActivity"
-            android:screenOrientation="portrait"
             android:launchMode="singleTask"
-            />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.collect.CollectListActivity"
             android:screenOrientation="portrait" />
@@ -149,9 +142,70 @@
         <activity
             android:name=".activity.webview.WebviewControlActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.order.HisOrderDetailActivity"
+        <activity
+            android:name=".activity.order.HisOrderDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.community.ComDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.community.ComSearchTwoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.search.PortalDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.community.FollowListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.community.TopicListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.community.ComPersonInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.community.MunityListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.community.job.ComJobListActivity"
             android:screenOrientation="portrait"
-            />
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activity.community.job.ComJobDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.community.job.ComJobEditActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activity.community.master.MasterListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.community.service.ServiceListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.community.ComChangeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.community.service.ServiceDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.community.SelBoardActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SplashScreenActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashScreenTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.GuideActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.community.job.ComJobHisActivity"></activity>
     </application>
 
 </manifest>

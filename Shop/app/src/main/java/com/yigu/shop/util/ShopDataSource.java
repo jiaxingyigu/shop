@@ -37,8 +37,8 @@ public class ShopDataSource {
         list.add(new MapiResourceResult(TYPE_paopian,"跑偏案例"));
         list.add(new MapiResourceResult(TYPE_doudon,"抖动案例"));
         list.add(new MapiResourceResult(TYPE_qita,"其它案例"));
-        list.add(new MapiResourceResult(TYPE_wanxue,"玩学不误"));
-        list.add(new MapiResourceResult(TYPE_zhuanye,"专业测试"));
+        list.add(new MapiResourceResult(TYPE_wanxue,"读书社"));
+        list.add(new MapiResourceResult(TYPE_zhuanye,"视频教程"));
         list.add(new MapiResourceResult(TYPE_dipan,"底盘培训"));
         list.add(new MapiResourceResult(TYPE_shebei,"设备培训"));
         return list;
@@ -51,11 +51,11 @@ public class ShopDataSource {
     public static List<MapiResourceResult> getComItemResource(){
         List<MapiResourceResult> list = new ArrayList<>();
         list.add(new MapiResourceResult(TYPE_qiuzhi,"求职招聘","优秀人才的选择"));
-        list.add(new MapiResourceResult(TYPE_mendian,"门店评价","寻找适合的门店"));
-        list.add(new MapiResourceResult(TYPE_anli,"案例分析","案例具体分析"));
-        list.add(new MapiResourceResult(TYPE_wenti,"我要提问","发布我的问题"));
-        list.add(new MapiResourceResult(TYPE_geshujijian,"各抒己见","各种意见探讨"));
-        list.add(new MapiResourceResult(TYPE_kuaisu,"快速发表","快速发表意见"));
+        list.add(new MapiResourceResult(TYPE_mendian,"服务点评","寻找适合的门店"));
+//        list.add(new MapiResourceResult(TYPE_anli,"案例分析","案例具体分析"));
+//        list.add(new MapiResourceResult(TYPE_wenti,"我要提问","发布我的问题"));
+        list.add(new MapiResourceResult(TYPE_geshujijian,"交流切磋","各种意见探讨"));
+        list.add(new MapiResourceResult(TYPE_kuaisu,"好多大咖","快速发表意见"));
         return list;
     }
 

@@ -57,17 +57,13 @@ public class ComPersonTabLayout extends LinearLayout {
         ButterKnife.bind(this, view);
 
         stickyHeaderView.setVisibility(View.VISIBLE);
-        list_title.add("全部");
-        list_title.add("最新");
-        list_title.add("最热");
-        list_title.add("精品");
+        list_title.add("资料");
+        list_title.add("发表");
 
         tablayout.setTabMode(TabLayout.MODE_FIXED);
         tablayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tablayout.addTab(tablayout.newTab().setText(list_title.get(0)));
         tablayout.addTab(tablayout.newTab().setText(list_title.get(1)));
-        tablayout.addTab(tablayout.newTab().setText(list_title.get(2)));
-        tablayout.addTab(tablayout.newTab().setText(list_title.get(3)));
         initListener();
     }
 

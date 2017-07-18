@@ -24,6 +24,7 @@ import com.yigu.shop.commom.result.IndexData;
 import com.yigu.shop.commom.result.MapiMunityResult;
 import com.yigu.shop.commom.util.DPUtil;
 import com.yigu.shop.commom.util.DateUtil;
+import com.yigu.shop.shopinterface.RecyOnItemClickListener;
 
 import java.util.List;
 
@@ -40,6 +41,12 @@ public class MunityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private List<IndexData> mList;
 
     private Context mContext;
+
+    private RecyOnItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(RecyOnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
 
     public MunityAdapter(Context context, List<IndexData> list) {
         inflater = LayoutInflater.from(context);
@@ -106,6 +113,8 @@ public class MunityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         TextView nick;
         @Bind(R.id.hits)
         TextView hits;
+        @Bind(R.id.root_view)
+        LinearLayout rootView;
 
         public HaveImageViewHolder(View itemView) {
             super(itemView);
@@ -126,6 +135,8 @@ public class MunityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         TextView nick;
         @Bind(R.id.hits)
         TextView hits;
+        @Bind(R.id.root_view)
+        LinearLayout rootView;
 
         public HaveNoImageViewHolder(View itemView) {
             super(itemView);
@@ -148,6 +159,8 @@ public class MunityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         TextView hits;
         @Bind(R.id.ll_image)
         LinearLayout ll_image;
+        @Bind(R.id.root_view)
+        LinearLayout rootView;
 
         public HaveListViewHolder(View itemView) {
             super(itemView);
@@ -156,21 +169,28 @@ public class MunityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     private void setItemNoImage(HaveNoImageViewHolder holder, int position) {
-        holder.ivHost.setVisibility(View.VISIBLE);
         MapiMunityResult mapiMunityResult = (MapiMunityResult) mList.get(position).getData();
         holder.title.setText(mapiMunityResult.getTitle());
         holder.subject.setText(mapiMunityResult.getSubject());
         holder.date.setText(DateUtil.getInstance().string2YMD_H(mapiMunityResult.getLast_reply_date()));
         holder.hits.setText(TextUtils.isEmpty(mapiMunityResult.getHits()) ? "0" : mapiMunityResult.getHits());
         holder.nick.setText(mapiMunityResult.getUser_nick_name());
+        holder.rootView.setTag(position);
+        holder.rootView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = (int) view.getTag();
+                if(null!=onItemClickListener)
+                    onItemClickListener.onItemClick(view,position);
+            }
+        });
 
     }
 
     private void setItemImage(HaveImageViewHolder holder, int position) {
-        holder.ivHost.setVisibility(View.VISIBLE);
         MapiMunityResult mapiMunityResult = (MapiMunityResult) mList.get(position).getData();
-        holder.title.setText(mapiMunityResult.getTitle());
-        holder.subject.setText(mapiMunityResult.getSubject());
+        holder.title.setText(TextUtils.isEmpty(mapiMunityResult.getTitle())?"":mapiMunityResult.getTitle());
+        holder.subject.setText(TextUtils.isEmpty(mapiMunityResult.getSubject())?"":mapiMunityResult.getSubject());
         holder.date.setText(DateUtil.getInstance().string2YMD_H(mapiMunityResult.getLast_reply_date()));
         holder.hits.setText(TextUtils.isEmpty(mapiMunityResult.getHits()) ? "0" : mapiMunityResult.getHits());
         holder.nick.setText(mapiMunityResult.getUser_nick_name());
@@ -186,18 +206,35 @@ public class MunityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 .setControllerListener(new BaseControllerListener<ImageInfo>())
                 .build();
         holder.image.setController(controller);
+        holder.rootView.setTag(position);
+        holder.rootView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = (int) view.getTag();
+                if(null!=onItemClickListener)
+                    onItemClickListener.onItemClick(view,position);
+            }
+        });
 
     }
 
     private void setItemListImage(HaveListViewHolder holder, int position) {
 
-        holder.ivHost.setVisibility(View.VISIBLE);
         MapiMunityResult mapiMunityResult = (MapiMunityResult) mList.get(position).getData();
         holder.title.setText(mapiMunityResult.getTitle());
         holder.subject.setText(mapiMunityResult.getSubject());
         holder.date.setText(DateUtil.getInstance().string2YMD_H(mapiMunityResult.getLast_reply_date()));
         holder.hits.setText(TextUtils.isEmpty(mapiMunityResult.getHits()) ? "0" : mapiMunityResult.getHits());
         holder.nick.setText(mapiMunityResult.getUser_nick_name());
+        holder.rootView.setTag(position);
+        holder.rootView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = (int) view.getTag();
+                if(null!=onItemClickListener)
+                    onItemClickListener.onItemClick(view,position);
+            }
+        });
 
         holder.ll_image.removeAllViews();
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);

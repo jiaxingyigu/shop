@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.yigu.shop.commom.application.AppContext;
+import com.yigu.shop.commom.sharedpreferences.ComUserSP;
 import com.yigu.shop.commom.sharedpreferences.UserSP;
 
 
@@ -15,10 +16,11 @@ import com.yigu.shop.commom.sharedpreferences.UserSP;
  */
 public class BaseFrag extends Fragment{
     protected UserSP userSP;
-
+    protected ComUserSP comUserSP;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         userSP = new UserSP(AppContext.getInstance());
+        comUserSP = new ComUserSP(AppContext.getInstance());
         return super.onCreateView(inflater,container,savedInstanceState);
     }
 

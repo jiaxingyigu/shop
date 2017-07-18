@@ -135,4 +135,21 @@ public class DateUtil {
         return "";
     }
 
+    /**
+     * string 转 yyyy-MM-dd
+     * @param date
+     * @return
+     */
+    public String string2YMD_H(String date){
+        try{
+            SimpleDateFormat dateFormat2 = new SimpleDateFormat(YMD_H);
+            Date targetDate = new Date();
+            targetDate.setTime(Long.parseLong(date));
+            return dateFormat2.format(targetDate);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return "";
+    }
+
 }

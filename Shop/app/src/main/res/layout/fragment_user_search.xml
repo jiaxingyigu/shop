@@ -1,13 +1,89 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.yigu.shop.fragment.search.UserSearchFragment">
+    tools:context="com.yigu.shop.activity.community.ComSearchActivity"
+    android:orientation="vertical"
+    >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:id="@+id/lay_header"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="@dimen/text_height_45dp"
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/margin_10dp"
+
+            >
+
+            <EditText
+                android:id="@+id/content_et"
+                style="@style/editViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="输入您要搜索的内容"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/type_tv"
+                android:padding="5dp"
+                android:layout_centerVertical="true"
+                android:imeOptions="actionSearch"
+                android:maxLines="1"
+                />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/light_yellow"
+                />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_right_two"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/text_big"
+            android:textColor="@color/shop_orange"
+            android:maxLines="1"
+            android:paddingLeft="@dimen/margin_2"
+            android:paddingRight="@dimen/margin_2"
+            android:layout_marginRight="@dimen/margin_10dp"
+            android:layout_marginLeft="@dimen/margin_10dp"
+            android:text=""
+            android:gravity="center"
+            />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider_view"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/divider_line"
+        />
+
+    <com.yigu.shop.widget.BestSwipeRefreshLayout
+        android:id="@+id/swipRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+    </com.yigu.shop.widget.BestSwipeRefreshLayout>
+
+</LinearLayout>

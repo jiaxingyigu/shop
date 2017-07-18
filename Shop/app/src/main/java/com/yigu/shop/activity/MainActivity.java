@@ -47,7 +47,7 @@ public class MainActivity extends BaseActivity {
     RadioButton radioPerson;
     private BaseFrag[] fragments;
     private int index = 0;
-    private long exitTime = 0;
+
 
     private RadioButton[] buttons;
 
@@ -116,21 +116,6 @@ public class MainActivity extends BaseActivity {
 //        }
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if ((System.currentTimeMillis() - exitTime) > 2000) {
-                Toast.makeText(getApplicationContext(), "再按一次退出汽车商城", Toast.LENGTH_SHORT).show();
-                exitTime = System.currentTimeMillis();
-            } else {
-                finish();
-            }
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
-
-
     @OnClick({R.id.radio_home,R.id.radio_find, R.id.radio_community, R.id.radio_sort, R.id.radio_person,R.id.iv_right_two
     ,R.id.iv_right})
     public void onClick(View view) {
@@ -146,8 +131,7 @@ public class MainActivity extends BaseActivity {
 //                fragments[index].load();
                 break;
             case R.id.radio_community:
-                buttons[index].setChecked(true);
-                ControllerUtil.go2Community();
+                finish();
                 break;
             case R.id.radio_sort:
                 index = 3;
@@ -155,9 +139,15 @@ public class MainActivity extends BaseActivity {
 //                fragments[index].load();
                 break;
             case R.id.radio_person:
-                index = 4;
-                selectTab();
-                fragments[index].load();
+                if (!userSP.checkLogin()) {
+                    buttons[index].setChecked(true);
+                    ControllerUtil.go2Login();
+                } else {
+                    index = 4;
+                    selectTab();
+                    fragments[index].load();
+                }
+
                 break;
             case R.id.iv_right_two:
                 if (!userSP.checkLogin()) {

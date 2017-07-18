@@ -1,6 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="@dimen/margin_10dp"
+        android:layout_marginRight="@dimen/margin_10dp"
+        >
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/image"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            fresco:fadeDuration="2000"
+            fresco:placeholderImage="@drawable/face_default"
+            fresco:placeholderImageScaleType="fitCenter"
+            fresco:progressBarAutoRotateInterval="2000"
+            fresco:progressBarImage="@mipmap/progress"
+            fresco:progressBarImageScaleType="centerInside"
+            fresco:actualImageScaleType="fitXY"
+            />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:id="@+id/reply_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="@dimen/text_small"
+                    android:textColor="@color/shop_black"
+                    />
+
+                <TextView
+                    android:id="@+id/userTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="@dimen/text_small"
+                    android:textColor="#ffe1ad"
+                    android:layout_marginLeft="4dp"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="@dimen/text_small_x"
+                android:textColor="@color/light_gray"
+                android:layout_marginTop="2dp"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/position"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/light_gray"
+            android:textSize="@dimen/text_small_x"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/infor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="@dimen/text_normal"
+        android:textColor="@color/shop_black"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="@dimen/margin_10dp"
+        android:layout_marginLeft="43dp"
+        android:layout_marginRight="@dimen/margin_10dp"
+        />
+
 
 </LinearLayout>

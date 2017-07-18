@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.yigu.shop.R;
 import com.yigu.shop.adapter.search.ForumSearchAdapter;
+import com.yigu.shop.adapter.search.PortalSearchAdapter;
 import com.yigu.shop.base.BaseFrag;
 import com.yigu.shop.commom.api.CommunityApi;
 import com.yigu.shop.commom.result.MapiMunityResult;
@@ -55,7 +56,7 @@ public class PortalSearchFragment extends BaseFrag {
     private Integer pageSize = 11;
     private Integer counts;
 
-    ForumSearchAdapter mAdapter;
+    PortalSearchAdapter mAdapter;
 
     public PortalSearchFragment() {
         // Required empty public constructor
@@ -85,8 +86,10 @@ public class PortalSearchFragment extends BaseFrag {
         linearLayoutManager.setOrientation(OrientationHelper.VERTICAL);
         recyclerView.addItemDecoration(new DividerListItemDecoration(getActivity(), OrientationHelper.HORIZONTAL, DPUtil.dip2px(8), getResources().getColor(R.color.divider_line)));
         recyclerView.setLayoutManager(linearLayoutManager);
-        mAdapter = new ForumSearchAdapter(getActivity(), mList);
+        mAdapter = new PortalSearchAdapter(getActivity(), mList);
         recyclerView.setAdapter(mAdapter);
+
+
     }
 
     private void initListener() {
@@ -141,7 +144,7 @@ public class PortalSearchFragment extends BaseFrag {
             @Override
             public void onItemClick(View view, int position) {
                 MapiMunityResult mapiMunityResult = mList.get(position);
-                ControllerUtil.go2ComDetail(mapiMunityResult.getTopic_id(), mapiMunityResult.getBoard_id());
+                ControllerUtil.go2PortalDetail(mapiMunityResult.getAid());
             }
         });
 
@@ -149,7 +152,7 @@ public class PortalSearchFragment extends BaseFrag {
 
     public void load() {
         showLoading();
-        CommunityApi.forumsearch(getActivity(), contentEt.getText().toString(), pageIndex + "", pageSize + "", new RequestPageCallback<List<MapiMunityResult>>() {
+        CommunityApi.portalsearch(getActivity(), contentEt.getText().toString(), pageIndex + "", pageSize + "", new RequestPageCallback<List<MapiMunityResult>>() {
             @Override
             public void success(Integer count, List<MapiMunityResult> success) {
                 swipRefreshLayout.setRefreshing(false);
